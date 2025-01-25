@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<nav>
+    <ul>
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Meus Materiais</a></li>
+        <li><a href="#">Área do Usuário</a></li>
+        <li><a href="#">Configurações</a></li>
+        <li><a href="#">Sobre nós</a></li>
+    </ul>
+</nav>
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
