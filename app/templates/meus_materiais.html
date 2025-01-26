@@ -1,57 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block header %}
-<header>
-    <div class="container-mat">
-        <div class="add-material">
-            <h2>Adicionar Material</h2>
-            <form>
-                <label for="autor">Autor:</label><br>
-                <input type="text" id="autor" name="autor"><br><br>
-                <label for="autor">Descrição:</label><br>
-                <input type="text" id="descricao" name="descricao"><br><br>
-                <label for="titulo">Título:</label><br>
-                <input type="text" id="titulo" name="titulo"><br><br>
-                <label for="tipo">Tipo:</label><br>
-                <input type="radio" id="slide" name="tipo" value="slide">
-                <label for="slide">Slide</label><br>
-                <input type="radio" id="video" name="tipo" value="video">
-                <label for="video">Vídeo</label><br>
-                <input type="radio" id="documento" name="tipo" value="documento">
-                <label for="documento">Documento</label><br><br>
-                <input type="submit" value="Adicionar">
-            </form>
-        </div>
-        <div class="content-mat">
-            <div class="videos">
-                <h2>Vídeos</h2>
-                <img src="{% static 'images/video1.jpg' %}" alt="Video 1">
-                <button>Abrir</button>
-                <img src="{% static 'images/video2.jpg' %}" alt="Video 2">
-                <button>Abrir</button>
-                <img src="{% static 'images/video3.jpg' %}" alt="Video 3">
-                <button>Abrir</button>
-            </div>
-            <div class="slides">
-                <h2>Slides</h2>
-                <img src="{% static 'images/slide1.jpg' %}" alt="Slide 1">
-                <button>Abrir</button>
-                <img src="{% static 'images/slide2.jpg' %}" alt="Slide 2">
-                <button>Abrir</button>
-                <img src="{% static 'images/slide3.jpg' %}" alt="Slide 3">
-                <button>Abrir</button>
-            </div>
-            <div class="documentos">
-                <h2>Documentos</h2>
-                <img src="{% static 'images/document1.jpg' %}" alt="Documento 1">
-                <button>Abrir</button>
-                <img src="{% static 'images/document2.jpg' %}" alt="Documento 2">
-                <button>Abrir</button>
-                <img src="{% static 'images/document3.jpg' %}" alt="Documento 3">
-                <button>Abrir</button>
-            </div>
-        </div>
-    </div>
-</header>
+{% block content %}
+<body>
+    <h1>Meus Materiais</h1>
+    <h2>Vídeos</h2>
+    {% for video in videos %}
+        <p>{{ video.titulo }} <a href="{{ video.arquivo.url }}">Abrir</a></p>
+    {% endfor %}
+    <h2>Slides</h2>
+    {% for slide in slides %}
+        <p>{{ slide.titulo }} <a href="{{ slide.arquivo.url }}">Abrir</a></p>
+    {% endfor %}
+    <h2>Documentos</h2>
+    {% for documento in documentos %}
+        <p>{{ documento.titulo }} <a href="{{ documento.arquivo.url }}">Abrir</a></p>
+    {% endfor %}
+</body>
 {% endblock %}

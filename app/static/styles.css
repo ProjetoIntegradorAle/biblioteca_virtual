@@ -3,7 +3,7 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     background-size: cover;
-    background-image: url("% static 'img/foto_fundo.jpg' %");
+    background-image: url('/static/img/foto_fundo.jpg');
     min-height: 100%;
     background-repeat: no-repeat;
     background-position: center center;
@@ -137,7 +137,7 @@ header {
 /* Meus Materiais */
 header {
     font-family: Arial, sans-serif;
-    background-image: url("{% static 'img/foto_fundo.jpg' %}");
+    background-image: url('/static/img/foto_fundo.jpg');
     background-size: cover;
     color: white;
 }
