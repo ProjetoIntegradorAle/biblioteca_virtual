@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
-<nav>
+<nav class="navbar">
     <ul>
         <li><a href="#">Início</a></li>
         <li><a href="#">Meus Materiais</a></li>
@@ -19,4 +19,8 @@
     {% block content %}
     {% endblock %}
 </body>
+<header>
+    {% block header %}
+    {% endblock %}
+</header>
 </html>
