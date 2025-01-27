@@ -4,4 +4,4 @@ from .models import Material
 class MaterialForm(forms.ModelForm):
     class Meta:
         model = Material
-        fields = ['autor', 'descricao', 'titulo', 'tipo', 'arquivo']
+        fields = ['titulo', 'descricao', 'autor', 'tipo', 'arquivo']

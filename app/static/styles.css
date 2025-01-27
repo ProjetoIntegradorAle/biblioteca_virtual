@@ -9,11 +9,12 @@ body {
     background-position: center center;
     background-attachment: fixed;
     display: block;
+    color: white;
 }
 
 /* Barra de navegação */
 .navbar {
-    background-color: #9ca17085;
+    background-color: #a7ac7979;
     padding: 10px 20px;
     display: flex;
     justify-content: center;
@@ -135,52 +136,97 @@ header {
 }
 
 /* Meus Materiais */
-header {
-    font-family: Arial, sans-serif;
-    background-image: url('/static/img/foto_fundo.jpg');
-    background-size: cover;
-    color: white;
-}
-.navbar {
-    display: flex;
-    justify-content: space-around;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-}
-.navbar a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-}
+
 .container-mat {
     display: flex;
-    padding: 20px;
-}
-.add-material {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    margin-right: 20px;
-    flex: 1;
-}
-.content-mat {
-    display: flex;
-    flex: 3;
     justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    margin-top: 50px; /* Adiciona espaçamento entre o topo e o conteúdo principal */
+    flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas, se necessário */
 }
+
+.add-material {
+    background-color: #4f7d5798;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.014);
+    width: 30%; /* Define a largura da seção "Adicionar Material" */
+    min-width: 200px; /* Define uma largura mínima para a seção */
+}
+
+.add-material h2 {
+    margin-top: 0;
+}
+
+.add-material form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-material input[type="text"],
+.add-material textarea,
+.add-material select,
+.add-material button {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.add-material textarea {
+    resize: vertical; /* Permite que o campo de descrição se expanda verticalmente */
+}
+
+.add-material button {
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
+.content-mat {
+    flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas, se necessário */
+    width: 65%; /* Define a largura da seção de conteúdo */
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas, se necessário */
+}
+
 .content-mat div {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 20px;
     margin: 0 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     flex: 1;
+    min-width: 200px; /* Define uma largura mínima para os itens */
+    max-width: 300px; /* Define uma largura máxima para os itens */
 }
-.content-mat img {
+
+.material-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.material-item img {
     width: 100%;
     height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
-.content-mat button {
+
+.material-item button {
     background-color: green;
     color: white;
     border: none;
     padding: 10px;
     cursor: pointer;
+    border-radius: 5px;
+}
+
+.material-item button a {
+    color: white;
+    text-decoration: none;
 }

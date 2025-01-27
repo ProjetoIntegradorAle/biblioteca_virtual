@@ -16,10 +16,12 @@ def adicionar_material(request):
     return render(request, 'adicionar_material.html', {'form': form})
 
 def meus_materiais(request):
+    form = MaterialForm()
     videos = Material.objects.filter(tipo=Material.VIDEO)
     slides = Material.objects.filter(tipo=Material.SLIDE)
     documentos = Material.objects.filter(tipo=Material.DOCUMENTO)
     return render(request, 'meus_materiais.html', {
+        'form': form,
         'videos': videos,
         'slides': slides,
         'documentos': documentos,

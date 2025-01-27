@@ -1,3 +1,3 @@
 # Projeto Integrador: Biblioteca Virtual - Alexandria
 
-Componentes: Elias Renner, João Victor e Luana Tayná
+- Componentes: Luana Tayná, João Victor e Elias Renner

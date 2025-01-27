@@ -11,7 +11,7 @@ class Material(models.Model):
     ]
     
     autor = models.CharField(max_length=100)
-    descricao = models.TextField()
+    descricao = models.TextField(max_length=100)
     titulo = models.CharField(max_length=200)
     tipo = models.CharField(
         max_length=2,

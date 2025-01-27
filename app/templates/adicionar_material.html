@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
 <head>
     <title>Adicionar Material</title>
 </head>
-<body>
-    <h1>Adicionar Material</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Adicionar</button>
-    </form>
-</body>
-</html>
+<main class="container-mat">
+    <div class="add-material">
+        <h2>Adicionar Material</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Adicionar</button>
+        </form>
+    </div>
+</main>
+{% endblock %}
