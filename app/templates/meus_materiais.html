@@ -36,7 +36,7 @@
             <h2>Documentos</h2>
             {% for documento in documentos %}
             <div class="material-item">
-                <img src="{% static 'img/doc_placeholder.jpg' %}" alt="{{ documento.titulo }}">
+                <img src="{% static 'media/doc_placeholder.jpg' %}" alt="{{ documento.titulo }}">
                 <p>{{ documento.titulo }}</p>
                 <button><a href="{{ documento.arquivo.url }}">Abrir</a></button>
             </div>

@@ -14,21 +14,21 @@ body {
 
 /* Barra de navegação */
 .navbar {
-    background-color: #a7ac7979;
-    padding: 10px 20px;
+    padding: 25px;
     display: flex;
-    justify-content: center;
-    position: fixed;
-    width: 100%;
+    justify-content: space-around;
+    position: static;
+    width: 96%;
     top: 0;
     z-index: 1000;
     font-family: Georgia;
+    border-bottom: 2px solid white; /* Adiciona uma linha abaixo da barra de navegação */
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 60px;
 }
 
 .navbar li {
@@ -37,6 +37,7 @@ body {
 
 .navbar a {
     text-decoration: none;
+    padding: 10px 30px;
     color: white;
     font-weight: bold;
     transition: color 0.3s ease;
@@ -136,24 +137,25 @@ header {
 }
 
 /* Meus Materiais */
-
 .container-mat {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     padding: 20px;
-    margin-top: 50px; /* Adiciona espaçamento entre o topo e o conteúdo principal */
+    margin-top: 20px; /* Adiciona espaçamento entre o topo e o conteúdo principal */
     flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas, se necessário */
+    justify-content: center; /* Centraliza os elementos horizontalmente */
 }
 
-.add-material {
-    background-color: #4f7d5798;
+.add-material { /* Define o estilo da seção "Adicionar Material" */
+    background-color: rgba(24, 63, 20, 0.521);
     padding: 20px;
     margin: 10px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.014);
-    width: 30%; /* Define a largura da seção "Adicionar Material" */
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+    width: 20%; /* Define a largura da seção "Adicionar Material" */
     min-width: 200px; /* Define uma largura mínima para a seção */
+    
 }
 
 .add-material h2 {
@@ -165,17 +167,26 @@ header {
     flex-direction: column;
 }
 
+.add-material label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 .add-material input[type="text"],
 .add-material textarea,
 .add-material select,
 .add-material button {
-    margin-bottom: 10px;
+    flex: 1;
     padding: 10px;
     border-radius: 5px;
     border: none;
 }
 
 .add-material textarea {
+    width: 77%; /* Define a largura da área de texto */
+    height: 14px; /* Define a altura da área de texto */
     resize: vertical; /* Permite que o campo de descrição se expanda verticalmente */
 }
 
@@ -186,16 +197,17 @@ header {
 }
 
 .content-mat {
-    flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas, se necessário */
-    width: 65%; /* Define a largura da seção de conteúdo */
+    justify-content: center; /* Centraliza os elementos horizontalmente */
     display: flex;
     flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas, se necessário */
+    width: 65%; /* Define a largura da seção de conteúdo */
+    justify-content: space-between;
 }
 
 .content-mat div {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.377);
     padding: 20px;
-    margin: 0 10px;
+    margin: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     flex: 1;
