@@ -18,17 +18,17 @@ body {
     display: flex;
     justify-content: space-around;
     position: static;
-    width: 96%;
+    width: 97.4%;
     top: 0;
     z-index: 1000;
     font-family: Georgia;
-    border-bottom: 2px solid white; /* Adiciona uma linha abaixo da barra de navegação */
+    border-bottom: 3px solid white; /* Adiciona uma linha abaixo da barra de navegação */
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 60px;
+    gap: 80px;
 }
 
 .navbar li {
