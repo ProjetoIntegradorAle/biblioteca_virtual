@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Alexandria</h1>
+            <form>
+                <div class="input-group">
+                    <label for="username">Área de login</label>
+                    <input type="text" id="username" placeholder="Digite seu login">
+                </div>
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" placeholder="Digite sua senha">
+                </div>
+                <button type="submit" class="btn-login">Entrar</button>
+                <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                <button type="button" class="btn-suap">Entrar com SUAP IFRN</button>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}

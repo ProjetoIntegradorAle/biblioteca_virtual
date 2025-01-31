@@ -26,3 +26,6 @@ def meus_materiais(request):
         'slides': slides,
         'documentos': documentos,
     })
+    
+def login(request):
+    return render(request, 'login.html')
