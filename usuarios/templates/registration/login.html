@@ -1,0 +1,19 @@
+{% extends 'base_usuarios.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Alexandria</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn-login">Entrar</button>
+                <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                <button type="button" class="btn-suap">Entrar com SUAP IFRN</button>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'usuarios',
     'app',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -100,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -116,9 +116,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'app' / 'static']
+STATIC_URL = 'static/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 MEDIA_URL = 'media/'
 
@@ -126,3 +124,8 @@ MEDIA_URL = 'media/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "usuarios.User"
+
+LOGOUT_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = "index"
