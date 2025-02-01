@@ -5,6 +5,9 @@ from .models import Material
 def index(request):
     return render(request, 'index.html')
 
+def login(request):
+    return render(request, 'registration/login.html')
+
 def adicionar_material(request):
     if request.method == 'POST':
         form = MaterialForm(request.POST, request.FILES)
@@ -27,5 +30,3 @@ def meus_materiais(request):
         'documentos': documentos,
     })
     
-def login(request):
-    return render(request, 'login.html')
