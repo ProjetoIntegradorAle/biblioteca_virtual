@@ -1,4 +1,5 @@
 {% extends 'base_usuarios.html' %}
+{% load static crispy_forms_filters %}
 {% load static %}
 
 {% block content %}
@@ -8,7 +9,7 @@
             <h1>Alexandria</h1>
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form | crispy }}
                 <button type="submit" class="btn-login">Entrar</button>
                 <a href="#" class="forgot-password">Esqueceu a senha?</a>
                 <button type="button" class="btn-suap">Entrar com SUAP IFRN</button>
