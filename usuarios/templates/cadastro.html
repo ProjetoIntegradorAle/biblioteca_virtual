@@ -3,11 +3,15 @@
 {% block title %}Cadastro{% endblock %}
 
 {% block content %}
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Cadastrar</button>
-    </form>
-</body>
+<div class="cadastro-container">
+    <div class="cadastro-box">
+        <button class="btn-voltar">&larr;</button>
+        <h1>Alexandria</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn-cadastrar">Cadastrar</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
