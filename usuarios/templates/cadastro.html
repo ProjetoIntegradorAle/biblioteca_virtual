@@ -5,13 +5,17 @@
 {% block content %}
 <div class="cadastro-container">
     <div class="cadastro-box">
-        <button class="btn-voltar">&larr;</button>
+        <a href="{% url 'login' %}" class="btn-voltar">&larr;</a>
         <h1>Alexandria</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form|crispy }}
+            {{ form.username|as_crispy_field }}
+            {{ form.email|as_crispy_field }}
+            {{ form.password1|as_crispy_field }}
+            {{ form.password2|as_crispy_field }}
             <button type="submit" class="btn-cadastrar">Cadastrar</button>
         </form>
     </div>
 </div>
 {% endblock %}
+

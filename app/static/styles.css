@@ -11,10 +11,9 @@ body {
     display: block;
     color: white;
 }
-
 /* Barra de navegação */
 .navbar {
-    padding: 25px;
+    padding: 15px;
     display: flex;
     justify-content: space-around;
     position: static;
@@ -22,22 +21,23 @@ body {
     top: 0;
     z-index: 1000;
     font-family: Georgia;
-    border-bottom: 3px solid white; /* Adiciona uma linha abaixo da barra de navegação */
+    border-bottom: 2px solid white; /* Adiciona uma linha abaixo da barra de navegação */
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 80px;
+    gap: 20px;
 }
 
 .navbar li {
     text-transform: uppercase;
+    font-size: 14px; /* Reduz o tamanho da fonte */
 }
 
 .navbar a {
     text-decoration: none;
-    padding: 10px 30px;
+    padding: 5px 15px;
     color: white;
     font-weight: bold;
     transition: color 0.3s ease;
@@ -254,11 +254,11 @@ header {
 /* Caixa de login */
 .login-box {
     background: rgba(255, 255, 255, 0.9);
-    padding: 30px;
+    padding: 25px;
     border-radius: 8px;
     text-align: center;
     width: 100%;
-    max-width: 360px;
+    max-width: 340px; /* Define a largura máxima da caixa de login */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
@@ -278,6 +278,51 @@ header {
     margin-right: 8px;
     font-size: 32px;
 }
+
+/* Espaçamento entre campos de entrada */
+.login-box .form-group { 
+    margin-bottom: 20px; /* Adiciona espaço entre os campos de entrada */
+}
+
+/* Campos de entrada */
+.login-box input {
+    width: 80%; /* Define a largura dos campos de entrada */
+    padding: 10px;
+    margin-bottom: 13px; /* Adiciona espaço entre os campos de entrada */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Botões */
+.btn-login, .btn-suap {
+    width: 75%; /* Define a largura dos botões */
+    padding: 8px;
+    margin: 5px auto; /* Centraliza os botões horizontalmente */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-login {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-suap {
+    background: #333;
+    color: #fff;
+}
+
+label {
+    color: #333;
+}
+
+/* Remover asteriscos */
+.form-group label::after {
+    content: ""; /* Remove o conteúdo do pseudo-elemento */
+}
+
 
 /* Estilo dos campos */
 .input-group {
@@ -300,53 +345,6 @@ header {
     font-size: 16px;
 }
 
-/* Botões */
-.btn-login {
-    width: 100%;
-    padding: 10px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-.btn-login:hover {
-    background: #45a049;
-}
-
-.btn-suap {
-    width: 100%;
-    padding: 10px;
-    background: #000;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-.btn-suap:hover {
-    background: #333;
-}
-
-/* Link de senha esquecida */
-.forgot-password {
-    display: block;
-    margin-top: 15px;
-    text-decoration: none;
-    color: #555;
-    font-size: 14px;
-}
-
-.forgot-password:hover {
-    color: #000;
-}
-
-
 .footer {
     font-weight: bold;
     font-family: Arial, sans-serif;
@@ -363,19 +361,18 @@ header {
 .btn-cadastrar {
     width: 100%;
     padding: 10px;
-    background: #4CAF50;
-    color: white;
+    color: #555;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 17px;
     margin-top: 10px;
+    text-decoration: none;
 }
 
 .btn-cadastrar:hover {
-    background: #45a049;
+    color: #000;
 }
-
 
 /* Link de senha esquecida */
 .forgot-password {
@@ -383,7 +380,8 @@ header {
     margin-top: 15px;
     text-decoration: none;
     color: #555;
-    font-size: 14px;
+    font-size: 17px;
+    padding-bottom: 3px;
 }
 
 .forgot-password:hover {
