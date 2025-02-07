@@ -1,21 +1,20 @@
 {% extends 'base_usuarios.html' %}
 {% load static crispy_forms_tags %}
-{% block title %}Cadastro{% endblock %}
 
 {% block content %}
-<div class="cadastro-container">
-    <div class="cadastro-box">
-        <a href="{% url 'login' %}" class="btn-voltar">&larr;</a>
-        <h1>Alexandria</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.username|as_crispy_field }}
-            {{ form.email|as_crispy_field }}
-            {{ form.password1|as_crispy_field }}
-            {{ form.password2|as_crispy_field }}
-            <button type="submit" class="btn-cadastrar">Cadastrar</button>
-        </form>
+<body>
+    <div class="cadastro-container">
+        <div class="cadastro-box">
+            <a href="{% url 'login' %}" class="btn-voltar">&larr;</a>
+            <h1>Alexandria</h1>
+            <form method="post">
+                <div class='form-group'>
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                </div>
+                <button type="submit" class="btn-cadastrar_cad">Cadastrar</button>
+            </form>
+        </div>
     </div>
-</div>
+</body>
 {% endblock %}
-

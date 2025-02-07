@@ -443,3 +443,16 @@ label {
     margin-right: 8px;
     font-size: 32px;
 }
+
+.btn-cadastrar_cad{
+    width: 20%;
+    color: white;
+    padding: 10px;
+    background: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+    margin-top: 10px;
+    text-decoration: none;
+}
