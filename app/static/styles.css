@@ -243,6 +243,23 @@ header {
     text-decoration: none;
 }
 
+/* Materiais Salvos */
+.material-list{
+    justify-content: center; /* Centraliza os elementos horizontalmente */
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas, se necessário */
+    width: 65%; /* Define a largura da seção de conteúdo */
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.377);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    flex: 1;
+    min-width: 200px; /* Define uma largura mínima para os itens */
+    max-width: 300px; /* Define uma largura máxima para os itens */
+}
+
 /* Login */
 .login-container {
     display: flex;

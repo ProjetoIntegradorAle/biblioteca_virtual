@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load crispy_forms_tags %}
 
 <!-- MATERIAIS CRIADOS -->
 {% block content %}
   <head>
-    <title>Meus Materiais</title>
+    <title>Materiais</title>
   </head>
   <main class="container-mat">
     <div class="material-list">
-      <h2>Meus Materiais</h2>
+      <h2>Materiais Criados</h2>
       <table>
         <thead>
           <tr>
@@ -27,8 +27,8 @@
               <td>{{ material.descricao }}</td>
               <td>{{ material.get_tipo_display }}</td>
               <td>
-                <a href="{% url 'editar_material' material.id %}">Editar</a> |
-                <a href="{% url 'deletar_material' material.id %}">Deletar</a>
+                <a href="{% url 'editar_material' %}">Editar</a> |
+                <a href="{% url 'deletar_material' %}">Deletar</a>
               </td>
             </tr>
           {% endfor %}
@@ -53,7 +53,6 @@
             <h2>Vídeos</h2>
             {% for video in videos %}
             <div class="material-item">
-                <img src="{% static 'img/video_placeholder.png' %}" alt="{{ video.titulo }}">
                 <p>{{ video.titulo }}</p>
                 <button><a href="{{ video.arquivo.url }}">Abrir</a></button>
             </div>
@@ -63,7 +62,6 @@
             <h2>Slides</h2>
             {% for slide in slides %}
             <div class="material-item">
-                <img src="{% static 'img/slide_placeholder.jpg' %}" alt="{{ slide.titulo }}">
                 <p>{{ slide.titulo }}</p>
                 <button><a href="{{ slide.arquivo.url }}">Abrir</a></button>
             </div>
@@ -73,7 +71,6 @@
             <h2>Documentos</h2>
             {% for documento in documentos %}
             <div class="material-item">
-                <img src="{% static 'media/doc_placeholder.jpg' %}" alt="{{ documento.titulo }}">
                 <p>{{ documento.titulo }}</p>
                 <button><a href="{{ documento.arquivo.url }}">Abrir</a></button>
             </div>
