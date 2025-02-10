@@ -16,7 +16,6 @@
             <th>Autor</th>
             <th>Descrição</th>
             <th>Tipo</th>
-            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -27,8 +26,8 @@
               <td>{{ material.descricao }}</td>
               <td>{{ material.get_tipo_display }}</td>
               <td>
-                <a href="{% url 'editar_material' %}">Editar</a> |
-                <a href="{% url 'deletar_material' %}">Deletar</a>
+                <button href="{% url 'editar_material' %}">Editar</button>
+                <button href="{% url 'deletar_material' %}">Deletar</button>
               </td>
             </tr>
           {% endfor %}
@@ -36,7 +35,6 @@
       </table>
     </div>
   </main>
-
 
 <!-- MATERIAIS SALVOS -->
 <main class="container-mat">

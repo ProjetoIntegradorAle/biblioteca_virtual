@@ -47,7 +47,7 @@ def editar_material(request, id_material):
 @login_required
 def deletar_material(request, id_material):
     material = get_object_or_404(Material, pk=id_material)
-    if request.method == "POST":
+    if request.method == 'POST':
         material.delete()
-        return redirect('meus_materiais')
-    return render(request, 'deletar_material.html', {'material': material})
+        return redirect('index')
+    return render(request, 'deletar_material.html')

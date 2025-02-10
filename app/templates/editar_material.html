@@ -1,17 +1,13 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-
 {% block content %}
-  <head>
-    <title>Editar Material</title>
-  </head>
   <main class="container-mat">
     <div class="edit-material">
       <h2>Editar Material</h2>
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Salvar</button>
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Salvar</button>
       </form>
     </div>
   </main>
