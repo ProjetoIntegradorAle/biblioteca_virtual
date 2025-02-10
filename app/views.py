@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect,  get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import MaterialForm
 from .models import Material
+from .forms import MaterialForm
 
 def index(request):
     return render(request, 'index.html')
@@ -31,9 +31,23 @@ def meus_materiais(request):
         'slides': slides,
         'documentos': documentos,
     })
-    
-def deletar_material(request, material_id):
-    context = {
-        "material": get_object_or_404(Material, pk=material_id)
-    }
-    
+
+@login_required
+def editar_material(request, id_material):
+    material = get_object_or_404(Material, pk=id_material)
+    if request.method == "POST":
+        form = MaterialForm(request.POST, request.FILES, instance=material)
+        if form.is_valid():
+            form.save()
+            return redirect('meus_materiais')
+    else:
+        form = MaterialForm(instance=material)
+    return render(request, 'editar_material.html', {'form': form})
+
+@login_required
+def deletar_material(request, id_material):
+    material = get_object_or_404(Material, pk=id_material)
+    if request.method == "POST":
+        material.delete()
+        return redirect('meus_materiais')
+    return render(request, 'deletar_material.html', {'material': material})
