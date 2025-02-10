@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .forms import MaterialForm
 from .models import Material
 
@@ -8,6 +9,7 @@ def index(request):
 def login(request):
     return render(request, 'registration/login.html')
 
+@login_required
 def adicionar_material(request):
     if request.method == 'POST':
         form = MaterialForm(request.POST, request.FILES)
@@ -29,4 +31,9 @@ def meus_materiais(request):
         'slides': slides,
         'documentos': documentos,
     })
+    
+def deletar_material(request, material_id):
+    context = {
+        "material": get_object_or_404(Material, pk=material_id)
+    }
     
