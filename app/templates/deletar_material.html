@@ -7,7 +7,6 @@
       <p>Você tem certeza que quer deletar o material "{{ material }}"?</p>
       <form method="post">
         {% csrf_token %}
-        {{ form|crispy }}
         <button type="submit" class="btn btn-danger">Sim, deletar</button>
         <a href="{% url 'meus_materiais' %}" class="btn btn-secondary">Cancelar</a>
       </form>

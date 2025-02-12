@@ -1,41 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-<!-- MATERIAIS CRIADOS -->
 {% block content %}
-  <head>
-    <title>Materiais</title>
-  </head>
-  <main class="container-mat">
-    <div class="material-list">
-      <h2>Materiais Criados</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Título</th>
-            <th>Autor</th>
-            <th>Descrição</th>
-            <th>Tipo</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for material in materiais %}
-            <tr>
-              <td>{{ material.titulo }}</td>
-              <td>{{ material.autor }}</td>
-              <td>{{ material.descricao }}</td>
-              <td>{{ material.get_tipo_display }}</td>
-              <td>
-                <button href="{% url 'editar_material' %}">Editar</button>
-                <button href="{% url 'deletar_material' %}">Deletar</button>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </main>
-
 <!-- MATERIAIS SALVOS -->
 <main class="container-mat">
     <div class="add-material">
@@ -76,4 +42,39 @@
         </div>
     </div>
 </main>
+{% endblock %}
+
+<!-- MATERIAIS CRIADOS -->
+{% block header %}
+<header>
+  <main class="material-list">
+    <div>
+      <h2>Materiais Criados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Descrição</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for material in materiais %}
+            <tr>
+              <td>{{ material.titulo }}</td>
+              <td>{{ material.autor }}</td>
+              <td>{{ material.descricao }}</td>
+              <td>{{ material.get_tipo_display }}</td>
+              <td>
+                <a href="{% url 'editar_material' %}">Editar</a>
+                <a href="{% url 'deletar_material' %}">Deletar</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</header>
 {% endblock %}
