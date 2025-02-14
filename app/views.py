@@ -17,7 +17,7 @@ def adicionar_material(request):
             form.save()
             return redirect('meus_materiais')
     else:
-        form = MaterialForm()
+        form = MaterialForm(instance='')
     return render(request, 'adicionar_material.html', {'form': form})
 
 def meus_materiais(request):

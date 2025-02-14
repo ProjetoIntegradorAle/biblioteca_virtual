@@ -6,7 +6,7 @@
 <main class="container-mat">
     <div class="add-material">
         <h2>Adicionar Material</h2>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" action="{% url 'adicionar_material' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Adicionar</button>

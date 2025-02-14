@@ -325,7 +325,7 @@ label {
 }
 
 
-/* Estilo dos campos */
+/* Estilo dos campos CADASTRO */ 
 .input-group {
     margin-bottom: 15px;
     text-align: left;
@@ -339,7 +339,7 @@ label {
 }
 
 .input-group input {
-    width: 100%;
+    width: 94%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -358,7 +358,7 @@ label {
     margin: 0;
 }
 
-/* Botão cadastrar */
+/* Link para página cadastrar e login */
 .btn-cadastrar {
     width: 100%;
     padding: 10px;
@@ -402,12 +402,11 @@ label {
 /* Caixa de cadastro */
 .cadastro-box {
     background: rgba(255, 255, 255, 0.9);
-    padding: 30px;
+    padding: 25px;
     border-radius: 8px;
     text-align: center;
     width: 100%;
-    max-width: 600px;
-    position: relative;
+    max-width: 340px; /* Define a largura máxima da caixa de login */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
