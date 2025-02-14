@@ -6,7 +6,7 @@ from .forms import MaterialForm
 def index(request):
     return render(request, 'index.html')
 
-def login(request):  # Renomeado para login_view
+def login(request): 
     return render(request, 'registration/login.html')
 
 @login_required

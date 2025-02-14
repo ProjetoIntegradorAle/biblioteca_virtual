@@ -5,7 +5,6 @@
 <body>
     <div class="cadastro-container">
         <div class="cadastro-box">
-            <a href="{% url 'login' %}" class="btn-voltar">&larr;</a>
             <h1>Alexandria</h1>
             <form method="post">
                 <div class='form-group'>
@@ -13,6 +12,9 @@
                     {{ form | crispy }}
                 </div>
                 <button type="submit" class="btn-cadastrar_cad">Cadastrar</button>
+                <div>
+                    <a href="{% url 'login' %}" class="btn-cadastrar">Já tem conta? Faça o login</a>
+                </div>
             </form>
         </div>
     </div>
