@@ -10,7 +10,7 @@
         <h2>Adicionar Material</h2>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form|crispy }}
             <button type="submit">Adicionar</button>
         </form>
     </div>

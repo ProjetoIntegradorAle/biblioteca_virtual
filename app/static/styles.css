@@ -25,10 +25,21 @@ body {
     border-bottom: 2px solid white; /* Adiciona uma linha abaixo da barra de navegação */
 }
 
+.dropdown-item{
+    width: 100%; /* Define a largura dos botões */
+    padding: 4px;
+    margin: 5px auto; /* Centraliza os botões horizontalmente */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: Georgia;
+}
+
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 60px;
 }
 
 .navbar li {
@@ -149,7 +160,7 @@ header {
 }
 
 .add-material { /* Define o estilo da seção "Adicionar Material" */
-    background-color: rgba(24, 63, 20, 0.521);
+    background-color: rgba(0, 0, 0, 0.377);
     padding: 20px;
     margin: 10px;
     border-radius: 10px;
@@ -161,6 +172,10 @@ header {
 
 .add-material h2 {
     margin-top: 0;
+}
+
+label{
+    color: white;
 }
 
 .add-material form {
