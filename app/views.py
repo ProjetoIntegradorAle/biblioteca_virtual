@@ -15,11 +15,13 @@ def meus_materiais(request):
     videos = Material.objects.filter(tipo=Material.VIDEO)
     slides = Material.objects.filter(tipo=Material.SLIDE)
     documentos = Material.objects.filter(tipo=Material.DOCUMENTO)
+    materiais = Material.objects.all()
     return render(request, 'meus_materiais.html', {
         'form': form,
         'videos': videos,
         'slides': slides,
         'documentos': documentos,
+        'materiais': materiais,
     })
 
 @login_required
@@ -29,7 +31,7 @@ def adicionar_material(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Material adicionado com sucesso!')
-            return redirect('index')
+            return redirect('meus_materiais')
         else:
             messages.error(request, 'Erro ao adicionar material!')
     else:
@@ -45,7 +47,7 @@ def editar_material(request, id_material):
         if form.is_valid():
             form.save()
             messages.success(request, 'Material atualizado com sucesso!')
-            return redirect('index')
+            return redirect('meus_materiais')
         else:
             messages.error(request, 'Erro ao atualizar material!')
     else:
@@ -58,5 +60,5 @@ def deletar_material(request, id_material):
     if request.method == 'POST':
         material.delete()
         messages.success(request, 'Material deletado com sucesso!')
-        return redirect('index')
+        return redirect('meus_materiais')
     return render(request, 'deletar_material.html', {'material': material})
