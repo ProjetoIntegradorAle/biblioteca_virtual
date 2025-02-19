@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+
 {% block content %}
-  <main class="container-mat">
+<main class="container-mat">
     <div class="delete-material">
-      <h2>Deletar Material</h2>
-      <p>Você tem certeza que quer deletar o material "{{ material }}"?</p>
-      <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Sim, deletar</button>
-        <a href="{% url 'index' %}" class="btn btn-secondary">Cancelar</a>
-      </form>
+        <h2>Deletar Material</h2>
+        <p>Você tem certeza que quer deletar o material "{{ material }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Sim, deletar</button>
+            <a href="{% url 'index' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
     </div>
-  </main>
+</main>
 {% endblock %}

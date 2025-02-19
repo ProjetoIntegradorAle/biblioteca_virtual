@@ -36,6 +36,7 @@ body {
     font-family: Georgia;
 }
 
+
 .navbar ul {
     list-style: none;
     display: flex;
@@ -170,12 +171,13 @@ header {
     
 }
 
-.add-material h2 {
-    margin-top: 0;
+.add-material label{ /* Label de adicionar material */
+    color: white;
+    font-family: Georgia;
 }
 
-label{
-    color: white;
+.add-material h2 {
+    margin-top: 0;
 }
 
 .add-material form {

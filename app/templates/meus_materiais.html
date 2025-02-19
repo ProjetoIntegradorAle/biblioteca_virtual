@@ -19,6 +19,11 @@
             <div class="material-item">
                 <p>{{ video.titulo }}</p>
                 <button><a href="{{ video.arquivo.url }}">Abrir</a></button>
+                <a href="{% url 'editar_material' video.id %}" class="btn btn-primary">Editar</a>
+                <form action="{% url 'deletar_material' video.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Deletar</button>
+                </form>
             </div>
             {% endfor %}
         </div>
@@ -28,6 +33,11 @@
             <div class="material-item">
                 <p>{{ slide.titulo }}</p>
                 <button><a href="{{ slide.arquivo.url }}">Abrir</a></button>
+                <a href="{% url 'editar_material' slide.id %}" class="btn btn-primary">Editar</a>
+                <form action="{% url 'deletar_material' slide.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Deletar</button>
+                </form>
             </div>
             {% endfor %}
         </div>
@@ -37,6 +47,11 @@
             <div class="material-item">
                 <p>{{ documento.titulo }}</p>
                 <button><a href="{{ documento.arquivo.url }}">Abrir</a></button>
+                <a href="{% url 'editar_material' documento.id %}" class="btn btn-primary">Editar</a>
+                <form action="{% url 'deletar_material' documento.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Deletar</button>
+                </form>
             </div>
             {% endfor %}
         </div>
@@ -48,7 +63,7 @@
 {% block header %}
 <header>
   <main class="material-list">
-    <div href="{% url 'adicionar_material' %}">
+    <div>
       <h2>Materiais Criados</h2>
       <table>
         <thead>
@@ -57,6 +72,7 @@
             <th>Autor</th>
             <th>Descrição</th>
             <th>Tipo</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -67,8 +83,11 @@
               <td>{{ material.descricao }}</td>
               <td>{{ material.get_tipo_display }}</td>
               <td>
-                <a href="{% url 'editar_material' %}">Editar</a>
-                <a href="{% url 'deletar_material' %}">Deletar</a>
+                <a href="{% url 'editar_material' material.id %}" class="btn btn-primary">Editar</a>
+                <form action="{% url 'deletar_material' material.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Deletar</button>
+                </form>
               </td>
             </tr>
           {% endfor %}

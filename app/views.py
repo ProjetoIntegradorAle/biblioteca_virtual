@@ -25,7 +25,7 @@ def meus_materiais(request):
 @login_required
 def adicionar_material(request):
     if request.method == 'POST':
-        form = MaterialForm(request.POST)
+        form = MaterialForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Material adicionado com sucesso!')
@@ -36,14 +36,18 @@ def adicionar_material(request):
         form = MaterialForm()
     return render(request, 'adicionar_material.html', {'form': form})
 
+
 @login_required
 def editar_material(request, id_material):
     material = get_object_or_404(Material, pk=id_material)
     if request.method == "POST":
-        form = MaterialForm(request.POST, instance=material)
+        form = MaterialForm(request.POST, request.FILES, instance=material)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Material atualizado com sucesso!')
             return redirect('index')
+        else:
+            messages.error(request, 'Erro ao atualizar material!')
     else:
         form = MaterialForm(instance=material)
     return render(request, 'adicionar_material.html', {'form': form})
@@ -53,5 +57,6 @@ def deletar_material(request, id_material):
     material = get_object_or_404(Material, pk=id_material)
     if request.method == 'POST':
         material.delete()
+        messages.success(request, 'Material deletado com sucesso!')
         return redirect('index')
-    return render(request, 'deletar_material.html')
+    return render(request, 'deletar_material.html', {'material': material})
