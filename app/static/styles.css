@@ -12,6 +12,44 @@ body {
     color: white;
 }
 
+.btn.btn-secondary{
+    display: block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 17px;
+    padding-bottom: 3px;
+}
+
+.btn.btn-primary{
+    display: block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 17px;
+    padding-bottom: 3px;
+}
+
+.btn.btn-danger{
+    width: 97%;
+    padding: 8px;
+    margin: 5px auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+table{
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.titulos{
+    align-items: flex-start;
+}
+
 /* Barra de navegação */
 .navbar {
     padding: 15px;
@@ -276,7 +314,6 @@ header {
     margin: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    flex: 1;
     min-width: 200px; /* Define uma largura mínima para os itens */
     max-width: 1000px; /* Define uma largura máxima para os itens */
 }
