@@ -300,6 +300,7 @@ header {
     color: #333;
 }
 
+
 /* Meus Materiais */
 .container-mat {
     display: flex;
@@ -318,14 +319,13 @@ header {
     margin: 10px;
     border-radius: 10px;
     box-shadow: 0 8px 8px rgba(94, 78, 9, 0.2);
-    width: 20%; /* Define a largura da seção "Adicionar Material" */
+    width: 30%; /* Define a largura da seção "Adicionar Material" */
     min-width: 200px; /* Define uma largura mínima para a seção */
-    
+    justify-content: center;
 }
 
 .add-material label{ /* Label de adicionar material */
     color: white;
-    font-family: Georgia;
 }
 
 .add-material h2 {
@@ -532,6 +532,10 @@ form {
         flex-direction: row;
         justify-content: flex-start;
     }
+}
+
+.login-box.alert.alert-block.alert-danger{
+    color: #000;
 }
 
 /* Login */
