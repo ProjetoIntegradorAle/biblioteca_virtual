@@ -9,6 +9,16 @@ body {
     /* Remove overflow: hidden */
 }
 
+.visualizar-card{
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 3.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin: 18px;
+}
+
 body::before {
     content: '';
     position: fixed; /* Mantém fixed para blur estático */
