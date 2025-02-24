@@ -9,6 +9,38 @@ body {
     /* Remove overflow: hidden */
 }
 
+
+.image-container {
+    text-align: center;
+    margin-top: 50px;
+}
+.image-container img {
+    max-width: 100%;
+    border: 2px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.file-container {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.btn-download {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+    .unsupported-file {
+        text-align: center;
+        padding: 20px;
+    }
+
 .visualizar-card{
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);

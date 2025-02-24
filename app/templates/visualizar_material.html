@@ -2,35 +2,52 @@
 {% load static %}
 
 {% block content  %}
-<style>
-    .image-container {
-        text-align: center;
-        margin-top: 50px;
-    }
-    .image-container img {
-        max-width: 100%;
-        auto;
-        border: 2px solid #ccc;
-        padding: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-</style>
 
-<div class="visualizar-card">
-    <div class="card-content">
-        <h3>{{ material.titulo }}</h3>
-        <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>
-        <p class="descricao">{{ material.descricao }}</p>
-        <div class="meta-info">
-          <span class="tipo">{{ material.get_tipo_display }}</span>
-        </div>
-        <div class="image-container">
-            <h1>Imagem Adicionada</h1>
-            {% for object in objects %}
-                <img src="{{ object.image.url }}" alt="Descrição da Imagem">
-            {% endfor %}
-            
-        </div>
-        <button href="{% url 'meus_materiais' %}" type="submit">Voltar</button>
-      </div>
+
+<div class="file-container">
+    {% if material.arquivo %}
+        {# Verifica o tipo de arquivo pela extensão #}
+        {% with file_extension=material.arquivo.url|lower|slice:"-4:" %}
+            {% if file_extension == '.jpg' or file_extension == 'jpeg' or file_extension == '.png' or file_extension == '.gif' %}
+                {# Prévia para Imagens #}
+                <img src="{{ material.arquivo.url }}" alt="{{ material.titulo }}" style="max-width: 100%; height: auto;">
+
+            {% elif file_extension == '.pdf' %}
+                {# Prévia para PDFs #}
+                <iframe 
+                    src="{{ material.arquivo.url }}#view=FitH" 
+                    width="100%" 
+                    height="600px"
+                    style="border: none;"
+                ></iframe>
+
+            {% elif file_extension == '.mp4' or file_extension == 'webm' or file_extension == 'ogg' %}
+                {# Prévia para Vídeos #}
+                <video controls style="width: 100%;">
+                    <source src="{{ material.arquivo.url }}" type="video/{{ file_extension|slice:'1:' }}">
+                    Seu navegador não suporta o formato de vídeo.
+                </video>
+
+            {% elif file_extension == '.mp3' or file_extension == '.wav' %}
+                {# Prévia para Áudio #}
+                <audio controls style="width: 100%;">
+                    <source src="{{ material.arquivo.url }}" type="audio/{{ file_extension|slice:'1:' }}">
+                    Seu navegador não suporta o formato de áudio.
+                </audio>
+
+            {% else %}
+                {# Fallback para outros formatos (Word, Excel, etc.) #}
+                <div class="unsupported-file">
+                    <p>Prévia não disponível para este formato.</p>
+                    <a href="{{ material.arquivo.url }}" download class="btn-download">
+                        <i class="fas fa-download"></i> Baixar Arquivo
+                    </a>
+                </div>
+            {% endif %}
+        {% endwith %}
+    {% else %}
+        <p>Nenhum arquivo anexado.</p>
+    {% endif %}
+</div>
+
 {% endblock %}
