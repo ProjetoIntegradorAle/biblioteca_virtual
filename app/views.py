@@ -5,7 +5,7 @@ from .models import Material, MeuModelo
 from .forms import MaterialForm
 
 def index(request):
-    Modelo.objects.all()
+    objects = MeuModelo.objects.all()
     return render(request, 'index.html',  {'objects': objects})
 
 def login(request): 

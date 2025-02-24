@@ -3,7 +3,6 @@ from django.db import models
 class MeuModelo(models.Model):
     image = models.ImageField(upload_to='images/')
 
-
 class Material(models.Model):
     SLIDE = 'SL'
     VIDEO = 'VD'
