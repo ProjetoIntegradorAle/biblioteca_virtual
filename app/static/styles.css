@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
     padding: 0;
@@ -81,7 +82,7 @@ table{
 .navbar {
     padding: 1rem 5%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     position: sticky;
     top: 0;
@@ -97,6 +98,7 @@ table{
 
 .navbar ul {
     list-style: none;
+    justify-content: center;
     display: flex;
     gap: 2rem;
     margin: 0;
@@ -106,6 +108,7 @@ table{
 
 .navbar li {
     text-transform: uppercase;
+    justify-content: center;
     font-size: 0.9rem;
     letter-spacing: 1px;
     position: relative;
@@ -284,9 +287,11 @@ table{
 /* Cabeçalho */
 header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* Distribui o espaço entre os itens */
     align-items: center;
-    padding: 10px 0;
+    padding: 10px 5%; /* Adicionei um padding lateral para evitar que os itens encostem nas bordas */
+    width: 80%; /* Defina um limite máximo de largura para o header */
+    margin: auto; /* Centraliza o header na página */
 }
 
 .search-bar {
@@ -300,7 +305,6 @@ header {
     color: #333;
 }
 
-
 /* Meus Materiais */
 .container-mat {
     display: flex;
@@ -313,19 +317,20 @@ header {
 }
 
 .add-material { /* Define o estilo da seção "Adicionar Material" */
-    background-color: rgba(0, 0, 0, 0.377);
+    background-color: rgba(255, 255, 255, 0.1);
     color: #ffffff;
     padding: 20px;
     margin: 10px;
     border-radius: 10px;
     box-shadow: 0 8px 8px rgba(94, 78, 9, 0.2);
-    width: 30%; /* Define a largura da seção "Adicionar Material" */
+    width: 20%; /* Define a largura da seção "Adicionar Material" */
     min-width: 200px; /* Define uma largura mínima para a seção */
-    justify-content: center;
+    
 }
 
 .add-material label{ /* Label de adicionar material */
     color: white;
+    font-family: Georgia;
 }
 
 .add-material h2 {
@@ -417,8 +422,8 @@ header {
 /* Materiais Criados */
 
 .materiais-criados-container {
-    max-width: 1200px;
-    margin: 2rem auto;
+    width: 80%;
+    margin: auto;
     padding: 0 1rem;
 }
 
@@ -532,10 +537,6 @@ form {
         flex-direction: row;
         justify-content: flex-start;
     }
-}
-
-.login-box.alert.alert-block.alert-danger{
-    color: #000;
 }
 
 /* Login */
