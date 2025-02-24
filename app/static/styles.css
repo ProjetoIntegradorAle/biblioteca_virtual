@@ -415,21 +415,116 @@ header {
     text-decoration: none;
 }
 
-/* Materiais Salvos */
-.material-list{
-    justify-content: center; /* Centraliza os elementos horizontalmente */
+/* Materiais Criados */
+.materiais-criados-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.titulo-principal {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.materiais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.material-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.material-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-content h3 {
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.autor, .descricao {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+}
+
+.meta-info {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tipo {
+    display: inline-block;
+    background: rgba(0, 123, 255, 0.2);
+    color: #007bff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.card-actions {
+    margin-top: 1.5rem;
     display: flex;
-    flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas, se necessário */
-    width: 65%; /* Define a largura da seção de conteúdo */
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.377);
-    color: #ffffff;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    min-width: 200px; /* Define uma largura mínima para os itens */
-    max-width: 1000px; /* Define uma largura máxima para os itens */
+}
+
+.btn.abrir {
+    background: #28a745;
+    color: white;
+}
+
+.btn.editar {
+    background: #ffc107;
+    color: black;
+}
+
+.btn.deletar {
+    background: #dc3545;
+    color: white;
+}
+
+form {
+    margin: 0;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .materiais-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-actions {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
 }
 
 

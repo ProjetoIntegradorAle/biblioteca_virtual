@@ -62,39 +62,32 @@
 <!-- MATERIAIS CRIADOS -->
 {% block header %}
 <header>
-  <main class="material-list">
-    <div class="titulos">
-      <h2>Materiais Criados</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Título</th>
-            <th>Autor</th>
-            <th>Descrição</th>
-            <th>Tipo</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for material in materiais %}
-            <tr>
-              <td>{{ material.titulo }}</td>
-              <td>{{ material.autor }}</td>
-              <td>{{ material.descricao }}</td>
-              <td>{{ material.get_tipo_display }}</td>
-              <td>
-                <a href="{{ material.arquivo.url }}" target="_blank" class="btn btn-secondary">Abrir</a>
-                <a href="{% url 'editar_material' material.id %}" class="btn btn-primary">Editar</a>
-                <form action="{% url 'deletar_material' material.id %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Deletar</button>
-                </form>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+  <div class="materiais-criados-container">
+    <h2 class="titulo-principal">Materiais Criados</h2>
+    
+    <div class="materiais-grid">
+      {% for material in materiais %}
+      <div class="material-card">
+        <div class="card-content">
+          <h3>{{ material.titulo }}</h3>
+          <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>
+          <p class="descricao">{{ material.descricao }}</p>
+          <div class="meta-info">
+            <span class="tipo">{{ material.get_tipo_display }}</span>
+          </div>
+        </div>
+        
+        <div class="card-actions">
+          <a href="{{ material.arquivo.url }}" target="_blank" class="btn abrir">Abrir</a>
+          <a href="{% url 'editar_material' material.id %}" class="btn editar">Editar</a>
+          <form action="{% url 'deletar_material' material.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn deletar">Deletar</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
     </div>
-  </main>
+  </div>
 </header>
 {% endblock %}
