@@ -2,14 +2,42 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-size: cover;
-    background-image: url('/static/img/foto_fundo.jpg');
-    min-height: 100%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    display: block;
+    min-height: 100vh;
     color: white;
+    position: relative; /* Mantém isso */
+    /* Remove overflow: hidden */
+}
+
+body::before {
+    content: '';
+    position: fixed; /* Mantém fixed para blur estático */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/static/img/foto_fundo.jpg') center center/cover;
+    filter: blur(8px);
+    z-index: -2; /* Camada mais baixa */
+    transform: scale(1.05);
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1; /* Camada intermediária */
+}
+
+/* Novo container para conteúdo rolável */
+.content-wrapper {
+    position: relative;
+    z-index: 1; /* Garante que o conteúdo fique acima dos backgrounds */
+    min-height: 100vh;
+    overflow-y: auto; /* Habilita scroll vertical quando necessário */
 }
 
 .btn.btn-secondary{
@@ -52,50 +80,108 @@ table{
 
 /* Barra de navegação */
 .navbar {
-    padding: 15px;
+    padding: 1rem 5%;
     display: flex;
-    justify-content: space-around;
-    position: static;
-    width: 97.4%;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
     top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 1000;
-    font-family: Georgia;
-    border-bottom: 2px solid white; /* Adiciona uma linha abaixo da barra de navegação */
+    font-family: Georgia, serif;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-
-.dropdown-item{
-    width: 100%; /* Define a largura dos botões */
-    padding: 4px;
-    margin: 5px auto; /* Centraliza os botões horizontalmente */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: Georgia;
-}
-
 
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 60px;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
 }
 
 .navbar li {
     text-transform: uppercase;
-    font-size: 14px; /* Reduz o tamanho da fonte */
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    position: relative;
 }
 
 .navbar a {
     text-decoration: none;
-    padding: 5px 15px;
+    padding: 0.5rem 1rem;
     color: white;
-    font-weight: bold;
-    transition: color 0.3s ease;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .navbar a:hover {
-    color: #ccc;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Dropdown melhorado */
+.dropdown-item {
+    min-width: 180px;
+    padding: 0.75rem 1.5rem;
+    margin: 0.25rem 0;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    color: #333 !important;
+}
+
+.dropdown-item:hover {
+    background: #fff;
+    transform: translateX(5px);
+}
+
+/* Indicador de hover */
+.navbar li::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.navbar li:hover::after {
+    width: 60%;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .navbar ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .navbar a {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
 }
 
 /* Conteúdo principal */
@@ -130,36 +216,64 @@ table{
     justify-content: center;
     align-items: center;
     gap: 5px;
-    background-color: transparent !important; /* Remove a cor de fundo branca */ 
-    border: none !important; /* Remove qualquer borda */ 
+    background-color: transparent !important;
+    border: none !important;
+    width: 100%; /* Ocupa toda a largura disponível */
+    max-width: 600px; /* Largura máxima ajustável conforme necessidade */
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.search-bar input {
-    width: 300px;
-    padding: 10px;
-    border: none;
+/* Estilização específica para o campo de input */
+.search-bar input[type="text"] {
+    width: 100%;
+    padding: 12px 20px;
     border-radius: 25px;
-    font-size: 16px;
-    outline: none;
-    background: rgba(255, 255, 255, 0.9);
-    color: #333;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
 }
 
-.search-bar button {
-    padding: 10px 15px;
+
+/*Botão de Buscar*/
+
+.search-bar input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+}
+
+.search-btn {
+    width: 40px;
+    height: 40px;
     border: none;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%; /* Formato totalmente redondo */
+    background-color: #007bff;
     cursor: pointer;
-    font-size: 18px;
-    outline: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
-.search-bar button:hover {
-    background: #ddd;
+.search-btn::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.search-btn:active {
+    transform: scale(0.95);
 }
 
 /* Conteúdo principal */

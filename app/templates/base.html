@@ -15,7 +15,7 @@
         <li><a href="#">Área do Usuário</a></li>
         <li><a href="#">Configurações</a></li>
         <li><a href="#">Sobre nós</a></li>
-        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'login' %}">logout</a></li>
         <form action="{% url 'logout' %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="dropdown-item">Sair da Conta</button>
