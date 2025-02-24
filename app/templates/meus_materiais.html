@@ -2,7 +2,17 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+{% if messages %}
+  <div class="mensagem">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+    {% endfor %}
+  </div>
+{% endif %}
 <!-- MATERIAIS SALVOS -->
+
 <main class="container-mat">
     <div class="add-material">
         <h2>Adicionar Material</h2>
@@ -12,6 +22,7 @@
             <button type="submit">Adicionar</button>
         </form>
     </div>
+    <!--
     <div class="content-mat">
         <div class="videos">
             <h2>Vídeos</h2>
@@ -56,6 +67,7 @@
             {% endfor %}
         </div>
     </div>
+    -->
 </main>
 {% endblock %}
 
@@ -78,7 +90,7 @@
         </div>
         
         <div class="card-actions">
-          <a href="{{ material.arquivo.url }}" target="_blank" class="btn abrir">Abrir</a>
+          <a href="{% url 'visualizar_material' material.id %}" target="_blank" class="btn abrir">Abrir</a>
           <a href="{% url 'editar_material' material.id %}" class="btn editar">Editar</a>
           <form action="{% url 'deletar_material' material.id %}" method="post">
             {% csrf_token %}
