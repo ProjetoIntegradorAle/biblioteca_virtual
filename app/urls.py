@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from usuarios.views import perfil
 
 urlpatterns = [
     path('', views.index, name="index"),
@@ -9,5 +10,6 @@ urlpatterns = [
     path('editar/<int:id_material>/', views.editar_material, name='editar_material'),
     path('deletar/<int:id_material>/', views.deletar_material, name='deletar_material'),
     path('visualizar/<int:id_material>/', views.visualizar_material, name='visualizar_material'),
+    path('perfil/', perfil, name="perfil"),
 ]
 

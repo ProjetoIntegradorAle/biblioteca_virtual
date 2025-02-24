@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Material, MeuModelo
+from .models import Material
 from .forms import MaterialForm
 
 def index(request):
-    objects = MeuModelo.objects.all()
-    return render(request, 'index.html',  {'objects': objects})
+    return render(request, 'index.html')
 
 def login(request): 
     return render(request, 'registration/login.html')
