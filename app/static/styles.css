@@ -22,6 +22,10 @@ body::before {
     transform: scale(1.05);
 }
 
+.mensagem{
+    align-items: center;
+}
+
 body::after {
     content: '';
     position: fixed;
@@ -349,18 +353,39 @@ header {
     margin-bottom: 10px;
 }
 
-.add-material input[type="text"],
 .add-material textarea,
-.add-material select,
 .add-material button {
     flex: 1;
     padding: 10px;
     border-radius: 5px;
     border: none;
+    display: block;
+}
+
+.add-material select{
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    display: block;
+}
+
+input[type="file" i] {
+    background-color: initial;
+    border-color: initial;
+    border-radius: 5px;
+}
+
+.add-material input[type="text"]{
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 90%;
 }
 
 .add-material textarea {
-    width: 77%; /* Define a largura da área de texto */
+    width: 90%; /* Define a largura da área de texto */
     height: 14px; /* Define a altura da área de texto */
     resize: vertical; /* Permite que o campo de descrição se expanda verticalmente */
 }

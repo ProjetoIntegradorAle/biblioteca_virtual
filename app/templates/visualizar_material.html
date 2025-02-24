@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content  %}
+<div>
+    <h1>{{ material.titulo }}</h1>
+    <p>{{ material.autor }}</p>
+    <p>{{ material.descricao }}</p>
+    <p>{{ material.get_tipo_display }}</p>
+    <button href="{% url 'meus_materiais' %}" type="submit">Voltar</button>
+</div>
+{% endblock %}
