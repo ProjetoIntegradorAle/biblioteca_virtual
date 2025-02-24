@@ -69,7 +69,6 @@ body::after {
 }
 
 table{
-    display: flex;
     align-items: flex-start;
     padding: 20px;
 }
@@ -416,6 +415,7 @@ header {
 }
 
 /* Materiais Criados */
+
 .materiais-criados-container {
     max-width: 1200px;
     margin: 2rem auto;
@@ -493,6 +493,13 @@ header {
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
+}
+
+.material-list{
+    justify-content: center; /* Centraliza os elementos horizontalmente */
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas, se necessário */
+    width: 100%; /* Define a largura da seção de conteúdo */
     justify-content: center;
 }
 
@@ -526,7 +533,6 @@ form {
         justify-content: flex-start;
     }
 }
-
 
 /* Login */
 .login-container {
@@ -655,6 +661,24 @@ label {
     text-decoration: none;
 }
 
+.btn.btn-secondary{
+    color: #fff;
+}
+
+.btn.btn-danger{
+    background-color: green;
+    color: #fff;
+}
+
+.btn.btn-primary{
+    display: block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 17px;
+    padding-bottom: 3px;
+}
+
 .btn-cadastrar:hover {
     color: #000;
 }
@@ -695,6 +719,14 @@ label {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
+.cadastro-box input{
+    width: 80%; /* Define a largura dos campos de entrada */
+    padding: 10px;
+    margin-bottom: 13px; /* Adiciona espaço entre os campos de entrada */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 /* Botão de voltar */
 .btn-voltar {
     position: absolute;
@@ -709,6 +741,11 @@ label {
 
 .btn-voltar:hover {
     color: #000;
+}
+
+.helptext{
+    visibility: hidden;
+    display: none;
 }
 
 /* Título */
