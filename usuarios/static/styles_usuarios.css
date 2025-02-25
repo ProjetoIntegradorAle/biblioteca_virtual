@@ -20,7 +20,7 @@ body {
 }
 
 .perfil-box {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -33,9 +33,14 @@ body {
     transform: translateY(-10px);
 }
 
+.perfil-box label{
+    color: #fffefe;
+    font-family: Georgia;
+}
+
 .perfil-box h1 {
     margin-bottom: 20px;
-    color: #333;
+    color: #ffffff;
     font-size: 24px;
 }
 
@@ -790,9 +795,9 @@ label {
 }
 
 /* mensagem de aviso login e cadastro */
-.cadastro-box li{
+.cadastro-box ul li{
     color: #457a3b;
-    display: flex;
+    display: none;
 }
 
 .errorlist.nonfield li{

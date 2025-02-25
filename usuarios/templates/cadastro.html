@@ -8,7 +8,7 @@
             <h1>Alexandria</h1>
             <form method="post" action="{% url 'cadastro' %}">
                 {% csrf_token %}
-                {{ form }}
+                {{ form.as_p  }}
                 <button type="submit" class="btn-login">Cadastrar</button>
                 <a href="{% url 'login' %}" class="btn-cadastrar">Já tem conta? Faça login</a>
             </form>

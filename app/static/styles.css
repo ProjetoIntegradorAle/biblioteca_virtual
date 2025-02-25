@@ -756,6 +756,12 @@ label {
     padding-bottom: 3px;
 }
 
+.alert.alert-success{
+    margin-top: 20px;
+    margin-left: 20px;
+    font-family: Arial, sans-serif;
+}
+
 .btn-cadastrar:hover {
     color: #000;
 }
