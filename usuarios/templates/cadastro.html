@@ -6,7 +6,7 @@
     <div class="cadastro-container">
         <div class="cadastro-box">
             <h1>Alexandria</h1>
-            <form form method="post" action="{% url 'cadastro' %}">
+            <form method="post" action="{% url 'cadastro' %}">
                 {% csrf_token %}
                 {{ form }}
                 <button type="submit" class="btn-login">Cadastrar</button>

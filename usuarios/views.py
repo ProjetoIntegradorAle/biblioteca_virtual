@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import CadastroForm, PerfilForm
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
+from .forms import CadastroForm, PerfilForm, FormRecuperaSenha, FormRedefineSenha
 from .models import Perfil
 
 def cadastro(request):
@@ -15,13 +16,6 @@ def cadastro(request):
 
 @login_required
 def perfil(request):
-    usuario = request.user
-    perfil = get_object_or_404(Perfil, usuario=usuario)
-
-    return render(request, "perfil.html", {"perfil": perfil})
-
-@login_required
-def perfil(request):
     if request.method == 'POST':
         form = PerfilForm(request.POST, instance=request.user.perfil)
         if form.is_valid():
@@ -30,3 +24,11 @@ def perfil(request):
     else:
         form = PerfilForm(instance=request.user.perfil)
     return render(request, 'perfil.html', {'form': form})
+
+class RecuperaSenhaView(PasswordResetView):
+    form_class = FormRecuperaSenha
+    template_name = 'recupera_senha.html'
+
+class RedefineSenhaView(PasswordResetConfirmView):
+    form_class = FormRedefineSenha
+    template_name = 'confirma_senha.html'
