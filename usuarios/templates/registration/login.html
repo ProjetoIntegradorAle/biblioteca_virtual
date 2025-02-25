@@ -9,7 +9,7 @@
             <form method="post">
                 <div class='form-group'>
                     {% csrf_token %}
-                    {{ form | crispy }}
+                    {{ form }}
                     <button type="submit" class="btn-login">Entrar</button>
                     <button type="button" class="btn-suap">Entrar com SUAP IFRN</button>
                 </div>

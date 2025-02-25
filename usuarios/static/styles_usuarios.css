@@ -4,9 +4,94 @@ body {
     font-family: Arial, sans-serif;
     min-height: 100vh;
     color: white;
+    background-color: #f4f4f4;
     position: relative; /* Mantém isso */
     /* Remove overflow: hidden */
 }
+
+
+/* Perfil */
+
+.perfil-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.perfil-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.perfil-box:hover {
+    transform: translateY(-10px);
+}
+
+.perfil-box h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+}
+
+.perfil-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.perfil-box .form-group {
+    margin-bottom: 15px;
+}
+
+.perfil-box .btn-salvar {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 16px;
+}
+
+.perfil-box .btn-salvar:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.perfil-box input{
+    margin: 8px;
+}
+
+.perfil-box input[type="text"],
+.perfil-box input[type="email"],
+.perfil-box input[type="date"],
+.perfil-box textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.perfil-box input[type="text"]:focus,
+.perfil-box input[type="email"]:focus,
+.perfil-box input[type="date"]:focus,
+.perfil-box textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+
 
 body::before {
     content: '';
@@ -643,4 +728,75 @@ label {
     content: "\1F3DB"; /* Emoji de templo grego */
     margin-right: 8px;
     font-size: 32px;
+}
+
+/* recuperar senha */
+.password-reset-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.password-reset-box{
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    max-width: 340px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    color: #000;
+}
+
+.btn-login-password{
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    background: #4CAF50;
+    color: white;
+    display: block;
+    width: 75%;
+    padding: 9px;
+    margin: 5px auto;
+    font-size: 15px;
+}
+
+.emailinput.form-control{
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 13px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-label.requiredField{
+    cursor: default;
+}
+
+.password-reset-box input{
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 13px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.password-reset-box h1{
+    font-family: 'Georgia', serif;
+    font-size: 27px;
+}
+
+/* mensagem de aviso login e cadastro */
+.cadastro-box li{
+    color: #457a3b;
+    display: flex;
+}
+
+.errorlist.nonfield li{
+    color: #555;
+    display: block;
+    text-align: center;
 }

@@ -4,16 +4,23 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from .models import User, Perfil
 
-class CadastroForm(UserCreationForm):
+class FormCadastro(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-class PerfilForm(forms.ModelForm):
+class FormPerfil(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = ['bio', 'localizacao', 'data_nascimento']
-
+        fields = ['bio', 'cidade', 'estado', 'data_nascimento', 'telefone', 'avatar']
+        labels = {
+            'bio': 'Biografia',
+            'cidade': 'Cidade',
+            'estado': 'Estado',
+            'data_nascimento': 'Data de Nascimento',
+            'telefone': 'Telefone',
+            'avatar': 'Avatar'
+        }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()

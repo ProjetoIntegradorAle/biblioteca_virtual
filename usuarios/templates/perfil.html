@@ -3,13 +3,13 @@
 
 {% block content %}
 <body>
-    <div class="password-reset-container">
-        <div class="password-reset-box">
-            <h1>Recuperar Senha</h1>
+    <div class="perfil-container">
+        <div class="perfil-box">
+            <h1>Perfil</h1>
             <form method="post">
                 {% csrf_token %}
                 {{ form }}
-                <button type="submit" class="btn-login">Enviar Email de Recuperação</button>
+                <button type="submit" class="btn-salvar">Salvar Perfil</button>
             </form>
         </div>
     </div>

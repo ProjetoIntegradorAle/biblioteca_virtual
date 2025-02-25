@@ -1,28 +1,31 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
-from .forms import CadastroForm, PerfilForm, FormRecuperaSenha, FormRedefineSenha
+from .forms import FormCadastro, FormPerfil, FormRecuperaSenha, FormRedefineSenha
 from .models import Perfil
 
 def cadastro(request):
     if request.method == 'POST':
-        form = CadastroForm(request.POST)
+        form = FormCadastro(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            Perfil.objects.create(user=user)
             return redirect('login')
     else:
-        form = CadastroForm()
+        form = FormCadastro()
     return render(request, 'cadastro.html', {'form': form})
 
 @login_required
 def perfil(request):
+    perfil, created = Perfil.objects.get_or_create(user=request.user)
+    
     if request.method == 'POST':
-        form = PerfilForm(request.POST, instance=request.user.perfil)
+        form = FormPerfil(request.POST, instance=perfil)
         if form.is_valid():
             form.save()
-            return redirect('perfil')
+            return redirect('index')
     else:
-        form = PerfilForm(instance=request.user.perfil)
+        form = FormPerfil(instance=perfil)
     return render(request, 'perfil.html', {'form': form})
 
 class RecuperaSenhaView(PasswordResetView):

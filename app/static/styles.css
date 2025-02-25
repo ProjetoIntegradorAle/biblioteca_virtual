@@ -365,13 +365,17 @@ header {
 .add-material { /* Define o estilo da seção "Adicionar Material" */
     background-color: rgba(255, 255, 255, 0.1);
     color: #ffffff;
-    padding: 20px;
-    margin: 10px;
+    padding: 30px;
+    margin: 70px;
     border-radius: 10px;
     box-shadow: 0 8px 8px rgba(94, 78, 9, 0.2);
     width: 20%; /* Define a largura da seção "Adicionar Material" */
     min-width: 200px; /* Define uma largura mínima para a seção */
     
+}
+
+.btn-download div{
+    margin: 7px;
 }
 
 .add-material label{ /* Label de adicionar material */
@@ -420,6 +424,7 @@ input[type="file" i] {
 
 .add-material input[type="text"]{
     flex: 1;
+    margin: 2px;
     padding: 10px;
     border-radius: 5px;
     border: none;
