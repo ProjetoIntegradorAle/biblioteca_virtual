@@ -22,7 +22,6 @@
             <button type="submit">Adicionar</button>
         </form>
     </div>
-
   <!--
     <div class="content-mat">
         <div class="videos">
@@ -78,27 +77,45 @@
   <div class="materiais-criados-container">
     <h2 class="titulo-principal">Materiais Criados</h2>
     <div class="materiais-grid">
-      {% for material in materiais %}
-      <div class="material-card">
-        <div class="card-content">
-          <h3>{{ material.titulo }}</h3>
-          <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>
-          <p class="descricao">{{ material.descricao }}</p>
-          <div class="meta-info">
-            <span class="tipo">{{ material.get_tipo_display }}</span>
-          </div>
+        {% for material in page_obj %}
+        <div class="material-card">
+            <div class="card-content">
+                <h3>{{ material.titulo }}</h3>
+                <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>
+                <p class="descricao">{{ material.descricao }}</p>
+                <div class="meta-info">
+                    <span class="tipo">{{ material.get_tipo_display }}</span>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="{% url 'visualizar_material' material.id %}" target="_blank" class="btn abrir">Abrir</a>
+                <a href="{% url 'editar_material' material.id %}" class="btn editar">Editar</a>
+                <form action="{% url 'deletar_material' material.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn deletar">Deletar</button>
+                </form>
+            </div>
         </div>
-        
-        <div class="card-actions">
-          <a href="{% url 'visualizar_material' material.id %}" target="_blank" class="btn abrir">Abrir</a>
-          <a href="{% url 'editar_material' material.id %}" class="btn editar">Editar</a>
-          <form action="{% url 'deletar_material' material.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn deletar">Deletar</button>
-          </form>
-        </div>
-      </div>
-      {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; primeira</a>
+                <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">próxima</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
     </div>
   </div>
 </header>

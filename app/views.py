@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Material
 from .forms import MaterialForm
+from django.core.paginator import Paginator
 
 def index(request):
     return render(request, 'index.html')
@@ -12,16 +13,14 @@ def login(request):
 
 def meus_materiais(request):
     form = MaterialForm()
-    videos = Material.objects.filter(tipo=Material.VIDEO)
-    slides = Material.objects.filter(tipo=Material.SLIDE)
-    documentos = Material.objects.filter(tipo=Material.DOCUMENTO)
     materiais = Material.objects.all()
+    paginator = Paginator(materiais, 6)  # 3 materiais por página
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     return render(request, 'meus_materiais.html', {
         'form': form,
-        'videos': videos,
-        'slides': slides,
-        'documentos': documentos,
-        'materiais': materiais,
+        'page_obj': page_obj,
     })
 
 @login_required
@@ -37,6 +36,7 @@ def adicionar_material(request):
     else:
         form = MaterialForm()
     return render(request, 'adicionar_material.html', {'form': form})
+
 
 @login_required
 def visualizar_material(request, id_material):
@@ -66,3 +66,4 @@ def deletar_material(request, id_material):
         messages.success(request, 'Material deletado com sucesso!')
         return redirect('meus_materiais')
     return render(request, 'deletar_material.html', {'material': material})
+

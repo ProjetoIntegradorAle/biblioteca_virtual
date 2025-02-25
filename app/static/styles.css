@@ -23,8 +23,9 @@ body {
 
 .file-container {
     margin: 20px 0;
-    padding: 15px;
+    padding: 30px;
     border-radius: 8px;
+    max-width: 22%;
 }
 
 .btn-download {
@@ -846,4 +847,28 @@ label {
     content: "\1F3DB"; /* Emoji de templo grego */
     margin-right: 8px;
     font-size: 32px;
+}
+
+/* Paginação */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.step-links a, .step-links span {
+    margin: 0 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #868f3a;
+}
+
+.step-links a:hover {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+.step-links .current {
+    font-weight: bold;
 }
