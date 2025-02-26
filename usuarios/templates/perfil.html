@@ -2,6 +2,15 @@
 {% load static crispy_forms_filters %}
 
 {% block content %}
+{% if messages %}
+  <div class="mensagem">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+    {% endfor %}
+  </div>
+{% endif %}
 <body>
     <div class="perfil-container">
         <div class="perfil-box">
