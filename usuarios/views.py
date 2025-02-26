@@ -10,7 +10,7 @@ def cadastro(request):
         form = FormCadastro(request.POST)
         if form.is_valid():
             user = form.save()
-            # Verifique se o perfil já existe antes de criar um novo
+            # Verifica se o perfil já existe antes de criar um novo
             perfil, created = Perfil.objects.get_or_create(user=user)
             if created:
                 messages.success(request, 'Cadastro realizado com sucesso!')
