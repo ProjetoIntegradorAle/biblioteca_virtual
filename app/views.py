@@ -14,7 +14,7 @@ def login(request):
 def meus_materiais(request):
     form = MaterialForm()
     materiais = Material.objects.all()
-    paginator = Paginator(materiais, 6)  # 3 materiais por página
+    paginator = Paginator(materiais, 6)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
