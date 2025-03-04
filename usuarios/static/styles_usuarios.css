@@ -457,6 +457,42 @@ header {
     cursor: pointer;
 }
 
+.redefinir_senha{
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    max-width: 340px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.container-senha{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.redefinir_senha h2{
+    font-family: 'Georgia', serif;
+    font-size: 27px;
+    color: #333;
+}
+
+.btn.btn-senha{
+    background: #4CAF50;
+    color: white;
+    display: block;
+    width: 75%;
+    padding: 8px;
+    margin: 5px auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
 .content-mat {
     justify-content: center; /* Centraliza os elementos horizontalmente */
     display: flex;
