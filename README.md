@@ -1,6 +1,6 @@
 # Biblioteca Virtual - Alexandria
 
-* Equipe: Luana Tayná, João Victor e Elias Renner
+* Equipe: Luana Tayná e João Victor
 
 * Descrição: A biblioteca virtual é um sistema para os alunos do instituto publicarem
 seus materiais (projetos, trabalhos, relatórios, vídeos, slides) para que possam ser acessados
