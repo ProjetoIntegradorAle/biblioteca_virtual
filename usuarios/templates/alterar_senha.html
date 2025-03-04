@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="container">
+        <div class="titulo-pag">
+            <h1>Alterar Senha</h1>
+        </div>
+    </section>
+
+    <!-- Exibe mensagens de sucesso ou erro -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <section class="section-alterar_senha container">
+        <div class="box-alterar_senha">
+            <div class="forms-alterar_senha">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-grupo">
+                        <label for="{{ form.old_password.id_for_label }}">Senha atual:</label>
+                        {{ form.old_password }}
+                        {% if form.errors.old_password %}
+                            <div class="error">{{ form.errors.old_password }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="form-grupo">
+                        <label for="{{ form.new_password1.id_for_label }}">Nova senha:</label>
+                        {{ form.new_password1 }}
+                        {% if form.errors.new_password1 %}
+                            <div class="error">{{ form.errors.new_password1 }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="form-grupo">
+                        <label for="{{ form.new_password2.id_for_label }}">Confirme a nova senha:</label>
+                        {{ form.new_password2 }}
+                        {% if form.errors.new_password2 %}
+                            <div class="error">{{ form.errors.new_password2 }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="btn-alterar_senha">
+                        <button type="submit" class="btn-salvar_perfil">Alterar Senha</button>
+                    </div>
+                    <div class="btn-alterar_senha_cancelar">
+                        <a href="{% url "perfil" %}" class="voltar-editar_perfil">
+                            Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

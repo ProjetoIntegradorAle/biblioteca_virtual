@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
-from .forms import FormCadastro, FormPerfil, FormRecuperaSenha, FormRedefineSenha
+from .forms import FormCadastro, FormPerfil
 from .models import Perfil
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 
 def cadastro(request):
     if request.method == 'POST':
@@ -39,10 +40,19 @@ def perfil(request):
         form = FormPerfil(instance=perfil)
     return render(request, 'perfil.html', {'form': form})
 
-class RecuperaSenhaView(PasswordResetView):
-    form_class = FormRecuperaSenha
-    template_name = 'recupera_senha.html'
-
-class RedefineSenhaView(PasswordResetConfirmView):
-    form_class = FormRedefineSenha
-    template_name = 'confirma_senha.html'
+@login_required
+def alterar_senha(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Atualiza a sessão do usuário para evitar logout
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Sua senha foi alterada com sucesso!')
+            return redirect('perfil')  # Redireciona para a página de perfil
+        else:
+            messages.error(request, 'Por favor, corrija os erros abaixo.')
+    else:
+        form = PasswordChangeForm(request.user)
+    
+    return render(request, 'alterar_senha.html', {'form': form})
