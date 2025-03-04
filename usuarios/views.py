@@ -62,4 +62,4 @@ def alterar_senha(request):
     else:
         form = PasswordChangeForm(request.user)
     
-    return render(request, 'alterar_senha.html', {'form': form})
+    return render(request, 'password_change_done.html', {'form': form})
