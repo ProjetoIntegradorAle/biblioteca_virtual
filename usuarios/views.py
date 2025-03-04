@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import FormCadastro, FormPerfil
 from .models import Perfil
 from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.forms import PasswordChangeForm
 
 def cadastro(request):
@@ -23,6 +23,13 @@ def cadastro(request):
     else:
         form = FormCadastro()
     return render(request, 'cadastro.html', {'form': form})
+
+def login(request): 
+    return render(request, 'login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')  # Redireciona para a página inicial após o logout
 
 @login_required
 def perfil(request):

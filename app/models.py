@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Material(models.Model):
     SLIDE = 'SL'
@@ -19,7 +20,7 @@ class Material(models.Model):
         default=DOCUMENTO,
     )
     arquivo = models.FileField(upload_to='meus_materiais/')
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  # Define um valor padrão
 
     def __str__(self):
         return self.titulo
-    

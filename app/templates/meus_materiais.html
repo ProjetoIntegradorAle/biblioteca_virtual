@@ -11,7 +11,6 @@
     {% endfor %}
   </div>
 {% endif %}
-<!-- MATERIAIS SALVOS -->
 
 <main class="container-mat">
     <div class="add-material">
@@ -22,6 +21,8 @@
             <button type="submit">Adicionar</button>
         </form>
     </div>
+
+<!--MATERIAIS SALVOS-->
   <!--
     <div class="content-mat">
         <div class="videos">
@@ -71,7 +72,7 @@
 </main>
 {% endblock %}
 
-<!-- MATERIAIS CRIADOS -->
+<!--MATERIAIS CRIADOS-->
 {% block header %}
 <header>
   <div class="materiais-criados-container">
@@ -81,7 +82,7 @@
         <div class="material-card">
             <div class="card-content">
                 <h3>{{ material.titulo }}</h3>
-                <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>
+                <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>  <!-- Exibe o nome do autor -->
                 <p class="descricao">{{ material.descricao }}</p>
                 <div class="meta-info">
                     <span class="tipo">{{ material.get_tipo_display }}</span>

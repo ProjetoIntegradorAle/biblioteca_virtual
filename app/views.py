@@ -8,12 +8,10 @@ from django.core.paginator import Paginator
 def index(request):
     return render(request, 'index.html')
 
-def login(request): 
-    return render(request, 'registration/login.html')
-
+@login_required
 def meus_materiais(request):
     form = MaterialForm()
-    materiais = Material.objects.all()
+    materiais = Material.objects.filter(usuario=request.user)  # Filtra materiais pelo usuário logado
     paginator = Paginator(materiais, 6)
 
     page_number = request.GET.get('page')
@@ -28,7 +26,10 @@ def adicionar_material(request):
     if request.method == 'POST':
         form = MaterialForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            material = form.save(commit=False)
+            material.usuario = request.user  # Usuário logado como o autor do material
+            material.autor = request.user.username  # Nome do usuário como autor
+            material.save()
             messages.success(request, 'Material adicionado com sucesso!')
             return redirect('meus_materiais')
         else:
@@ -36,7 +37,6 @@ def adicionar_material(request):
     else:
         form = MaterialForm()
     return render(request, 'adicionar_material.html', {'form': form})
-
 
 @login_required
 def visualizar_material(request, id_material):
@@ -66,4 +66,3 @@ def deletar_material(request, id_material):
         messages.success(request, 'Material deletado com sucesso!')
         return redirect('meus_materiais')
     return render(request, 'deletar_material.html', {'material': material})
-
