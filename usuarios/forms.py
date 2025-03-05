@@ -33,17 +33,3 @@ class AlterarSenhaForm(PasswordChangeForm):
         label="Senha atual:",
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
-
-# class FormRecuperaSenha(PasswordResetForm):
-#    def __init__(self, *args, **kwargs):
-#       super().__init__(*args, **kwargs)
-#       self.helper = FormHelper()
-#       self.helper.form_method = 'post'
-#       self.helper.add_input(Submit('submit', 'Enviar Email de Recuperação'))
-
-# class FormRedefineSenha(SetPasswordForm):
-#  def __init__(self, *args, **kwargs):
-#       super().__init__(*args, **kwargs)
-#       self.helper = FormHelper()
-#       self.helper.form_method = 'post'
-#       self.helper.add_input(Submit('submit', 'Redefinir Senha'))

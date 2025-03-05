@@ -17,7 +17,7 @@
         <li><a href="#">Sobre nós</a></li>
         <li><a href="{% url 'login' %}">Login</a></li>
         <li>
-            <form action="{% url 'logout' %}" method="POST" style="display:inline;">
+            <form action="{% url 'logout' %}" class="logout" method="POST" style="display:inline;">
                 {% csrf_token %}
                 <button type="submit" class="dropdown-item" style="font-family: Georgia, serif; background:none; border:none; padding:0; cursor:pointer; color:white">Sair da Conta</button>
             </form>
