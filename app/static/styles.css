@@ -4,8 +4,7 @@ body {
     font-family: Arial, sans-serif;
     min-height: 100vh;
     color: white;
-    position: relative; /* Mantém isso */
-    /* Remove overflow: hidden */
+    position: relative;
 }
 
 
@@ -367,26 +366,52 @@ header {
 
 /* Meus Materiais */
 .container-mat {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px;
-    margin-top: 20px; /* Adiciona espaçamento entre o topo e o conteúdo principal */
-    flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas, se necessário */
-    justify-content: center; /* Centraliza os elementos horizontalmente */
+    padding: 60px;
+    gap: 20px; /* Adiciona espaçamento entre os elementos */
+    display: flex; /* Ativa o Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100vh; /* Define a altura como o tamanho total da janela */
+    margin: 0; /* Remove margens padrão */
 }
 
-.add-material { /* Define o estilo da seção "Adicionar Material" */
+.add-material {
     background-color: rgba(255, 255, 255, 0.1);
     color: #ffffff;
     padding: 30px;
-    margin: 70px;
     border-radius: 10px;
     box-shadow: 0 8px 8px rgba(94, 78, 9, 0.2);
-    width: 20%; /* Define a largura da seção "Adicionar Material" */
-    min-width: 200px; /* Define uma largura mínima para a seção */
-    
+    width: 25%;
+    min-width: 200px;
 }
+
+/* Conteúdo de materiais */
+.content-mat {
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 70%;
+    padding: 60px;
+    gap: 20px; /* Adiciona espaçamento entre os elementos */
+    display: flex; /* Ativa o Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+}
+
+.content-mat > .titulo {
+    order: 1; 
+}
+
+/* Estrutura dos blocos de materiais */
+.videos, .slides, .documentos {
+    order: 2;
+    flex: 1;
+    min-width: 30%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(94, 78, 9, 0.2);
+}
+
 
 .btn-download div{
     margin: 7px;
