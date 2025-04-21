@@ -66,3 +66,18 @@ def deletar_material(request, id_material):
         messages.success(request, 'Material deletado com sucesso!')
         return redirect('meus_materiais')
     return render(request, 'deletar_material.html', {'material': material})
+
+@login_required
+def buscar_materiais(request):
+    query = request.GET.get('q')  # Captura o termo de busca do input do usuário.
+    materiais = Material.objects.all()  # Busca todos os materiais inicialmente.
+
+    if query:
+        materiais = materiais.filter(
+            titulo__icontains=query,  # Filtra materiais cujo título contém o termo de busca.
+            autor__icontains=query,
+            descricao__icontains=query,
+            tipo__icontains=query
+        )
+
+    return render(request, 'busca.html', {'materiais': materiais})
