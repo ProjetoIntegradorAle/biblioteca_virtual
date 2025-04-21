@@ -10,4 +10,5 @@ urlpatterns = [
     path('deletar/<int:id_material>/', views.deletar_material, name='deletar_material'),
     path('visualizar/<int:id_material>/', views.visualizar_material, name='visualizar_material'),
     path('perfil/', perfil, name="perfil"),
+    path('buscar/', views.buscar_materiais, name='buscar_materiais'),
 ]

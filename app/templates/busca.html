@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<head>
+    <title>Pesquisar Materiais</title>
+</head>
+<body>
+    <h1>Pesquisar Materiais</h1>
+    <form method="get" action="">
+        <input type="text" name="q" placeholder="Digite o título, autor ou palavra-chave...">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h2>Resultados da Pesquisa:</h2>
+    <div>
+        {% for material in materiais %}
+            <div style="border: 1px solid #ddd; margin: 10px; padding: 10px;">
+                <h3>{{ material.titulo }}</h3>
+                <p><strong>Autor:</strong> {{ material.autor }}</p>
+                <p><strong>Tipo:</strong> {{ material.tipo }}</p>
+                <p>{{ material.descricao }}</p>
+            </div>
+        {% empty %}
+            <p>Nenhum material encontrado.</p>
+        {% endfor %}
+    </div>
+</body>
+{% endblock %}
