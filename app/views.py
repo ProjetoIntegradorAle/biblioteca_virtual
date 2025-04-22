@@ -4,6 +4,7 @@ from django.contrib import messages
 from .models import Material
 from .forms import MaterialForm
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 def index(request):
     return render(request, 'index.html')
@@ -69,15 +70,15 @@ def deletar_material(request, id_material):
 
 @login_required
 def buscar_materiais(request):
-    query = request.GET.get('q')  # Captura o termo de busca do input do usuário.
-    materiais = Material.objects.all()  # Busca todos os materiais inicialmente.
+    query = request.GET.get('q')  # Captura o termo de busca
+    materiais = Material.objects.none()  # Define inicialmente como vazio
 
     if query:
-        materiais = materiais.filter(
-            titulo__icontains=query,  # Filtra materiais cujo título contém o termo de busca.
-            autor__icontains=query,
-            descricao__icontains=query,
-            tipo__icontains=query
-        )
+        materiais = Material.objects.filter(
+            Q(titulo__icontains=query) |  
+            Q(autor__icontains=query) |   
+            Q(descricao__icontains=query) | 
+            Q(tipo__icontains=query)       
+        ) 
 
     return render(request, 'busca.html', {'materiais': materiais})

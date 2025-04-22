@@ -2,17 +2,10 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
 <head>
-    <title>Pesquisar Materiais</title>
+    <title>Resultados da Busca</title>
 </head>
 <body>
-    <h1>Pesquisar Materiais</h1>
-    <form method="get" action="">
-        <input type="text" name="q" placeholder="Digite o título, autor ou palavra-chave...">
-        <button type="submit">Buscar</button>
-    </form>
-
     <h2>Resultados da Pesquisa:</h2>
     <div>
         {% for material in materiais %}

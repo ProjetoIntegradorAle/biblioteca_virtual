@@ -10,8 +10,10 @@
             Alexandria
         </h1>
         <div class="search-bar">
-            <input type="text" placeholder="Campo de Busca">
-            <button type="submit" class="search-btn" aria-label="Pesquisar"></button>
+            <form method="get" action="{% url 'buscar_materiais' %}">
+                <input type="text" name="q" placeholder="Digite o título, autor ou palavra-chave...">
+                <button type="submit" class="search-btn" aria-label="Pesquisar"></button>
+            </form>
         </div>
     </main>
 </body>
