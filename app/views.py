@@ -104,4 +104,5 @@ def salvar_material(request, id_material):
         material_existente = MaterialSalvo.objects.filter(usuario=request.user, material=material).exists()
         if not material_existente:
             MaterialSalvo.objects.create(usuario=request.user, material=material)
-        return redirect('buscar_materiais')  # Redireciona de volta para a página de busca
+        return redirect('meus_materiais')  # Redireciona de volta para a página de busca
+    

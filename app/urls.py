@@ -11,4 +11,5 @@ urlpatterns = [
     path('visualizar/<int:id_material>/', views.visualizar_material, name='visualizar_material'),
     path('perfil/', perfil, name="perfil"),
     path('buscar/', views.buscar_materiais, name='buscar_materiais'),
+    path('salvar/<int:id_material>/', views.salvar_material, name='salvar_material'),
 ]
