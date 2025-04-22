@@ -30,8 +30,7 @@ def meus_materiais(request):
         'videos_salvos': materiais_videos_salvos,
         'slides_salvos': materiais_slides_salvos,
     })
-    
-# qual a diferença de pk=id_material e id=material_id?
+
 
 @login_required
 def adicionar_material(request):
@@ -80,25 +79,28 @@ def deletar_material(request, id_material):
         return redirect('meus_materiais')
     return render(request, 'deletar_material.html', {'material': material})
 
+
 @login_required
 def buscar_materiais(request):
-    query = request.GET.get('q')  # Captura o termo de busca
-    materiais = Material.objects.none()  # Define inicialmente como vazio
+    query = request.GET.get('q')
+    materiais = Material.objects.none()  
 
     if query:
         materiais = Material.objects.filter(
-            Q(titulo__icontains=query) |  
-            Q(autor__icontains=query) |   
-            Q(descricao__icontains=query) | 
-            Q(tipo__icontains=query)       
-        ) 
+            Q(titulo__icontains=query) |
+            Q(autor__icontains=query) |
+            Q(descricao__icontains=query) |
+            Q(tipo__icontains=query)
+        )
+
+    print("Materiais encontrados:", materiais)  # Verifique se a consulta retorna objetos
 
     return render(request, 'busca.html', {'materiais': materiais})
 
 @login_required
 def salvar_material(request, id_material):
     if request.method == 'POST':  # Certifique-se de que o salvamento seja feito via POST
-        material = get_object_or_404(Material, id=id_material)  # Verifica se o material já foi salvo
+        material = get_object_or_404(Material, pk=id_material)  # Verifica se o material já foi salvo
         material_existente = MaterialSalvo.objects.filter(usuario=request.user, material=material).exists()
         if not material_existente:
             MaterialSalvo.objects.create(usuario=request.user, material=material)
