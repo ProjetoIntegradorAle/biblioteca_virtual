@@ -7,17 +7,23 @@
 </head>
 <body>
     <h2>Resultados da Pesquisa:</h2>
-    <div>
-        {% for material in materiais %}
-            <div style="border: 1px solid #ddd; margin: 10px; padding: 10px;">
-                <h3>{{ material.titulo }}</h3>
-                <p><strong>Autor:</strong> {{ material.autor }}</p>
-                <p><strong>Tipo:</strong> {{ material.tipo }}</p>
-                <p>{{ material.descricao }}</p>
+
+    <div class="material-card">
+        <div class="card-content">
+            <h3>{{ material.titulo }}</h3>
+            <p><strong>Autor:</strong> {{ material.autor }}</p>
+            <p>{{ material.descricao }}</p>
+            <div class="meta-info">
+                <span class="tipo">{{ material.get_tipo_display }}</span>
             </div>
-        {% empty %}
-            <p>Nenhum material encontrado.</p>
-        {% endfor %}
+        </div>
+        <div class="card-actions">
+            <a href="{% url 'visualizar_material' material.id %}" target="_blank" class="btn abrir">Abrir</a>
+            <form action="{% url 'salvar_material' material.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn salvar">Salvar</button>
+            </form>
+        </div>
     </div>
 </body>
 {% endblock %}

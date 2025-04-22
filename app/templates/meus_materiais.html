@@ -26,49 +26,57 @@
 <!--MATERIAIS SALVOS-->
     <div class="content-mat">
         <h2 class="titulo">Materiais Salvos</h2>
+        
+        <!-- Materiais Salvos: Vídeos -->
         <div class="videos">
             <h2>Vídeos</h2>
             {% for video in videos %}
             <div class="material-item">
-                <p>{{ video.titulo }}</p>
-                <button><a href="{{ video.arquivo.url }}" target="_blank">Abrir</a></button>
-                <a href="{% url 'editar_material' video.id %}" class="btn btn-primary">Editar</a>
-                <form action="{% url 'deletar_material' video.id %}" method="post" style="display:inline;">
+                <p>{{ video.material.titulo }}</p>  <!-- Título do vídeo salvo -->
+                <button><a href="{{ video.material.arquivo.url }}" target="_blank">Abrir</a></button>
+                <form action="{% url 'salvar_material' video.material.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Deletar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
                 </form>
             </div>
+            {% empty %}
+            <p>Não há vídeos salvos.</p>
             {% endfor %}
         </div>
+
+        <!-- Materiais Salvos: Slides -->
         <div class="slides">
             <h2>Slides</h2>
             {% for slide in slides %}
             <div class="material-item">
-                <p>{{ slide.titulo }}</p>
-                <button><a href="{{ slide.arquivo.url }}" target="_blank">Abrir</a></button>
-                <a href="{% url 'editar_material' slide.id %}" class="btn btn-primary">Editar</a>
-                <form action="{% url 'deletar_material' slide.id %}" method="post" style="display:inline;">
+                <p>{{ slide.material.titulo }}</p>  <!-- Título do slide salvo -->
+                <button><a href="{{ slide.material.arquivo.url }}" target="_blank">Abrir</a></button>
+                <form action="{% url 'salvar_material' slide.material.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Deletar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
                 </form>
             </div>
+            {% empty %}
+            <p>Não há slides salvos.</p>
             {% endfor %}
         </div>
+
+        <!-- Materiais Salvos: Documentos -->
         <div class="documentos">
             <h2>Documentos</h2>
             {% for documento in documentos %}
             <div class="material-item">
-                <p>{{ documento.titulo }}</p>
-                <button><a href="{{ documento.arquivo.url }}" target="_blank">Abrir</a></button>
-                <a href="{% url 'editar_material' documento.id %}" class="btn btn-primary">Editar</a>
-                <form action="{% url 'deletar_material' documento.id %}" method="post" style="display:inline;">
+                <p>{{ documento.material.titulo }}</p>  <!-- Título do documento salvo -->
+                <button><a href="{{ documento.material.arquivo.url }}" target="_blank">Abrir</a></button>
+                <form action="{% url 'salvar_material' documento.material.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Deletar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
                 </form>
             </div>
+            {% empty %}
+            <p>Não há documentos salvos.</p>
             {% endfor %}
         </div>
-    </div>
     </div>
 </main>
 {% endblock %}
