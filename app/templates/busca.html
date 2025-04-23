@@ -18,12 +18,11 @@
                 </div>
             </div>
                 <div class="card-actions">
-                    <button>
-                        <a href="{{ material.arquivo.url }}" target="_blank" class="btn abrir">Abrir</a>
-                    </button>
+                    <a href="{{ material.arquivo.url }}" target="_blank" class="btn abrir">Abrir</a>
+                    
                     <form action="{% url 'salvar_material' material.id %}" method="post" style="display:inline;">
                         {% csrf_token %}
-                        <button type="submit" class="btn salvar">Salvar</button>
+                        <button type="submit" class="btn-salvar">Salvar</button>
                     </form>
                 </div>
         </div>

@@ -544,6 +544,21 @@ input[type="file" i] {
     display: grid;
 }
 
+.btn-salvar{
+    padding: 0.6rem 1rem;
+    color: white;
+    margin-top: 0em;
+    background-color: rgb(51, 51, 252);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
 /* Materiais Criados */
 
 .materiais-criados-container {
@@ -614,7 +629,7 @@ input[type="file" i] {
 }
 
 .btn {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.3rem;
     border: none;
     border-radius: 6px;
     cursor: pointer;
