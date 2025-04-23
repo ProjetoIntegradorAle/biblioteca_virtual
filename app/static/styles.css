@@ -530,6 +530,20 @@ input[type="file" i] {
     text-decoration: none;
 }
 
+/* Resultado */
+
+.material-resultado {
+    width: 40%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin: 20px;
+    display: grid;
+}
+
 /* Materiais Criados */
 
 .materiais-criados-container {

@@ -7,7 +7,7 @@
 </head>
 <body>   
     {% for material in materiais %}
-        <div class="material-card">
+        <div class="material-resultado">
             <div class="card-content">
                 <!--<p>ID do material: {{ material.id }}</p>-->
                 <h3>Título: {{ material.titulo }}</h3>
@@ -17,17 +17,17 @@
                     <span class="tipo">{{ material.get_tipo_display }}</span>
                 </div>
             </div>
+                <div class="card-actions">
+                    <button>
+                        <a href="{{ material.arquivo.url }}" target="_blank" class="btn abrir">Abrir</a>
+                    </button>
+                    <form action="{% url 'salvar_material' material.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn salvar">Salvar</button>
+                    </form>
+                </div>
+        </div>
 
-            <div class="card-actions">
-                <button>
-                    <a href="{{ material.arquivo.url }}" target="_blank" class="btn abrir">Abrir</a>
-                </button>
-                <form action="{% url 'salvar_material' material.id %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn salvar">Salvar</button>
-                </form>
-        
-            </div>
     {% empty %}
         <p>Nenhum material encontrado.</p>
     {% endfor %}
