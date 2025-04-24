@@ -12,6 +12,22 @@
     {% endfor %}
   </div>
 {% endif %}
+<nav class="navbar">
+  <ul>
+      <li><a href="{% url 'index' %}">Início</a></li>
+      <li><a href="{% url 'meus_materiais' %}">Meus Materiais</a></li>
+      <li><a href="{% url 'perfil' %}">Área do Usuário</a></li>
+      <li><a href="#">Configurações</a></li>
+      <li><a href="#">Sobre nós</a></li>
+      <li><a href="{% url 'login' %}">Login</a></li>
+      <li>
+          <form action="{% url 'logout' %}" class="logout" method="POST" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="dropdown-item" style="font-family: Georgia, serif; background:none; border:none; padding:0; cursor:pointer; color:white">Sair da Conta</button>
+          </form>
+      </li>
+  </ul>
+</nav>
 <body>
     <div class="perfil-container">
         <div class="perfil-box">

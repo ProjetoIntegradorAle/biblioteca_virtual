@@ -99,10 +99,13 @@ def buscar_materiais(request):
 
 @login_required
 def salvar_material(request, id_material):
-    if request.method == 'POST':  # Certifique-se de que o salvamento seja feito via POST
-        material = get_object_or_404(Material, pk=id_material)  # Verifica se o material já foi salvo
+    if request.method == 'POST':
+        material = get_object_or_404(Material, id=id_material)  # Verifica se o material existe
         material_existente = MaterialSalvo.objects.filter(usuario=request.user, material=material).exists()
         if not material_existente:
-            MaterialSalvo.objects.create(usuario=request.user, material=material)
-        return redirect('meus_materiais')  # Redireciona de volta para a página de busca
-    
+            MaterialSalvo.objects.create(usuario=request.user, material=material)  # Cria o vínculo no banco
+            print(f"Material salvo: {material.titulo}")  # Exibe confirmação no console
+        else:
+            print(f"O material já está salvo: {material.titulo}")
+        
+        return redirect('meus_materiais')
