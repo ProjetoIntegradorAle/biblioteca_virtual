@@ -14,9 +14,9 @@ def meus_materiais(request):
     form = MaterialForm() 
     materiais_criados = Material.objects.filter(usuario=request.user) # Materiais criados pelo usuário logado
     # Materiais salvos pelo usuário logado, separados por tipo
-    materiais_documentos_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Documento')
-    materiais_videos_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Vídeo')
-    materiais_slides_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Slide')
+    documentos_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Documento')
+    videos_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Vídeo')
+    slides_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Slide')
 
     # Paginação para materiais criados
     paginator = Paginator(materiais_criados, 6)
@@ -26,9 +26,9 @@ def meus_materiais(request):
     return render(request, 'meus_materiais.html', {
         'form': form,
         'page_obj': page_obj,  # Materiais criados paginados
-        'documentos_salvos': materiais_documentos_salvos,
-        'videos_salvos': materiais_videos_salvos,
-        'slides_salvos': materiais_slides_salvos,
+        'documentos_salvos': documentos_salvos,
+        'videos_salvos': videos_salvos,
+        'slides_salvos': slides_salvos,
     })
 
 
