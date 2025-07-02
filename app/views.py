@@ -9,6 +9,9 @@ from django.db.models import Q
 def index(request):
     return render(request, 'index.html')
 
+def sobre(request):
+    return render(request, 'sobre.html')
+
 @login_required
 def meus_materiais(request):
     form = MaterialForm() 

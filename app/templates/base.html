@@ -16,7 +16,7 @@
         <li><a href="{% url 'meus_materiais' %}">Meus Materiais</a></li>
         <li><a href="{% url 'perfil' %}">Área do Usuário</a></li>
         <li><a href="#">Configurações</a></li>
-        <li><a href="#">Sobre nós</a></li>
+        <li><a href="{% url 'sobre' %}">Sobre</a></li>
         <li><a href="{% url 'login' %}">Login</a></li>
         <li>
             <form action="{% url 'logout' %}" class="logout" method="POST" style="display:inline;">
