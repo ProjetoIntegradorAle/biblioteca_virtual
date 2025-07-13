@@ -12,6 +12,15 @@ def index(request):
 def sobre(request):
     return render(request, 'sobre.html')
 
+def configuracoes(request):
+    return render(request, 'configuracoes.html')
+
+def conta_conf(request):
+    return render(request, 'conta_conf.html')
+
+def notifica_conf(request):
+    return render(request, 'notifica_conf.html')
+
 @login_required
 def meus_materiais(request):
     form = MaterialForm() 
