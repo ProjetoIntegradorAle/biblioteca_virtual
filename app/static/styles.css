@@ -7,6 +7,30 @@ body {
     position: relative;
 }
 
+/* Configurações */
+.config {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.content-config {
+    width: 90%;
+    margin: auto;
+    padding: 2rem;
+}
+
+.botoes-config {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+button {
+    padding: 1rem 2rem;
+    font-size: 16px
+
 /* Sobre */
 .sobre{
     padding-top: 25px;

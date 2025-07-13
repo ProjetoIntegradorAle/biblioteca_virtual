@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Configurações{% endblock %}
+
+{% block content %}
+<body class="config">
+    <main class="content-config">
+        <h1>
+            <span class="icon">&#x1F3DB;</span>
+            Configurações
+        </h1>
+        <div class="botoes-config">
+        <button onclick="window.location.href='{% url 'conta_conf' %}'">Configurações da Conta</button>
+        <button onclick="window.location.href='{% url 'notifica_conf' %}'">Preferências de Notificação</button>
+    </div>
+    </main>
+</body>
+{% endblock %}
