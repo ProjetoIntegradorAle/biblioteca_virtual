@@ -348,8 +348,7 @@ table{
 
 /* Estilização específica para o campo de input */
 .search-bar input[type="text"] {
-    width: 100%;
-    padding: 12px 20px;
+    padding: 13px 90px;
     border-radius: 25px;
     border: 1px solid #ddd;
     transition: all 0.3s ease;
@@ -373,6 +372,9 @@ table{
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
+    padding-left: 0px;
+    padding-right: 20px;
+
 }
 
 .search-btn::before {
@@ -416,7 +418,7 @@ header {
 
 .search-bar {
     flex: 1;
-    padding: 10px;
+    padding: 5px;
     border: none;
     border-radius: 25px;
     background: rgba(255, 255, 255, 0.9);
