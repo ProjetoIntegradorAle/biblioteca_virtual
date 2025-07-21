@@ -15,11 +15,35 @@ def sobre(request):
 def configuracoes(request):
     return render(request, 'configuracoes.html')
 
-def conta_conf(request):
-    return render(request, 'conta_conf.html')
+# def conta_conf(request):
+#   return render(request, 'conta_conf.html')
 
-def notifica_conf(request):
-    return render(request, 'notifica_conf.html')
+# def notifica_conf(request):
+#    return render(request, 'notifica_conf.html')
+
+def mat_compart(request):
+    materiais_compartilhados = Material.objects.filter(compartilhado=True)  # Filtra materiais compartilhados
+    paginator = Paginator(materiais_compartilhados, 6)  # Paginação de 6 materiais por página
+    page_number = request.GET.get('page')  # Obtém o número da página da requisição
+    page_obj = paginator.get_page(page_number)  # Obtém os materiais da página atual
+
+    return render(request, 'materiais_compartilhados.html', {'page_obj': page_obj})  # Renderiza a template com os materiais compartilhados
+
+def coment_receb(request):
+    # Implementar lógica para exibir comentários recebidos
+    return render(request, 'coment_receb.html')
+
+def histor_pesq(request):
+    # Implementar lógica para exibir histórico de pesquisa
+    return render(request, 'histor_pesq.html')
+
+def permis_coment(request):
+    # Implementar lógica para gerenciar permissões de comentários
+    return render(request, 'permis_coment.html')
+
+def convit_colabora(request):
+    # Implementar lógica para gerenciar convites de colaboração
+    return render(request, 'convit_colabora.html')
 
 @login_required
 def meus_materiais(request):

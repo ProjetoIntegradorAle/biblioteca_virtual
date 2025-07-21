@@ -6,9 +6,13 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('meus_materiais/', views.meus_materiais, name="meus_materiais"),
     path('sobre/', views.sobre, name="sobre"),
+    
     path('configuracoes/', views.configuracoes, name="configuracoes"),
-    path('conta_conf/', views.conta_conf, name="conta_conf"),
-    path('notifica_conf/', views.notifica_conf, name="notifica_conf"),
+    path('mat_compart/', views.mat_compart, name="mat_compart"),
+    path('coment_receb/', views.coment_receb, name="coment_receb"),
+    path('histor_pesq/', views.histor_pesq, name="histor_pesq"),
+    path('permis_coment/', views.permis_coment, name="permis_coment"),
+    path('convit_colabora/', views.convit_colabora, name="convit_colabora"),
     
     path('adicionar', views.adicionar_material, name='adicionar_material'),
     path('editar/<int:id_material>/', views.editar_material, name='editar_material'),
