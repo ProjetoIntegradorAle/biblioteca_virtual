@@ -25,7 +25,7 @@
             }
 
             document.getElementById("btnHistorico").onclick = function() {
-                window.location.href = "{% url 'hist_pesq' %}";
+                window.location.href = "{% url 'histor_pesq' %}";
             }
 
             document.getElementById("btnComentarios").onclick = function() {
@@ -33,10 +33,19 @@
             }
         </script>
         
-<!--<h2>Preferências de Notificação</h2>
-        <button onclick="window.location.href='{% url 'permis_coment' %}'">Permissões de Comentários</button>
-        <button onclick="window.location.href='{% url 'convit_colabora' %}'">Convites de Colaboração</button>-->
-        
+        <h2>Preferências de Notificação</h2>
+
+        <button id="btnPermissoesComent">Permissões de Comentários</button>  
+        <button id="btnConviteColab">Convites de Colaboração</button> 
+
+        <script>
+            document.getElementById("btnPermissoesComent").onclick = function() {
+                window.location.href = "{% url 'permis_coment' %}";
+            }
+            document.getElementById("btnConviteColab").onclick = function() {
+                window.location.href = "{% url 'convit_colabora' %}";
+            }
+        </script>
     </div>
     </main>
 </body>
