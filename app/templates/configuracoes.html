@@ -10,8 +10,33 @@
             Configurações
         </h1>
         <div class="botoes-config">
-        <button onclick="window.location.href='{% url 'conta_conf' %}'">Configurações da Conta</button>
-        <button onclick="window.location.href='{% url 'notifica_conf' %}'">Preferências de Notificação</button>
+
+        <h2>Configurações da Conta</h2>
+
+        <!-- Botões visíveis -->
+        <button id="btnMateriais">Materiais Compartilhados</button>  
+        <button id="btnHistorico">Histórico de Pesquisa</button>  
+        <button id="btnComentarios">Comentários Recebidos</button>  
+
+        <!-- Script separado -->
+        <script>
+            document.getElementById("btnMateriais").onclick = function() {
+                window.location.href = "{% url 'mat_compart' %}";
+            }
+
+            document.getElementById("btnHistorico").onclick = function() {
+                window.location.href = "{% url 'hist_pesq' %}";
+            }
+
+            document.getElementById("btnComentarios").onclick = function() {
+                window.location.href = "{% url 'coment_receb' %}";
+            }
+        </script>
+        
+<!--<h2>Preferências de Notificação</h2>
+        <button onclick="window.location.href='{% url 'permis_coment' %}'">Permissões de Comentários</button>
+        <button onclick="window.location.href='{% url 'convit_colabora' %}'">Convites de Colaboração</button>-->
+        
     </div>
     </main>
 </body>
