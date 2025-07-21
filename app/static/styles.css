@@ -9,10 +9,22 @@ body {
 
 /* Configurações */
 .config {
+    padding-top: 30px;
     font-family: 'Segoe UI', sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+}
+
+.config h1 {
+    font-size: 2.5rem;
+    font-family: 'Georgia';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .content-config {
@@ -30,6 +42,7 @@ body {
 button {
     padding: 1rem 2rem;
     font-size: 16px
+}
 
 /* Sobre */
 .sobre{
