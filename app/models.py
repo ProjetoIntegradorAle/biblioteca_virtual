@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
+
 
 class Material(models.Model):
     SLIDE = 'SL'
@@ -21,7 +23,9 @@ class Material(models.Model):
     )
     arquivo = models.FileField(upload_to='meus_materiais/')
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  # Define um valor padrão
+    data_compartilhado = models.DateTimeField(null=True, default=timezone.now)
 
+    
     def __str__(self):
         return self.titulo
     

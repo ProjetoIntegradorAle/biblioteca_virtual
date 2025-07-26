@@ -15,19 +15,17 @@ def sobre(request):
 def configuracoes(request):
     return render(request, 'configuracoes.html')
 
-# def conta_conf(request):
-#   return render(request, 'conta_conf.html')
-
-# def notifica_conf(request):
-#    return render(request, 'notifica_conf.html')
-
 def mat_compart(request):
-    materiais_compartilhados = Material.objects.filter(compartilhado=True)  # Filtra materiais compartilhados
-    paginator = Paginator(materiais_compartilhados, 6)  # Paginação de 6 materiais por página
-    page_number = request.GET.get('page')  # Obtém o número da página da requisição
-    page_obj = paginator.get_page(page_number)  # Obtém os materiais da página atual
+    usuario = request.user  # Usuário logado
+    materiais = Material.objects.filter(usuario=usuario)
+    return render(request, 'mat_compart.html', {'materiais': materiais})
 
-    return render(request, 'materiais_compartilhados.html', {'page_obj': page_obj})  # Renderiza a template com os materiais compartilhados
+#def mat_compart(request):
+   #paginator = Paginator(materiais_compartilhados, 6)  # Paginação de 6 materiais por página
+    #page_number = request.GET.get('page')  # Obtém o número da página da requisição
+    #page_obj = paginator.get_page(page_number)  # Obtém os materiais da página atual
+
+    #return render(request, 'materiais_compartilhados.html', {'page_obj': page_obj})  # Renderiza a template com os materiais compartilhados
 
 def coment_receb(request):
     # Implementar lógica para exibir comentários recebidos
@@ -53,6 +51,7 @@ def meus_materiais(request):
     documentos_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Documento')
     videos_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Vídeo')
     slides_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Slide')
+
 
     # Paginação para materiais criados
     paginator = Paginator(materiais_criados, 6)

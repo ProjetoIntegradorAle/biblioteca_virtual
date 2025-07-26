@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>
-    <span class="icon">&#x1F3DB;</span>
-    Materiais Compartilhados
-</h1>
+<div class="mat-compart">
+    <ul>
+    {% for material in materiais %}
+        <li>
+            <strong>{{ material.titulo }}</strong><br>
+            <strong>Descrição:</strong> {{ material.descricao }}<br>
+            <a href="{{ material.arquivo.url }}">Baixar</a> |
+            Compartilhado em: {{ material.data_compartilhado }}
+        </li>
+    {% empty %}
+        <li>Nenhum material compartilhado ainda.</li>
+    {% endfor %}
+    </ul>
+</div>
 
 {% endblock %}
