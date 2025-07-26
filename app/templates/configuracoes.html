@@ -9,44 +9,45 @@
             <span class="icon">&#x1F3DB;</span>
             Configurações
         </h1>
+
+        <h2>Configurações da Conta:</h2>
+        <div class="botoes-config">
+            <!-- Botões visíveis -->
+            <button id="btnMateriais">Materiais Compartilhados</button>  
+            <button id="btnHistorico">Histórico de Pesquisa</button>  
+            <button id="btnComentarios">Comentários Recebidos</button>  
+
+            <!-- Script separado -->
+            <script>
+                document.getElementById("btnMateriais").onclick = function() {
+                    window.location.href = "{% url 'mat_compart' %}";
+                }
+
+                document.getElementById("btnHistorico").onclick = function() {
+                    window.location.href = "{% url 'histor_pesq' %}";
+                }
+
+                document.getElementById("btnComentarios").onclick = function() {
+                    window.location.href = "{% url 'coment_receb' %}";
+                }
+            </script>
+        </div>
+
+        <h2>Preferências de Notificação:</h2>
         <div class="botoes-config">
 
-        <h2>Configurações da Conta</h2>
+            <button id="btnPermissoesComent">Permissões de Comentários</button>  
+            <button id="btnConviteColab">Convites de Colaboração</button> 
 
-        <!-- Botões visíveis -->
-        <button id="btnMateriais">Materiais Compartilhados</button>  
-        <button id="btnHistorico">Histórico de Pesquisa</button>  
-        <button id="btnComentarios">Comentários Recebidos</button>  
-
-        <!-- Script separado -->
-        <script>
-            document.getElementById("btnMateriais").onclick = function() {
-                window.location.href = "{% url 'mat_compart' %}";
-            }
-
-            document.getElementById("btnHistorico").onclick = function() {
-                window.location.href = "{% url 'histor_pesq' %}";
-            }
-
-            document.getElementById("btnComentarios").onclick = function() {
-                window.location.href = "{% url 'coment_receb' %}";
-            }
-        </script>
-        
-        <h2>Preferências de Notificação</h2>
-
-        <button id="btnPermissoesComent">Permissões de Comentários</button>  
-        <button id="btnConviteColab">Convites de Colaboração</button> 
-
-        <script>
-            document.getElementById("btnPermissoesComent").onclick = function() {
-                window.location.href = "{% url 'permis_coment' %}";
-            }
-            document.getElementById("btnConviteColab").onclick = function() {
-                window.location.href = "{% url 'convit_colabora' %}";
-            }
-        </script>
-    </div>
+            <script>
+                document.getElementById("btnPermissoesComent").onclick = function() {
+                    window.location.href = "{% url 'permis_coment' %}";
+                }
+                document.getElementById("btnConviteColab").onclick = function() {
+                    window.location.href = "{% url 'convit_colabora' %}";
+                }
+            </script>
+        </div>
     </main>
 </body>
 {% endblock %}
