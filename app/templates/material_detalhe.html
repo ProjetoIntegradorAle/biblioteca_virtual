@@ -1,0 +1,15 @@
+{% if material.avaliacoes_habilitadas %}
+    <form method="POST" action="{% url 'comentar' material.id %}">
+        {% csrf_token %}
+        <textarea name="comentario" placeholder="Deixe seu comentário"></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+
+    {% for comentario in material.comentarios.all %}
+        <p>{{ comentario.autor }}: {{ comentario.texto }}</p>
+        <form method="POST" action="{% url 'curtir_comentario' comentario.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-heart">❤️ {{ comentario.curtidas.count }}</button>
+        </form>
+    {% endfor %}
+{% endif %}
