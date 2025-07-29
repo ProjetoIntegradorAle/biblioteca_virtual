@@ -22,6 +22,20 @@ class Material(models.Model):
         default=DOCUMENTO,
     )
     arquivo = models.FileField(upload_to='meus_materiais/')
+    
+    avaliacoes_habilitadas = models.BooleanField(default=False)
+
+    colaboradores_pendentes = models.ManyToManyField(
+    settings.AUTH_USER_MODEL,
+    related_name="convites_recebidos",
+    blank=True
+    )
+    colaboradores_confirmados = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="colaboracoes_confirmadas",
+        blank=True
+    )
+
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  # Define um valor padrão
     data_compartilhado = models.DateTimeField(null=True, default=timezone.now)
 
@@ -29,6 +43,12 @@ class Material(models.Model):
     def __str__(self):
         return self.titulo
     
+class Comentario(models.Model):
+    autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    material = models.ForeignKey(Material, on_delete=models.CASCADE, related_name='comentarios')
+    texto = models.TextField()
+    curtidas = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='comentarios_curtidos', blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
 
 class MaterialSalvo(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
