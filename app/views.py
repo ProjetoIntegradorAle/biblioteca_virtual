@@ -12,6 +12,10 @@ def index(request):
 def sobre(request):
     return render(request, 'sobre.html')
 
+def material_detalhe(request, material_id):
+    material = get_object_or_404(Material, id=material_id)
+    return render(request, 'material_detalhe.html', {'material': material})
+
 def configuracoes(request):
     return render(request, 'configuracoes.html')
 
@@ -77,13 +81,15 @@ def adicionar_material(request):
             material.autor = request.user.username  # Nome do usuário como autor
             material.save()
             messages.success(request, 'Material adicionado com sucesso!')
-            return redirect('meus_materiais')
+            
+            # Redireciona para a página de detalhes do material, onde os botões aparecem
+            return redirect('material_detalhe', material_id=material.id)
         else:
             messages.error(request, 'Erro ao adicionar material!')
     else:
         form = MaterialForm()
-    return render(request, 'adicionar_material.html', {'form': form})
-
+        
+    return render(request, 'material_detalhe.html', {'form': form})
 @login_required
 def visualizar_material(request, id_material):
     material = get_object_or_404(Material, pk=id_material)

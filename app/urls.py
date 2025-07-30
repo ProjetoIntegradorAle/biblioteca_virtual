@@ -13,6 +13,7 @@ urlpatterns = [
     path('histor_pesq/', views.histor_pesq, name="histor_pesq"),
     path('permis_coment/', views.permis_coment, name="permis_coment"),
     path('convit_colabora/', views.convit_colabora, name="convit_colabora"),
+    path('material/<int:material_id>/', views.material_detalhe, name='material_detalhe'),
     
     path('adicionar', views.adicionar_material, name='adicionar_material'),
     path('editar/<int:id_material>/', views.editar_material, name='editar_material'),

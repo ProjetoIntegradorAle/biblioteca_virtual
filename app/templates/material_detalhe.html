@@ -1,3 +1,13 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h4>Avaliações e Comentários</h4>
+<p>Esses recursos estarão disponíveis após salvar o material.</p>
+
+<button disabled class="btn btn-secondary">Curtir</button>
+<button disabled class="btn btn-secondary">Comentar</button>
+
 {% if material.avaliacoes_habilitadas %}
     <form method="POST" action="{% url 'comentar' material.id %}">
         {% csrf_token %}
@@ -13,3 +23,5 @@
         </form>
     {% endfor %}
 {% endif %}
+
+{% endblock %}
