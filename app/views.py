@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Material, MaterialSalvo
+from .models import Material, MaterialSalvo, Comentario
 from .forms import MaterialForm
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -34,6 +34,22 @@ def mat_compart(request):
 def coment_receb(request):
     # Implementar lógica para exibir comentários recebidos
     return render(request, 'coment_receb.html')
+
+def comentar(request, material_id):
+    material = get_object_or_404(Material, id=material_id)
+    if request.method == 'POST':
+        texto = request.POST.get('comentario')
+        Comentario.objects.create(
+            autor=request.user,
+            material=material,
+            texto=texto
+        )
+    return redirect('material_detalhe', material_id=material.id)
+
+def curtir_comentario(request, comentario_id):
+    comentario = get_object_or_404(Comentario, id=comentario_id)
+    comentario.curtidas.add(request.user)
+    return redirect('material_detalhe', material_id=comentario.material.id)
 
 def histor_pesq(request):
     # Implementar lógica para exibir histórico de pesquisa
