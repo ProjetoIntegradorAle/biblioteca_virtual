@@ -2,25 +2,36 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<h4>Avaliações e Comentários</h4>
-<p>Esses recursos estarão disponíveis após salvar o material.</p>
-
-<button disabled class="btn btn-secondary">Curtir</button>
-<button disabled class="btn btn-secondary">Comentar</button>
+<div class="alert alert-warning d-flex align-items-center" role="alert">
+  <i class="bi bi-exclamation-triangle-fill me-2"></i> Esses recursos estarão disponíveis após salvar o material.
+</div>
+<div class="d-flex gap-2">
+  <button disabled class="btn btn-secondary">Curtir</button>
+  <button disabled class="btn btn-secondary">Comentar</button>
+</div>
 
 {% if material.avaliacoes_habilitadas %}
     <form method="POST" action="{% url 'comentar' material.id %}">
         {% csrf_token %}
-        <textarea name="comentario" placeholder="Deixe seu comentário"></textarea>
-        <button type="submit">Enviar</button>
+        <textarea name="comentario" class="form-control mt-2" rows="3" placeholder="Deixe seu comentário"></textarea>
+        <button type="submit" class="btn btn-primary mt-2">Enviar</button>
     </form>
 
     {% for comentario in material.comentarios.all %}
-        <p>{{ comentario.autor }}: {{ comentario.texto }}</p>
+        <div class="card mt-4">
+    <div class="card-header">
+        <h4 class="mb-0">Avaliações e Comentários</h4>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-secondary">
+                <strong>{{ comentario.autor }}:</strong> {{ comentario.texto }}
+        </div>
         <form method="POST" action="{% url 'curtir_comentario' comentario.id %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn-heart">❤️ {{ comentario.curtidas.count }}</button>
+            <button type="submit" class="btn btn-outline-danger btn-sm">❤️ {{ comentario.curtidas.count }}</button>
         </form>
+        </div>
+    </div>
     {% endfor %}
 {% endif %}
 
