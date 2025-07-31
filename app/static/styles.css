@@ -384,7 +384,7 @@ table{
     gap: 20px;
     border: none;
     border-radius: 50%; /* Formato totalmente redondo */
-    background-color: #007bff;
+    background-color: #6d6380;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;

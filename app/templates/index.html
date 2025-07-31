@@ -6,8 +6,10 @@
 <body>
     <main class="content">
         <h1>
-            <span class="icon">&#x1F3DB;</span>
-            Alexandria
+            <!-- Logo/Brand -->
+            <a href="{% url 'index' %}" class="navbar-brand">
+                Biblioteca Alexandria
+            </a>
         </h1>
         <div class="search-bar">
             <form method="get" action="{% url 'buscar_materiais' %}">

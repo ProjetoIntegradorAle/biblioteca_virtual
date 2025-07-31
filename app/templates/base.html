@@ -67,7 +67,7 @@
 
         /* Logo/Brand */
         .navbar-brand {
-            font-size: 1.5rem;
+            font-size: 2.4rem;
             font-weight: bold;
             color: white;
             text-decoration: none;
@@ -78,7 +78,7 @@
 
         .navbar-brand::before {
             content: "🏛️";
-            font-size: 1.8rem;
+            font-size: 2.3rem;
         }
 
         /* Menu hamburger - visível em todas as telas */
@@ -146,7 +146,7 @@
 
         .navbar a {
             text-decoration: none;
-            padding: 1rem 2rem;
+            padding: 0.1rem 0.1rem;
             color: white;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -155,8 +155,8 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            min-width: 250px;
+            /*background: rgba(255, 255, 255, 0.1);*/
+            min-width: 70px; /* Área cinza ao redor */
             font-size: 1rem;
         }
 
@@ -273,7 +273,7 @@
 <nav class="navbar">
     <!-- Logo/Brand -->
     <a href="{% url 'index' %}" class="navbar-brand">
-        Biblioteca Alexandria
+        
     </a>
 
     <!-- Menu hamburger -->
