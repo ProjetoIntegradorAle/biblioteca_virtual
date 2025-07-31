@@ -352,7 +352,7 @@ table{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    /* gap: 20px; */
     background-color: transparent !important;
     border: none !important;
     width: 100%; /* Ocupa toda a largura disponível */
@@ -365,7 +365,7 @@ table{
 .search-bar input[type="text"] {
     padding: 13px 90px;
     border-radius: 25px;
-    border: 1px solid #ddd;
+    border: 1px solid #ffffff;
     transition: all 0.3s ease;
 }
 
@@ -381,6 +381,7 @@ table{
 .search-btn {
     width: 40px;
     height: 40px;
+    gap: 20px;
     border: none;
     border-radius: 50%; /* Formato totalmente redondo */
     background-color: #007bff;
