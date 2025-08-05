@@ -12,18 +12,6 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form }}
-            <button type="submit">Adicionar</button>
-        </form>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <label>
-                <input type="checkbox" name="avaliacoes_habilitadas"> Permitir avaliações
-            </label>
-            <label>
-                <input type="checkbox" name="colaboracao_habilitada"> Permitir colaboração
-            </label>
-
             <button type="submit">Criar Material</button>
         </form>
     </div>
