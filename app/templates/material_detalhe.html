@@ -2,12 +2,20 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="alert alert-warning d-flex align-items-center" role="alert">
-  <i class="bi bi-exclamation-triangle-fill me-2"></i> Esses recursos estarão disponíveis após salvar o material.
-</div>
-<div class="d-flex gap-2">
-  <button disabled class="btn btn-secondary">Curtir</button>
-  <button disabled class="btn btn-secondary">Comentar</button>
+<div class="d-flex gap-2 mb-3">
+    <form method="POST" action="{% url 'curtir_material' material.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-danger btn-sm">
+            {% if user in material.curtidas.all %}
+                💔 Descurtir
+            {% else %}
+                ❤️ Curtir
+            {% endif %}
+            ({{ material.curtidas.count }})
+        </button>
+    </form>
+
+    <button class="btn btn-outline-secondary btn-sm" disabled>Comentar</button>
 </div>
 
 {% if material.avaliacoes_habilitadas %}
@@ -19,20 +27,19 @@
 
     {% for comentario in material.comentarios.all %}
         <div class="card mt-4">
-    <div class="card-header">
-        <h4 class="mb-0">Avaliações e Comentários</h4>
-    </div>
-    <div class="card-body">
-        <div class="alert alert-secondary">
-                <strong>{{ comentario.autor }}:</strong> {{ comentario.texto }}
+            <div class="card-header">
+                <h4 class="mb-0">Avaliações e Comentários</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-secondary">
+                    <strong>{{ comentario.autor }}:</strong> {{ comentario.texto }}
+                </div>
+            </div>
         </div>
-        <form method="POST" action="{% url 'curtir_comentario' comentario.id %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-outline-danger btn-sm">❤️ {{ comentario.curtidas.count }}</button>
-        </form>
-        </div>
-    </div>
     {% endfor %}
+{% else %}
+    <div class="alert alert-warning d-flex align-items-center mt-3" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i> Esses recursos estarão disponíveis após salvar o material.
+    </div>
 {% endif %}
-
 {% endblock %}
