@@ -25,14 +25,21 @@ class Material(models.Model):
     
     avaliacoes_habilitadas = models.BooleanField(default=False)
 
+    colaboracao_habilitada = models.BooleanField(default=False)
     colaboradores_pendentes = models.ManyToManyField(
-    settings.AUTH_USER_MODEL,
-    related_name="convites_recebidos",
-    blank=True
+        settings.AUTH_USER_MODEL,
+        related_name="convites_recebidos",
+        blank=True
     )
     colaboradores_confirmados = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name="colaboracoes_confirmadas",
+        blank=True
+    )
+    
+    curtidas = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name='materiais_curtidos',
         blank=True
     )
 

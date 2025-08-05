@@ -46,10 +46,18 @@ def comentar(request, material_id):
         )
     return redirect('material_detalhe', material_id=material.id)
 
-def curtir_comentario(request, comentario_id):
-    comentario = get_object_or_404(Comentario, id=comentario_id)
-    comentario.curtidas.add(request.user)
-    return redirect('material_detalhe', material_id=comentario.material.id)
+# CURTIDA
+def curtir_material(request, material_id):
+    material = get_object_or_404(Material, id=material_id)
+
+    # Alternar curtida (curtir/descurtir)
+    if request.user in material.curtidas.all():
+        material.curtidas.remove(request.user)
+    else:
+        material.curtidas.add(request.user)
+
+    return redirect('material_detalhe', material_id=material.id)
+
 
 def histor_pesq(request):
     # Implementar lógica para exibir histórico de pesquisa

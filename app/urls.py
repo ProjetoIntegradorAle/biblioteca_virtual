@@ -15,7 +15,7 @@ urlpatterns = [
     path('convit_colabora/', views.convit_colabora, name="convit_colabora"),
     path('material/<int:material_id>/', views.material_detalhe, name='material_detalhe'),
     path('material/<int:material_id>/comentar/', views.comentar, name='comentar'),
-    path('curtir_comentario/<int:comentario_id>/', views.curtir_comentario, name='curtir_comentario'),
+    path('curtir_material/<int:material_id>/', views.curtir_material, name='curtir_material'),
     
     path('adicionar', views.adicionar_material, name='adicionar_material'),
     path('editar/<int:id_material>/', views.editar_material, name='editar_material'),
