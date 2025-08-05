@@ -12,10 +12,6 @@ def index(request):
 def sobre(request):
     return render(request, 'sobre.html')
 
-def material_detalhe(request, material_id):
-    material = get_object_or_404(Material, id=material_id)
-    return render(request, 'material_detalhe.html', {'material': material})
-
 def configuracoes(request):
     return render(request, 'configuracoes.html')
 
@@ -24,12 +20,10 @@ def mat_compart(request):
     materiais = Material.objects.filter(usuario=usuario)
     return render(request, 'mat_compart.html', {'materiais': materiais})
 
-#def mat_compart(request):
-   #paginator = Paginator(materiais_compartilhados, 6)  # Paginação de 6 materiais por página
-    #page_number = request.GET.get('page')  # Obtém o número da página da requisição
-    #page_obj = paginator.get_page(page_number)  # Obtém os materiais da página atual
-
-    #return render(request, 'materiais_compartilhados.html', {'page_obj': page_obj})  # Renderiza a template com os materiais compartilhados
+####################################### COMENTÁRIOS-CURTIDAS #########################################################
+def material_detalhe(request, material_id):
+    material = get_object_or_404(Material, id=material_id)
+    return render(request, 'material_detalhe.html', {'material': material})
 
 def coment_receb(request):
     # Implementar lógica para exibir comentários recebidos
@@ -46,7 +40,6 @@ def comentar(request, material_id):
         )
     return redirect('material_detalhe', material_id=material.id)
 
-# CURTIDA
 def curtir_material(request, material_id):
     material = get_object_or_404(Material, id=material_id)
 
@@ -57,6 +50,7 @@ def curtir_material(request, material_id):
         material.curtidas.add(request.user)
 
     return redirect('material_detalhe', material_id=material.id)
+####################################### COMENTÁRIOS-CURTIDAS #########################################################
 
 
 def histor_pesq(request):
