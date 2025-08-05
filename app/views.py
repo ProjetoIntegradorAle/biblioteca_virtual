@@ -20,7 +20,7 @@ def mat_compart(request):
     materiais = Material.objects.filter(usuario=usuario)
     return render(request, 'mat_compart.html', {'materiais': materiais})
 
-####################################### COMENTÁRIOS-CURTIDAS #########################################################
+################################## COMENTÁRIOS-CURTIDAS ########################################
 def material_detalhe(request, material_id):
     material = get_object_or_404(Material, id=material_id)
     return render(request, 'material_detalhe.html', {'material': material})
@@ -50,7 +50,7 @@ def curtir_material(request, material_id):
         material.curtidas.add(request.user)
 
     return redirect('material_detalhe', material_id=material.id)
-####################################### COMENTÁRIOS-CURTIDAS #########################################################
+#################################### COMENTÁRIOS-CURTIDAS ##########################################
 
 
 def histor_pesq(request):
