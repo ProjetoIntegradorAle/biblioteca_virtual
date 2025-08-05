@@ -7,6 +7,21 @@ body {
     position: relative;
 }
 
+/* MODAL */
+.modal-backdrop {
+    z-index: 1040 !important;
+}
+
+.modal {
+    z-index: 1060 !important;
+}
+
+.modal-content {
+    position: relative;
+    z-index: 1070 !important;
+}
+  
+
 /* Configurações */
 .config {
     padding-top: 30px;
