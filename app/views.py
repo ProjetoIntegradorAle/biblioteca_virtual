@@ -88,7 +88,6 @@ def meus_materiais(request):
         'slides_salvos': slides_salvos,
     })
 
-
 @login_required
 def adicionar_material(request):
     if request.method == 'POST':
@@ -113,7 +112,6 @@ def visualizar_material(request, id_material):
     material = get_object_or_404(Material, pk=id_material)
     return render(request, 'visualizar_material.html', {'material': material})
 
-
 @login_required
 def editar_material(request, id_material):
     material = get_object_or_404(Material, pk=id_material)
@@ -137,7 +135,6 @@ def deletar_material(request, id_material):
         messages.success(request, 'Material deletado com sucesso!')
         return redirect('meus_materiais')
     return render(request, 'deletar_material.html', {'material': material})
-
 
 @login_required
 def buscar_materiais(request):
