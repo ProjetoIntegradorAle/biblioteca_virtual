@@ -107,6 +107,7 @@ def adicionar_material(request):
         form = MaterialForm()
         
     return render(request, 'material_detalhe.html', {'form': form})
+
 @login_required
 def visualizar_material(request, id_material):
     material = get_object_or_404(Material, pk=id_material)
