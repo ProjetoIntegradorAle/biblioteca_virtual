@@ -30,7 +30,7 @@
         <!-- Materiais Salvos: Vídeos -->
         <div class="videos">
             <h2>Vídeos</h2>
-            {% for video in videos %}
+            {% for video in videos_salvos %}
             <div class="material-item">
                 <p>{{ video.material.titulo }}</p>  <!-- Título do vídeo salvo -->
                 <button><a href="{{ video.material.arquivo.url }}" target="_blank">Abrir</a></button>
@@ -47,7 +47,7 @@
         <!-- Materiais Salvos: Slides -->
         <div class="slides">
             <h2>Slides</h2>
-            {% for slide in slides %}
+            {% for slide in slides_salvos %}
             <div class="material-item">
                 <p>{{ slide.material.titulo }}</p>  <!-- Título do slide salvo -->
                 <button><a href="{{ slide.material.arquivo.url }}" target="_blank">Abrir</a></button>
@@ -64,7 +64,7 @@
         <!-- Materiais Salvos: Documentos -->
         <div class="documentos">
             <h2>Documentos</h2>
-            {% for documento in documentos %}
+            {% for documento in documentos_salvos %}
             <div class="material-item">
                 <p>{{ documento.material.titulo }}</p>  <!-- Título do documento salvo -->
                 <button><a href="{{ documento.material.arquivo.url }}" target="_blank">Abrir</a></button>
