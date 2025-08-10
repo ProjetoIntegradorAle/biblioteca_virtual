@@ -11,10 +11,49 @@
     <link rel="icon" href="{% static 'static/img/icon.png' %}" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script defer>
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+
+      hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+
+      const navLinks = document.querySelectorAll('.navbar a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+        });
+      });
+
+      document.addEventListener('click', function(event) {
+        const isClickInsideNav = navMenu.contains(event.target);
+        const isClickOnHamburger = hamburger.contains(event.target);
+
+        if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains('active')) {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+        }
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      const modais = document.querySelectorAll('.modal');
+      modais.forEach(function(modal) {
+        modal.addEventListener('shown.bs.modal', function () {
+          console.log('Modal apareceu:', modal.id);
+        });
+      });
+    });
+  </script>
 </head>
 
 <body>
-<main></main>
 <style> 
     .navbar-brand::before {
         content: "🏛️";
@@ -110,54 +149,12 @@
     </ul>
 </nav>
 
-    <!-- Conteúdo principal para demonstração -->
-    {% block content %}{% endblock %}
-    {% block header %}{% endblock %}
-
-    <script>
-        // JavaScript para controlar o menu hamburger
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('navMenu');
-
-            hamburger.addEventListener('click', function() {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-
-            // Fechar menu ao clicar em um link
-            const navLinks = document.querySelectorAll('.navbar a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                });
-            });
-
-            // Fechar menu ao clicar fora dele
-            document.addEventListener('click', function(event) {
-                const isClickInsideNav = navMenu.contains(event.target);
-                const isClickOnHamburger = hamburger.contains(event.target);
-                
-                if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains('active')) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }
-            });
-        });
-    </script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const modais = document.querySelectorAll('.modal');
-      modais.forEach(function(modal) {
-        modal.addEventListener('shown.bs.modal', function () {
-          console.log('Modal apareceu:', modal.id);
-        });
-      });
-    });
-</script>
+<main>
+    <div class="content">
+        {% block content %}{% endblock %}
+        {% block header %}{% endblock %}
+    </div>
+</main>
 
 <footer style="background:#34495e; color:#ecf0f1; padding:40px 20px;position: fixed;bottom: 0;width: 100%;
 background-color: #6d6380;color: white;text-align: center;padding: 15px; margin-top: 40px;">
@@ -180,4 +177,5 @@ background-color: #6d6380;color: white;text-align: center;padding: 15px; margin-
   <p style="text-align:center;">&copy; 2025 Biblioteca Virtual Luana</p>
 </footer>
 </body>
+
 </html>

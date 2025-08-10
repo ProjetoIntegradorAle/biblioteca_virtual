@@ -446,6 +446,7 @@ table{
 
 /* Conteúdo principal */
 .content {
+    flex: 1;
     text-align: center;
     position: fixed;
     top: 50%;
