@@ -7,6 +7,30 @@ body {
     position: relative;
 }
 
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/static/img/foto_fundo.jpg') center center/cover;
+    filter: blur(8px);
+    z-index: 0;
+    transform: scale(1.05);
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
 /* MODAL */
 .modal-backdrop {
     z-index: 1040 !important;
@@ -218,7 +242,7 @@ table{
 .navbar {
     padding: 1rem 5%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /*Era center*/
     align-items: center;
     position: sticky;
     top: 0;
@@ -231,6 +255,7 @@ table{
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     color: white;
+    box-sizing: border-box; /*Novo atributo*/
 }
 
 .navbar ul {
@@ -241,15 +266,31 @@ table{
     margin: 0;
     padding: 0;
     align-items: center;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 350px;
+    height: 100vh;
+    background: rgba(107, 107, 107, 0.95);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    transition: right 0.3s ease;
+    z-index: 999;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar ul.active {
+    right: 0;
 }
 
 .navbar li {
     text-transform: uppercase;
     justify-content: center;
-    font-size: 0.9rem;
+    font-size: 1.1rem; /*OU font-size: 0.9rem;*/
     letter-spacing: 1px;
     position: relative;
-    width: 90%;
+    width: 90%; /*100%*/
+    text-align: center;
 }
 
 .logout{
@@ -340,11 +381,12 @@ table{
 /* Conteúdo principal */
 .content {
     text-align: center;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
+    z-index: 1;
 }
 
 .content h1 {
