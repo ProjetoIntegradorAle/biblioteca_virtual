@@ -12,21 +12,99 @@
     {% endfor %}
   </div>
 {% endif %}
+<style> 
+    .navbar-brand::before {
+        content: "🏛️";
+        font-size: 2.3rem;
+    }
+
+    /* Menu hamburger - visível em todas as telas */
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 0.5rem;
+        z-index: 1000;
+    }
+
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 3px 0;
+        transition: 0.3s;
+        border-radius: 2px;
+    }
+
+    /* Animação do hamburger quando ativo */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+
+    /* Responsividade para mobile */
+    @media (max-width: 768px) {
+        .navbar ul {
+            width: 100%;
+        }
+
+        .navbar li {
+            font-size: 1.2rem;
+        }
+
+        .navbar a {
+            font-size: 1.1rem;
+            min-width: 200px;
+        }
+
+        .logout {
+            min-width: 200px;
+        }
+
+        .dropdown-item {
+            min-width: 200px;
+        }
+    }
+</style>
+
 <nav class="navbar">
-  <ul>
-      <li><a href="{% url 'index' %}">Início</a></li>
-      <li><a href="{% url 'meus_materiais' %}">Meus Materiais</a></li>
-      <li><a href="{% url 'perfil' %}">Área do Usuário</a></li>
-      <li><a href="#">Configurações</a></li>
-      <li><a href="#">Sobre nós</a></li>
-      <li><a href="{% url 'login' %}">Login</a></li>
-      <li>
-          <form action="{% url 'logout' %}" class="logout" method="POST" style="display:inline;">
-              {% csrf_token %}
-              <button type="submit" class="dropdown-item" style="font-family: Georgia, serif; background:none; border:none; padding:0; cursor:pointer; color:white">Sair da Conta</button>
-          </form>
-      </li>
-  </ul>
+    <!-- Logo/Brand -->
+    <a href="{% url 'index' %}" class="navbar-brand">
+        
+    </a>
+
+    <!-- Menu hamburger -->
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Menu de navegação -->
+    <ul id="navMenu">
+        <!--<li><a href="{% url 'index' %}">Início</a></li>-->
+        <li><a href="{% url 'meus_materiais' %}">Meus Materiais</a></li>
+        <li><a href="{% url 'perfil' %}">Área do Usuário</a></li>
+        <li><a href="{% url 'configuracoes' %}">Configurações</a></li>
+        <li><a href="{% url 'sobre' %}">Sobre</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li>
+            <form action="{% url 'logout' %}" class="logout" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item">
+                    LOGOUT
+                </button>
+            </form>
+        </li>
+    </ul>
 </nav>
 <body>
     <div class="perfil-container">

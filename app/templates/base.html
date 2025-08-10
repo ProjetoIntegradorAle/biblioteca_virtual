@@ -15,71 +15,6 @@
 
 <body>
 <style> 
-    /* Seus estilos CSS existentes permanecem inalterados */
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        min-height: 100vh;
-        color: white;
-        position: relative;
-    }
-
-    body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('/static/img/foto_fundo.jpg') center center/cover;
-        filter: blur(8px);
-        z-index: 0;
-        transform: scale(1.05);
-    }
-
-    body::after {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: -1;
-    }
-
-    /* Barra de navegação - mantendo seus estilos */
-    .navbar {
-        padding: 1rem 5%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: sticky;
-        top: 0;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        z-index: 1000;
-        font-family: Georgia, serif;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 2px 10px rgba(184, 181, 181, 0.1);
-        color: white;
-        box-sizing: border-box;
-    }
-
-    /* Logo/Brand */
-    .navbar-brand {
-        font-size: 2.4rem;
-        font-weight: bold;
-        color: white;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
     .navbar-brand::before {
         content: "🏛️";
         font-size: 2.3rem;
@@ -116,113 +51,6 @@
         transform: rotate(45deg) translate(-5px, -6px);
     }
 
-    /* Menu desktop e mobile */
-    .navbar ul {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 350px;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(20px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    z-index: 999;
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .navbar ul.active {
-        transform: translateX(0);
-    }
-
-    .navbar li {
-        text-transform: uppercase;
-        font-size: 1.1rem;
-        letter-spacing: 1px;
-        position: relative;
-        width: 100%;
-        text-align: center;
-    }
-
-    .navbar a {
-        text-decoration: none;
-        padding: 0.1rem 0.1rem;
-        color: white;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        /*background: rgba(255, 255, 255, 0.1);*/
-        min-width: 70px; /* Área cinza ao redor */
-        font-size: 1rem;
-    }
-
-    .navbar a:hover {
-        background: rgba(255, 255, 255, 0.2);
-        color: #fff;
-        transform: scale(1.05);
-    }
-
-    /* Botão de logout para menu lateral */
-    .logout {
-        margin: 0;
-        color: white;
-        font-family: Georgia;
-        font-size: 1rem;
-        text-decoration: none;
-        border: 1px solid white;
-        padding: 1rem 2rem;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        background: rgba(255, 255, 255, 0.1);
-        min-width: 250px;
-        text-align: center;
-        display: block;
-    }
-
-    .dropdown-item {
-        background: transparent;
-        padding: 1rem 2rem;
-        margin: 0;
-        border-radius: 8px;
-        font-size: 1rem;
-        transition: all 0.2s ease;
-        color: #ffffff !important;
-        font-family: Georgia, serif;
-        min-width: 250px;
-        text-align: center;
-        border: none;
-        cursor: pointer;
-    }
-
-    .dropdown-item:hover {
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Indicador de hover */
-    .navbar li::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 2px;
-        background: white;
-        transition: width 0.3s ease;
-    }
-
-    .navbar li:hover::after {
-        width: 60%;
-    }
 
     /* Responsividade para mobile */
     @media (max-width: 768px) {
@@ -246,32 +74,6 @@
         .dropdown-item {
             min-width: 200px;
         }
-    }
-
-    /* Conteúdo principal para demonstração */
-    .content {
-        text-align: center;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        z-index: 1;
-    }
-
-    .content h1 {
-        font-size: 3rem;
-        font-family: 'Georgia';
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        color: #fff;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    }
-
-    .content .icon {
-        font-size: 3.5rem;
     }
 </style>
 
@@ -354,6 +156,6 @@
         });
       });
     });
-  </script>
+</script>
 </body>
 </html>
