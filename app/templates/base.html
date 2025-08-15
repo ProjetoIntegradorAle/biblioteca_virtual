@@ -57,10 +57,10 @@
 <style> 
     .navbar-brand::before {
         content: "🏛️";
-        font-size: 2.3rem;
+        font-size: 2.7rem;
     }
 
-    /* Menu hamburger - visível em todas as telas */
+    /* Menu hamburger - visível em todas as telas 
     .hamburger {
         display: flex;
         flex-direction: column;
@@ -76,9 +76,9 @@
         margin: 3px 0;
         transition: 0.3s;
         border-radius: 2px;
-    }
+    }*/
 
-    /* Animação do hamburger quando ativo */
+    /* Animação do hamburger quando ativo
     .hamburger.active span:nth-child(1) {
         transform: rotate(-45deg) translate(-5px, 6px);
     }
@@ -92,7 +92,7 @@
     }
 
 
-    /* Responsividade para mobile */
+    /* Responsividade para mobile 
     @media (max-width: 768px) {
         .navbar ul {
             width: 100%;
@@ -114,10 +114,11 @@
         .dropdown-item {
             min-width: 200px;
         }
-    }
+    }*/
 </style>
 
-<nav class="navbar">
+<header>
+  <nav class="navbar">
     <!-- Logo/Brand -->
     <a href="{% url 'index' %}" class="navbar-brand">
         
@@ -147,7 +148,8 @@
             </form>
         </li>
     </ul>
-</nav>
+  </nav>
+</header>
 
 <main>
     <div class="content">
@@ -156,15 +158,14 @@
     </div>
 </main>
 
-<footer style="background-color: #6d6380;
+<footer style="
     text-align: center;
-    padding: 20px;
-    background:#34495e; 
-    padding:40px 20px;
+    background-color: #00000042;
     width: 100%;
     color: white;
-    margin-top: 500px;
-    position: static;">
+    margin-top: 600px;
+    position: absolute;
+    padding:40px 20px;">
   <div style="max-width:1000px; margin:auto; display:flex; flex-wrap:wrap; justify-content:space-between;">
     <div style="flex:1; min-width:200px;">
       <h3>Biblioteca Virtual</h3>
@@ -181,7 +182,7 @@
     </div>
   </div>
   <hr style="margin:20px 0; border-color:#7f8c8d;">
-  <p style="text-align:center;">&copy; 2025 Biblioteca Virtual Luana</p>
+  <p style="text-align:center;">&copy; 2025 Biblioteca Virtual</p>
 </footer>
 </body>
 

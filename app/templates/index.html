@@ -3,20 +3,18 @@
 {% block title %}Início{% endblock %}
 
 {% block content %}
-<body>
-    <main class="content">
-        <h1>
-            <!-- Logo/Brand -->
-            <a href="{% url 'index' %}" class="navbar-brand">
-                Biblioteca Alexandria
-            </a>
-        </h1>
-        <div class="search-bar">
-            <form method="get" action="{% url 'buscar_materiais' %}">
-                <input type="text" name="q" placeholder="Digite o título, autor ou palavra-chave...">
-                <button type="submit" class="search-btn" aria-label="Pesquisar"></button>
-            </form>
-        </div>
-    </main>
-</body>
+<main class="main-content">
+    <h1>
+        <!-- Logo/Brand -->
+        <a href="{% url 'index' %}" class="navbar-brand">
+            Biblioteca Alexandria
+        </a>
+    </h1>
+    <div class="search-bar">
+        <form method="get" action="{% url 'buscar_materiais' %}">
+            <input type="text" name="q" placeholder="Digite o título, autor ou palavra-chave...">
+            <button type="submit" class="search-btn" aria-label="Pesquisar"></button>
+        </form>
+    </div>
+</main>
 {% endblock %}

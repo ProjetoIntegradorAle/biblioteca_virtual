@@ -12,22 +12,32 @@ body {
 html, body{
     height: 100%;
     margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
 }
 
 main {
-  min-height: calc(100vh - 120px); /* Ajuste 120px para a altura do seu footer */
+    min-height: calc(109vh - 10px); /* Ajuste 120px para a altura do seu footer */
+}
+
+/* Conteúdo principal */
+.main-content {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 160px 20px;
 }
 
 footer {
-    background-color: #6d6380;
     text-align: center;
-    padding: 20px;
-    background:#34495e; 
-    padding:40px 20px;
+    background-color: #00000042;
     width: 100%;
     color: white;
-    margin-top: 40px;
-    position: static;
+    margin-top: 600px;
+    position: absolute;
+    padding:40px 20px;
 }
 
 body::before {
@@ -45,13 +55,8 @@ body::before {
 
 body::after {
     content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: none;
     background: rgba(0, 0, 0, 0.5);
-    z-index: -1;
 }
 
 /* MODAL */
@@ -262,24 +267,25 @@ table{
     align-items: flex-start;
 }
 
+/* Cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between; /* Distribui o espaço entre os itens */
+    align-items: center;
+    padding: 10px 5%; /* Adicionei um padding lateral para evitar que os itens encostem nas bordas */
+    width: 80%; /* Defina um limite máximo de largura para o header */
+    margin: auto; /* Centraliza o header na página */
+}
+
 /* Barra de navegação */
 .navbar {
-    padding: 1rem 5%;
-    display: flex;
-    justify-content: space-between; /*Era center*/
-    align-items: center;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 1000;
-    font-family: Georgia, serif;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #00000042;
+    padding: 15px 20px;
     color: white;
-    box-sizing: border-box; /*Novo atributo*/
+    display: flex; /* Habilita o Flexbox para organizar os links */
+    justify-content: flex-start; /* Alinha os itens à esquerda */
+    align-items: center; /* Centraliza os itens verticalmente */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .navbar ul.active {
@@ -287,33 +293,10 @@ table{
 }
 
 .navbar ul {
-    list-style: none;
-    justify-content: center;
     display: flex;
-    gap: 2rem;
+    list-style: none;
     margin: 0;
     padding: 0;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100vh;
-    backdrop-filter: blur(10px);
-    flex-direction: column;
-    transition: right 0.3s ease;
-    z-index: 999;
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 1rem 5%;
-    justify-content: space-between;
-    position: sticky;
-    background: rgba(255, 255, 255, 0.1);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 1000;
-    font-family: Georgia, serif;
-    box-shadow: 0 2px 10px rgba(184, 181, 181, 0.1);
-    color: white;
-    box-sizing: border-box;
 }
 
 .navbar ul.active {
@@ -341,22 +324,11 @@ table{
 }
 
 .logout{
-    margin-left: 20px;
+    background: none;
+    border: none;
+    font-weight: bold;
     color: white;
-    font-family: Georgia;
-    font-size: 1.2rem;
-    text-decoration: none;
-    padding: 5px;
-    margin: 0;
-    font-size: 1rem;
-    border: 1px solid white;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.1);
-    min-width: 250px;
-    text-align: center;
-    display: block;
+    cursor: pointer;
 }
 
 .navbar a{
@@ -380,6 +352,7 @@ table{
     color: #fff;
     /*transform: translateY(-2px);*/
     transform: scale(1.05);
+    color: #7e6dc9;
 }
 
 /* Dropdown melhorado */
@@ -445,16 +418,9 @@ table{
     }
 }
 
-/*
 .content {
-    flex: 1;
     text-align: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    z-index: 1;
+    top: 630px;
 }
 
 .content h1 {
@@ -471,7 +437,7 @@ table{
 .content .icon {
     font-size: 3.5rem;
 }
-*/
+
 
 /* Barra de busca */
 .search-bar {
@@ -541,22 +507,6 @@ table{
 
 .search-btn:active {
     transform: scale(0.95);
-}
-
-/* Conteúdo principal */
-.main-content {
-    flex: 1;
-    padding: 20px;
-}
-
-/* Cabeçalho */
-header {
-    display: flex;
-    justify-content: space-between; /* Distribui o espaço entre os itens */
-    align-items: center;
-    padding: 10px 5%; /* Adicionei um padding lateral para evitar que os itens encostem nas bordas */
-    width: 80%; /* Defina um limite máximo de largura para o header */
-    margin: auto; /* Centraliza o header na página */
 }
 
 .search-bar {
@@ -985,18 +935,6 @@ label {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-}
-
-.footer {
-    font-weight: bold;
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer p {
-    margin: 0;
 }
 
 /* Botão cadastrar */
