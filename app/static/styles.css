@@ -351,7 +351,7 @@ header {
     color: #fff;
     /*transform: translateY(-2px);*/
     transform: scale(1.05);
-    color: #7e6dc9;
+    color: #4CAF50;
 }
 
 /* Dropdown melhorado */
@@ -383,14 +383,12 @@ header {
 /* Indicador de hover */
 .navbar li::after {
     content: '';
-    position: absolute;
     bottom: -8px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 2px;
     transition: width 0.3s ease;
-    background: white;
 }
 
 .navbar li:hover::after {
@@ -476,7 +474,7 @@ header {
     gap: 20px;
     border: none;
     border-radius: 50%; /* Formato totalmente redondo */
-    background-color: #6d6380;
+    background-color: #4CAF50;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;

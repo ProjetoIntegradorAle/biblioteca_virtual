@@ -119,9 +119,7 @@
 
 <header class="navbar">
   <!-- Logo/Brand -->
-  <a href="{% url 'index' %}" class="navbar-brand">
-      
-  </a>
+  <a href="{% url 'index' %}" class="navbar-brand"></a>
 
   <!-- Menu hamburger -->
   <div class="hamburger" id="hamburger">
@@ -138,14 +136,12 @@
       <li><a href="{% url 'configuracoes' %}">Configurações</a></li>
       <li><a href="{% url 'sobre' %}">Sobre</a></li>
       <li><a href="{% url 'login' %}">Login</a></li>
-      <li>
-          <form action="{% url 'logout' %}" class="logout" method="POST">
-              {% csrf_token %}
-              <button type="submit" class="dropdown-item">
-                  LOGOUT
-              </button>
-          </form>
-      </li>
+      <form action="{% url 'logout' %}" class="logout" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="dropdown-item">
+              <li><a>Logout</a></li>
+          </button>
+      </form>
   </ul>
 </header>
 
