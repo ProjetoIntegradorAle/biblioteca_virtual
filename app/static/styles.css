@@ -555,13 +555,13 @@ header {
 
 /* Meus Materiais */
 .container-mat {
-    padding: 60px;
+    padding: 150px;
     gap: 20px; /* Adiciona espaçamento entre os elementos */
     display: flex; /* Ativa o Flexbox */
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
     height: 100vh; /* Define a altura como o tamanho total da janela */
-    margin: 0; /* Remove margens padrão */
+    margin: 70px; /* Remove margens padrão */
 }
 
 .add-material {
