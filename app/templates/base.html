@@ -131,17 +131,19 @@
   <!-- Menu de navegação -->
   <ul id="navMenu">
       <!--<li><a href="{% url 'index' %}">Início</a></li>-->
-      <li><a href="{% url 'meus_materiais' %}">Meus Materiais</a></li>
-      <li><a href="{% url 'perfil' %}">Área do Usuário</a></li>
-      <li><a href="{% url 'configuracoes' %}">Configurações</a></li>
-      <li><a href="{% url 'sobre' %}">Sobre</a></li>
-      <li><a href="{% url 'login' %}">Login</a></li>
-      <form action="{% url 'logout' %}" class="logout" method="POST">
+      <li><a href="{% url 'meus_materiais' %}">MEUS MATERIAIS</a></li>
+      <li><a href="{% url 'perfil' %}">ÁREA DO USUÁRIO</a></li>
+      <li><a href="{% url 'configuracoes' %}">CONFIGURAÇÕES</a></li>
+      <li><a href="{% url 'sobre' %}">SOBRE</a></li>
+      <li><a href="{% url 'login' %}">LOGIN</a></li>
+      <li>
+        <form action="{% url 'logout' %}" method="POST">
           {% csrf_token %}
-          <button type="submit" class="dropdown-item">
-              <li><a>Logout</a></li>
+          <button type="submit" class="logout-button">
+            LOGOUT
           </button>
-      </form>
+        </form>
+      </li>
   </ul>
 </header>
 

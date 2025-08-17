@@ -272,19 +272,19 @@ header {
     justify-content: space-between; /* Distribui o espaço entre os itens */
     align-items: center;
     padding: 10px 5%; /* Adicionei um padding lateral para evitar que os itens encostem nas bordas */
-    width: 80%; /* Defina um limite máximo de largura para o header */
+    width: 85%; /* Defina um limite máximo de largura para o header */
     margin: auto; /* Centraliza o header na página */
 }
 
 /* Barra de navegação */
 .navbar {
     background-color: #00000042;
-    padding: 15px 20px;
     color: white;
     display: flex; /* Habilita o Flexbox para organizar os links */
-    justify-content: flex-start; /* Alinha os itens à esquerda */
     align-items: center; /* Centraliza os itens verticalmente */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    justify-content: space-around;
+    padding: 10px;
 }
 
 .navbar ul.active {
@@ -296,6 +296,17 @@ header {
     list-style: none;
     margin: 0;
     padding: 0;
+    gap: 30px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+#navMenu a, #navMenu button {
+    text-decoration: none;
+    color: white;
+    font-family: sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
 }
 
 .navbar ul.active {
@@ -320,6 +331,8 @@ header {
     position: relative;
     width: 90%; /*100%*/
     text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .logout{
@@ -330,28 +343,51 @@ header {
     cursor: pointer;
 }
 
-.navbar a{
+.navbar a, .logout-button{
     text-decoration: none;
-    padding: 0.1rem 0.1rem;
     color: white;
     font-weight: 600;
     transition: all 0.3s ease;
     border-radius: 8px;
-    display: flex;
     align-items: center;
     gap: 0.5rem;
     justify-content: center;
-    /*background: rgba(255, 255, 255, 0.1);*/
-    min-width: 70px; /* Área cinza ao redor */
-    font-size: 1rem;
+    /*min-width: 80px;  Área cinza ao redor */
+    color: white;
+    padding: 10px 15px;
+    font-family: sans-serif;
+    font-size: 14px;
+
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+
 }
 
-.navbar a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    /*transform: translateY(-2px);*/
-    transform: scale(1.05);
+.logout-button {
+    background: none;
+    border: none;
+    color: white;
+    font-family: sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logout-button:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+.navbar a:hover{
+    transform: scale(1.08);
     color: #4CAF50;
+    background-color: #575757;
+    border-radius: 5px;
 }
 
 /* Dropdown melhorado */
