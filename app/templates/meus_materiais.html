@@ -13,7 +13,7 @@
   </div>
 {% endif %}
 
-<main class="container-mat">
+<div class="container-mat">
 <!--ADICIONAR MATERIAL-->
     <div class="add-material">
         <h2>Adicionar Material</h2>
@@ -24,106 +24,106 @@
         </form>
     </div>
 
-<!--MATERIAIS SALVOS-->
-<div class="content-mat">
-    <h2 class="titulo">Materiais Salvos</h2>
-    
-    <!-- Materiais Salvos: Vídeos -->
-    <div class="videos">
-        <h2>Vídeos</h2>
-        {% for video in videos_salvos %}
-        <div class="material-item">
-            <p>{{ video.material.titulo }}</p>  <!-- Título do vídeo salvo -->
-            <button><a href="{{ video.material.arquivo.url }}" target="_blank">Abrir</a></button>
-            <form action="{% url 'salvar_material' video.material.id %}" method="post" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-success">Salvar</button>
-            </form>
-        </div>
-        {% empty %}
-        <p>Não há vídeos salvos.</p>
-        {% endfor %}
-    </div>
-
-    <!-- Materiais Salvos: Slides -->
-    <div class="slides">
-        <h2>Slides</h2>
-        {% for slide in slides_salvos %}
-        <div class="material-item">
-            <p>{{ slide.material.titulo }}</p>  <!-- Título do slide salvo -->
-            <button><a href="{{ slide.material.arquivo.url }}" target="_blank">Abrir</a></button>
-            <form action="{% url 'salvar_material' slide.material.id %}" method="post" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-success">Salvar</button>
-            </form>
-        </div>
-        {% empty %}
-        <p>Não há slides salvos.</p>
-        {% endfor %}
-    </div>
-
-    <!-- Materiais Salvos: Documentos -->
-    <div class="documentos">
-        <h2>Documentos</h2>
-        {% for documento in documentos_salvos %}
-        <div class="material-item">
-            <p>{{ documento.material.titulo }}</p>  <!-- Título do documento salvo -->
-            <button><a href="{{ documento.material.arquivo.url }}" target="_blank">Abrir</a></button>
-            <form action="{% url 'salvar_material' documento.material.id %}" method="post" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-success">Salvar</button>
-            </form>
-        </div>
-        {% empty %}
-        <p>Não há documentos salvos.</p>
-        {% endfor %}
-    </div>
-</div>
-
-<!--MATERIAIS CRIADOS-->
-<div class="materiais-criados-container">
-    <h2 class="titulo-principal">Materiais Criados</h2>
-    <div class="materiais-grid">
-        {% for material in page_obj %}
-        <div class="material-card">
-            <div class="card-content">
-                <h3>{{ material.titulo }}</h3>
-                <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>  <!-- Exibe o nome do autor -->
-                <p class="descricao">{{ material.descricao }}</p>
-                <div class="meta-info">
-                    <span class="tipo">{{ material.get_tipo_display }}</span>
-                </div>
-            </div>
-            
-            <div class="card-actions">
-                <a href="{% url 'visualizar_material' material.id %}" target="_blank" class="btn abrir">Abrir</a>
-                <a href="{% url 'editar_material' material.id %}" class="btn editar">Editar</a>
-                <form action="{% url 'deletar_material' material.id %}" method="post">
+    <!--MATERIAIS SALVOS-->
+    <div class="content-mat">
+        <h2 class="titulo">Materiais Salvos</h2>
+        
+        <!-- Materiais Salvos: Vídeos -->
+        <div class="videos">
+            <h2>Vídeos</h2>
+            {% for video in videos_salvos %}
+            <div class="material-item">
+                <p>{{ video.material.titulo }}</p>  <!-- Título do vídeo salvo -->
+                <button><a href="{{ video.material.arquivo.url }}" target="_blank">Abrir</a></button>
+                <form action="{% url 'salvar_material' video.material.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit" class="btn deletar">Deletar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
                 </form>
             </div>
+            {% empty %}
+            <p>Não há vídeos salvos.</p>
+            {% endfor %}
         </div>
-        {% endfor %}
+
+        <!-- Materiais Salvos: Slides -->
+        <div class="slides">
+            <h2>Slides</h2>
+            {% for slide in slides_salvos %}
+            <div class="material-item">
+                <p>{{ slide.material.titulo }}</p>  <!-- Título do slide salvo -->
+                <button><a href="{{ slide.material.arquivo.url }}" target="_blank">Abrir</a></button>
+                <form action="{% url 'salvar_material' slide.material.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </form>
+            </div>
+            {% empty %}
+            <p>Não há slides salvos.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Materiais Salvos: Documentos -->
+        <div class="documentos">
+            <h2>Documentos</h2>
+            {% for documento in documentos_salvos %}
+            <div class="material-item">
+                <p>{{ documento.material.titulo }}</p>  <!-- Título do documento salvo -->
+                <button><a href="{{ documento.material.arquivo.url }}" target="_blank">Abrir</a></button>
+                <form action="{% url 'salvar_material' documento.material.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </form>
+            </div>
+            {% empty %}
+            <p>Não há documentos salvos.</p>
+            {% endfor %}
+        </div>
     </div>
 
-    <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; primeira</a>
-                <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
-            {% endif %}
+    <!--MATERIAIS CRIADOS-->
+    <div class="materiais-criados-container">
+        <h2 class="titulo-principal">Materiais Criados</h2>
+        <div class="materiais-grid">
+            {% for material in page_obj %}
+            <div class="material-card">
+                <div class="card-content">
+                    <h3>{{ material.titulo }}</h3>
+                    <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>  <!-- Exibe o nome do autor -->
+                    <p class="descricao">{{ material.descricao }}</p>
+                    <div class="meta-info">
+                        <span class="tipo">{{ material.get_tipo_display }}</span>
+                    </div>
+                </div>
+                
+                <div class="card-actions">
+                    <a href="{% url 'visualizar_material' material.id %}" target="_blank" class="btn abrir">Abrir</a>
+                    <a href="{% url 'editar_material' material.id %}" class="btn editar">Editar</a>
+                    <form action="{% url 'deletar_material' material.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn deletar">Deletar</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
 
-            <span class="current">
-                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; primeira</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
+                {% endif %}
+
+                <span class="current">
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">próxima</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
+                {% endif %}
             </span>
-
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">próxima</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
-            {% endif %}
-        </span>
+        </div>
     </div>
 </div>
-</main>
 {% endblock %}

@@ -24,10 +24,18 @@ body::before {
 
 main {
     flex: 1;
-    padding: 30px 40px;
+    padding: 60px 40px;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 15px;
+}
+
+.container-mat{
+    flex: 1;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
 }
 
 /* Adicionar Material */
@@ -122,6 +130,7 @@ main {
 /* Materiais Criados */
 .materiais-criados-container {
     margin-top: 40px;
+    margin-bottom: 150px;
 }
 
 .materiais-criados-container .titulo-principal {
