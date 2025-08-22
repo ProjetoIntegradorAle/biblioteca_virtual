@@ -1,42 +1,12 @@
-body {
+/* Estrutura geral */
+body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     min-height: 100vh;
-    color: white;
-    /*position: relative;*/
     display: flex;
     flex-direction: column;
-}
-
-html, body{
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    min-height: calc(109vh - 10px); /* Ajuste 120px para a altura do seu footer */
-}
-
-/* Conteúdo principal */
-.main-content {
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    padding: 160px 20px;
-}
-
-footer {
-    text-align: center;
-    background-color: #00000042;
-    width: 100%;
     color: white;
-    margin-top: 600px;
-    position: absolute;
-    padding:40px 20px;
 }
 
 body::before {
@@ -48,14 +18,173 @@ body::before {
     height: 100%;
     background: url('/static/img/foto_fundo.jpg') center center/cover;
     filter: blur(8px);
-    z-index: 0;
+    z-index: -1;
     transform: scale(1.05);
 }
 
-body::after {
-    content: '';
-    position: none;
-    background: rgba(0, 0, 0, 0.5);
+main {
+    flex: 1;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Adicionar Material */
+.add-material {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 8px rgba(94, 78, 9, 0.2);
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+}
+
+.add-material h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: white;
+}
+
+.add-material form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-material label {
+    color: white;
+}
+
+.add-material input,
+.add-material select,
+.add-material textarea,
+.add-material button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+}
+
+.add-material button {
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
+/* Materiais Salvos */
+.content-mat {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.content-mat h2 {
+    grid-column: 1 / -1;
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.content-mat p{
+    color: white;
+}
+
+.videos, .slides, .documentos {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(94, 78, 9, 0.2);
+}
+
+.material-item {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.material-item button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.material-item button a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Materiais Criados */
+.materiais-criados-container {
+    margin-top: 40px;
+}
+
+.materiais-criados-container .titulo-principal {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.materiais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.material-card {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-content h3 {
+    margin-top: 0;
+}
+
+.card-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.card-actions .btn {
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    background-color: #444;
+}
+
+.card-actions .btn.abrir { background-color: green; }
+.card-actions .btn.editar { background-color: orange; }
+.card-actions .btn.deletar { background-color: red; }
+
+/* Paginação */
+.pagination {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.pagination .step-links a {
+    margin: 0 5px;
+    color: lightgreen;
+    text-decoration: none;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    background-color: #00000042;
+    padding: 40px 20px;
+    color: white;
+    width: 100%;
 }
 
 /* MODAL */
@@ -72,7 +201,6 @@ body::after {
     z-index: 1070 !important;
 }
   
-
 /* Configurações */
 .config {
     padding-top: 30px;
@@ -106,6 +234,10 @@ body::after {
     width: 90%;
     margin: auto;
     padding: 2rem;
+}
+
+.content-config h2{
+    color: white;
 }
 
 /* Botões de configuração */
@@ -142,6 +274,7 @@ button {
 }
 
 .sobre .s_texto{
+    color: white;
     font-size: 1.2rem;
     line-height: 1.6;
     margin: 40px 0;
@@ -553,174 +686,7 @@ header {
     color: #333;
 }
 
-/* Meus Materiais */
-.container-mat {
-    padding: 150px;
-    gap: 20px; /* Adiciona espaçamento entre os elementos */
-    display: flex; /* Ativa o Flexbox */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    height: 100vh; /* Define a altura como o tamanho total da janela */
-    margin: 70px; /* Remove margens padrão */
-}
-
-.add-material {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 8px 8px rgba(94, 78, 9, 0.2);
-    width: 25%;
-    min-width: 200px;
-}
-
-/* Conteúdo de materiais */
-.content-mat {
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: 70%;
-    padding: 60px;
-    gap: 20px; /* Adiciona espaçamento entre os elementos */
-    display: flex; /* Ativa o Flexbox */
-    justify-content: center; /* Centraliza horizontalmente */
-}
-
-.content-mat > .titulo {
-    order: 1; 
-}
-
-/* Estrutura dos blocos de materiais */
-.videos, .slides, .documentos {
-    order: 2;
-    flex: 1;
-    min-width: 30%;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(94, 78, 9, 0.2);
-}
-
-
-.btn-download div{
-    margin: 7px;
-}
-
-.add-material label{ /* Label de adicionar material */
-    color: white;
-    font-family: Georgia;
-}
-
-.add-material h2 {
-    margin-top: 0;
-}
-
-.add-material form {
-    display: flex;
-    flex-direction: column;
-}
-
-.add-material label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.add-material textarea,
-.add-material button {
-    flex: 1;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    display: block;
-}
-
-.add-material select{
-    flex: 1;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    display: block;
-}
-
-input[type="file" i] {
-    background-color: initial;
-    border-color: initial;
-    border-radius: 5px;
-}
-
-.add-material input[type="text"]{
-    flex: 1;
-    margin: 2px;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    width: 90%;
-}
-
-.add-material textarea {
-    width: 90%; /* Define a largura da área de texto */
-    height: 14px; /* Define a altura da área de texto */
-    resize: vertical; /* Permite que o campo de descrição se expanda verticalmente */
-}
-
-.add-material button {
-    background-color: green;
-    color: white;
-    cursor: pointer;
-}
-
-.content-mat {
-    justify-content: center; /* Centraliza os elementos horizontalmente */
-    display: flex;
-    flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas, se necessário */
-    width: 65%; /* Define a largura da seção de conteúdo */
-    justify-content: space-between;
-}
-
-.content-mat div {
-    background-color: rgba(0, 0, 0, 0.377);
-    color: #ffffff;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    flex: 1;
-    min-width: 200px; /* Define uma largura mínima para os itens */
-    max-width: 300px; /* Define uma largura máxima para os itens */
-}
-
-.material-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.material-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.material-item button {
-    background-color: green;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.material-item button a {
-    color: white;
-    text-decoration: none;
-}
-
 /* Resultado */
-
 .material-resultado {
     width: 40%;
     background: rgba(255, 255, 255, 0.1);
