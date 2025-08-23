@@ -24,10 +24,14 @@ body::before {
 
 main {
     flex: 1;
-    padding: 60px 40px;
+    padding: 80px 40px;
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+main p{
+    color: white;
 }
 
 .container-mat{
@@ -152,8 +156,9 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.card-content h3 {
+.card-content{
     margin-top: 0;
+    text-align: left;
 }
 
 .card-actions {
