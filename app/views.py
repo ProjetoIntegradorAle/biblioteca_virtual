@@ -67,46 +67,41 @@ def convit_colabora(request):
 
 @login_required
 def meus_materiais(request):
-    form = MaterialForm() 
-    materiais_criados = Material.objects.filter(usuario=request.user) # Materiais criados pelo usuário logado
-    # Materiais salvos pelo usuário logado, separados por tipo
+    # Se for POST, trata a criação de novo material
+    if request.method == 'POST':
+        form = MaterialForm(request.POST, request.FILES)
+        if form.is_valid():
+            novo_material = form.save(commit=False)
+            novo_material.usuario = request.user
+            novo_material.autor = request.user.username
+            novo_material.save()
+            messages.success(request, 'Material criado com sucesso!')
+            return redirect('meus_materiais')  # Evita reenvio do formulário
+        else:
+            messages.error(request, 'Erro ao criar material. Verifique os campos.')
+    else:
+        form = MaterialForm()
+
+    # Materiais criados pelo usuário logado
+    materiais_criados = Material.objects.filter(usuario=request.user)
+
+    # Paginação dos materiais criados
+    paginator = Paginator(materiais_criados, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    # Materiais salvos pelo usuário, separados por tipo
     documentos_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Documento')
     videos_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Vídeo')
     slides_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Slide')
 
-
-    # Paginação para materiais criados
-    paginator = Paginator(materiais_criados, 6)
-    page_number = request.GET.get('page')  # Número da página
-    page_obj = paginator.get_page(page_number)
-
     return render(request, 'meus_materiais.html', {
         'form': form,
-        'page_obj': page_obj,  # Materiais criados paginados
+        'page_obj': page_obj,
         'documentos_salvos': documentos_salvos,
         'videos_salvos': videos_salvos,
         'slides_salvos': slides_salvos,
     })
-
-@login_required
-def adicionar_material(request):
-    if request.method == 'POST':
-        form = MaterialForm(request.POST, request.FILES)
-        if form.is_valid():
-            material = form.save(commit=False)
-            material.usuario = request.user  # Usuário logado como o autor do material
-            material.autor = request.user.username  # Nome do usuário como autor
-            material.save()
-            messages.success(request, 'Material adicionado com sucesso!')
-            
-            # Redireciona para a página de detalhes do material, onde os botões aparecem
-            return redirect('material_detalhe', material_id=material.id)
-        else:
-            messages.error(request, 'Erro ao adicionar material!')
-    else:
-        form = MaterialForm()
-        
-    return render(request, 'material_detalhe.html', {'form': form})
 
 @login_required
 def visualizar_material(request, id_material):
@@ -115,7 +110,8 @@ def visualizar_material(request, id_material):
 
 @login_required
 def editar_material(request, id_material):
-    material = get_object_or_404(Material, pk=id_material)
+    material = get_object_or_404(Material, pk=id_material, usuario=request.user)
+
     if request.method == "POST":
         form = MaterialForm(request.POST, request.FILES, instance=material)
         if form.is_valid():
@@ -126,7 +122,12 @@ def editar_material(request, id_material):
             messages.error(request, 'Erro ao atualizar material!')
     else:
         form = MaterialForm(instance=material)
-    return render(request, 'adicionar_material.html', {'form': form})
+
+    # Renderiza o mesmo template usado em meus_materiais
+    return render(request, 'meus_materiais.html', {
+        'form': form,
+        'editando': True,  # Flag opcional para mostrar que está em modo de edição
+    })
 
 @login_required
 def deletar_material(request, id_material):
