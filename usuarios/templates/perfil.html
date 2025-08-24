@@ -12,13 +12,14 @@
     {% endfor %}
   </div>
 {% endif %}
+
 <style> 
     .navbar-brand::before {
         content: "🏛️";
-        font-size: 2.3rem;
+        font-size: 2.7rem;
     }
 
-    /* Menu hamburger - visível em todas as telas */
+    /* Menu hamburger - visível em todas as telas 
     .hamburger {
         display: flex;
         flex-direction: column;
@@ -34,9 +35,9 @@
         margin: 3px 0;
         transition: 0.3s;
         border-radius: 2px;
-    }
+    }*/
 
-    /* Animação do hamburger quando ativo */
+    /* Animação do hamburger quando ativo
     .hamburger.active span:nth-child(1) {
         transform: rotate(-45deg) translate(-5px, 6px);
     }
@@ -50,7 +51,7 @@
     }
 
 
-    /* Responsividade para mobile */
+    /* Responsividade para mobile 
     @media (max-width: 768px) {
         .navbar ul {
             width: 100%;
@@ -72,50 +73,101 @@
         .dropdown-item {
             min-width: 200px;
         }
-    }
+    }*/
 </style>
 
-<nav class="navbar">
-    <!-- Logo/Brand -->
-    <a href="{% url 'index' %}" class="navbar-brand">
-        
-    </a>
+<header class="navbar">
+  <!-- Logo/Brand -->
+  <a href="{% url 'index' %}" class="navbar-brand"></a>
 
-    <!-- Menu hamburger -->
-    <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+  <!-- Menu hamburger -->
+  <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
 
-    <!-- Menu de navegação -->
-    <ul id="navMenu">
-        <!--<li><a href="{% url 'index' %}">Início</a></li>-->
-        <li><a href="{% url 'meus_materiais' %}">Meus Materiais</a></li>
-        <li><a href="{% url 'perfil' %}">Área do Usuário</a></li>
-        <li><a href="{% url 'configuracoes' %}">Configurações</a></li>
-        <li><a href="{% url 'sobre' %}">Sobre</a></li>
-        <li><a href="{% url 'login' %}">Login</a></li>
-        <li>
-            <form action="{% url 'logout' %}" class="logout" method="POST">
-                {% csrf_token %}
-                <button type="submit" class="dropdown-item">
-                    LOGOUT
-                </button>
-            </form>
-        </li>
-    </ul>
-</nav>
+  <!-- Menu de navegação -->
+  <ul id="navMenu">
+      <!--<li><a href="{% url 'index' %}">Início</a></li>-->
+      <li><a href="{% url 'meus_materiais' %}">MEUS MATERIAIS</a></li>
+      <li><a href="{% url 'perfil' %}">ÁREA DO USUÁRIO</a></li>
+      <li><a href="{% url 'configuracoes' %}">CONFIGURAÇÕES</a></li>
+      <li><a href="{% url 'sobre' %}">SOBRE</a></li>
+      <li><a href="{% url 'login' %}">LOGIN</a></li>
+      <li>
+        <form action="{% url 'logout' %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="logout-button">
+            LOGOUT
+          </button>
+        </form>
+      </li>
+  </ul>
+</header>
+
 <body>
     <div class="perfil-container">
         <div class="perfil-box">
             <h1>Perfil</h1>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form }}
+                <div class="form-group">
+                    <label for="id_biografia">Biografia:</label>
+                    {{ form.bio }}
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="id_cidade">Cidade:</label>
+                        {{ form.cidade }}
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="id_estado">Estado:</label>
+                        {{ form.estado }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_telefone">Telefone:</label>
+                    {{ form.telefone }}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_data_nascimento">Data de Nascimento:</label>
+                    {{ form.data_nascimento }}
+                </div>
+
+                <!-- Avatar -->
+                <div class="form-group">
+                    <label for="id_avatar">Avatar:</label>
+                    {{ form.avatar }}
+                </div>
+
                 <button type="submit" class="btn-salvar">Salvar Perfil</button>
             </form>
         </div>
     </div>
+
+    <footer class="footer">
+        <div style="max-width:1000px; margin:auto; display:flex; flex-wrap:wrap; justify-content:space-between;">
+            <div style="flex:1; min-width:200px;">
+            <h3>Biblioteca Virtual Alexandria</h3>
+            <p>Explore, leia, descubra.</p>
+            </div>
+            <div style="flex:1; min-width:200px;">
+            <h4>Contato</h4>
+            <p>Email: contato@biblioteca.com</p>
+            <p>WhatsApp: (84) 99999-9999</p>
+            </div>
+            <div style="flex:1; min-width:200px;">
+            <h4>Frase do Dia</h4>
+            <p>“Só sei que nada sei.” – Sócrates</p>
+            </div>
+        </div>
+        <hr style="margin:20px 0; border-color:#7f8c8d;">
+        <p style="text-align:center;">&copy; 2025 Biblioteca Alexandria</p>
+    </footer>
 </body>
+
 {% endblock %}

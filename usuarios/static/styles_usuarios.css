@@ -1,22 +1,28 @@
-body {
+body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     color: white;
-    background-color: #f4f4f4;
-    position: relative; /* Mantém isso */
-    /* Remove overflow: hidden */
 }
 
+/* Footer */
+.footer {
+    text-align: center;
+    background-color: #00000042;
+    padding: 40px 20px;
+    color: white;
+    width: 100%;
+}
 
 /* Perfil */
-
 .perfil-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 120vh;
+    height: 110vh;
 }
 
 .perfil-box {
@@ -96,18 +102,37 @@ body {
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
+.form-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
+.form-row .form-group {
+    flex: 1;
+    min-width: 100px;
+}
+
+.form-group textarea {
+    height: 100px;
+}
+
+input[type="file"] {
+    color: white;
+    font-size: 14px;
+}
 
 body::before {
     content: '';
-    position: fixed; /* Mantém fixed para blur estático */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: url('/static/img/foto_fundo.jpg') center center/cover;
     filter: blur(8px);
-    z-index: -2; /* Camada mais baixa */
+    z-index: -1;
     transform: scale(1.05);
 }
 
@@ -120,6 +145,18 @@ body::after {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: -1; /* Camada intermediária */
+}
+
+main {
+    flex: 1;
+    padding: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+main p{
+    color: white;
 }
 
 /* Novo container para conteúdo rolável */
@@ -168,110 +205,146 @@ table{
     align-items: flex-start;
 }
 
+/* Cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between; /* Distribui o espaço entre os itens */
+    align-items: center;
+    padding: 10px 5%; /* Adicionei um padding lateral para evitar que os itens encostem nas bordas */
+    width: 85%; /* Defina um limite máximo de largura para o header */
+    margin: auto; /* Centraliza o header na página */
+}
+
 /* Barra de navegação */
 .navbar {
-    padding: 1rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 1000;
-    font-family: Georgia, serif;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #00000042;
+    color: white;
+    display: flex; /* Habilita o Flexbox para organizar os links */
+    align-items: center; /* Centraliza os itens verticalmente */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.navbar ul.active {
+    transform: translateX(0);
 }
 
 .navbar ul {
-    list-style: none;
     display: flex;
-    gap: 2rem;
+    list-style: none;
     margin: 0;
     padding: 0;
+    gap: 30px;
     align-items: center;
+    flex-wrap: nowrap;
 }
 
-.navbar li {
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    position: relative;
-}
-
-.navbar a {
+#navMenu a, #navMenu button {
     text-decoration: none;
-    padding: 0.5rem 1rem;
     color: white;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border-radius: 4px;
+    font-family: sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+}
+
+.navbar ul.active {
+    right: 0;
+}
+
+.navbar-brand {
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
+.navbar li {
+    text-transform: uppercase;
+    justify-content: center;
+    font-size: 1.1rem; /*OU font-size: 0.9rem;*/
+    letter-spacing: 1px;
+    position: relative;
+    width: 90%; /*100%*/
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.navbar a, .logout-button{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 10px 15px;
+    font-family: sans-serif;
+    font-size: 14px;
+    display: inline-block;
+    background-color: transparent;
+}
+
 .navbar a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    transform: translateY(-2px);
+    transform: scale(1.08);
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+.logout{
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    color: white;
+    font-family: sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logout-button:hover {
+    transform: scale(1.08);
+    background-color: #575757;
+    border-radius: 5px;
 }
 
 /* Dropdown melhorado */
 .dropdown-item {
     min-width: 180px;
-    padding: 0.75rem 1.5rem;
+    padding: 1rem 2rem;
     margin: 0.25rem 0;
     background: rgba(255, 255, 255, 0.95);
     border-radius: 6px;
     font-size: 0.9rem;
     transition: all 0.2s ease;
-    color: #333 !important;
+    color: #ffffff !important;
+    font-family: Georgia, serif;
+    background: transparent;
+    margin: 0;
+    border-radius: 8px;
+    font-size: 1rem;
+    min-width: 250px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
 }
 
 .dropdown-item:hover {
-    background: #fff;
     transform: translateX(5px);
-}
-
-/* Indicador de hover */
-.navbar li::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: white;
-    transition: width 0.3s ease;
-}
-
-.navbar li:hover::after {
-    width: 60%;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 1rem;
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .navbar ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
-    
-    .navbar a {
-        padding: 0.5rem;
-        font-size: 0.8rem;
-    }
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* Conteúdo principal */
@@ -370,14 +443,6 @@ table{
 .main-content {
     flex: 1;
     padding: 20px;
-}
-
-/* Cabeçalho */
-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 0;
 }
 
 .search-bar {
@@ -714,18 +779,6 @@ label {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-}
-
-.footer {
-    font-weight: bold;
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer p {
-    margin: 0;
 }
 
 /* Botão cadastrar */
