@@ -22,6 +22,17 @@ body::before {
     transform: scale(1.05);
 }
 
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1; /* Camada intermediária */
+}
+
 main {
     flex: 1;
     padding: 80px 40px;
@@ -357,17 +368,6 @@ body::before {
     align-items: center;
 }
 
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: -1; /* Camada intermediária */
-}
-
 /* Novo container para conteúdo rolável */
 .content-wrapper {
     position: relative;
@@ -419,19 +419,33 @@ header {
     justify-content: space-between; /* Distribui o espaço entre os itens */
     align-items: center;
     padding: 10px 5%; /* Adicionei um padding lateral para evitar que os itens encostem nas bordas */
-    width: 85%; /* Defina um limite máximo de largura para o header */
+    width: 100%; /* Defina um limite máximo de largura para o header */
     margin: auto; /* Centraliza o header na página */
 }
 
 /* Barra de navegação */
 .navbar {
-    background-color: #00000042;
-    color: white;
-    display: flex; /* Habilita o Flexbox para organizar os links */
-    align-items: center; /* Centraliza os itens verticalmente */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    justify-content: space-around;
-    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 95px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.navbar-left {
+  flex: 0 0 auto;
+}
+
+.navbar-center {
+  flex: 1;
+}
+
+.navbar a:hover {
+    transform: scale(1.08);
+    background-color: #575757;
+    border-radius: 5px;
 }
 
 .navbar ul.active {
@@ -440,12 +454,12 @@ header {
 
 .navbar ul {
     display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 30px;
-    align-items: center;
-    flex-wrap: nowrap;
+    width: 100%;
 }
 
 #navMenu a, #navMenu button {
@@ -471,15 +485,28 @@ header {
 }
 
 .navbar li {
-    text-transform: uppercase;
-    justify-content: center;
-    font-size: 1.1rem; /*OU font-size: 0.9rem;*/
-    letter-spacing: 1px;
-    position: relative;
-    width: 90%; /*100%*/
-    text-align: center;
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar a, .logout-button {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    padding: 7px 9px;
+    font-family: sans-serif;
+    font-size: 14px;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand::before {
+    content: "🏛️";
+    font-size: 2.7rem;
 }
 
 .logout{
@@ -488,30 +515,6 @@ header {
     font-weight: bold;
     color: white;
     cursor: pointer;
-}
-
-.navbar a, .logout-button{
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border-radius: 8px;
-    align-items: center;
-    gap: 0.5rem;
-    justify-content: center;
-    /*min-width: 80px;  Área cinza ao redor */
-    color: white;
-    padding: 10px 15px;
-    font-family: sans-serif;
-    font-size: 14px;
-
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: transparent;
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-
 }
 
 .logout-button {
@@ -526,13 +529,7 @@ header {
 }
 
 .logout-button:hover {
-    background-color: #575757;
-    border-radius: 5px;
-}
-
-.navbar a:hover{
     transform: scale(1.08);
-    color: #4CAF50;
     background-color: #575757;
     border-radius: 5px;
 }
@@ -561,41 +558,6 @@ header {
 .dropdown-item:hover {
     transform: translateX(5px);
     background: rgba(255, 255, 255, 0.1);
-}
-
-/* Indicador de hover */
-.navbar li::after {
-    content: '';
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    transition: width 0.3s ease;
-}
-
-.navbar li:hover::after {
-    width: 60%;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 1rem;
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .navbar ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
-    
-    .navbar a {
-        padding: 0.5rem;
-        font-size: 0.8rem;
-    }
 }
 
 .content {
