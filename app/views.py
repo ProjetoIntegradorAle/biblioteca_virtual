@@ -38,7 +38,7 @@ def comentar(request, material_id):
             material=material,
             texto=texto
         )
-    return redirect('material_detalhe', material_id=material.id)
+    return redirect('buscar_materiais', material_id=material.id)
 
 def curtir_material(request, material_id):
     material = get_object_or_404(Material, id=material_id)
@@ -49,7 +49,7 @@ def curtir_material(request, material_id):
     else:
         material.curtidas.add(request.user)
 
-    return redirect('material_detalhe', material_id=material.id)
+    return redirect('buscar_materiais', material_id=material.id)
 #################################### COMENTÁRIOS-CURTIDAS ##########################################
 
 
