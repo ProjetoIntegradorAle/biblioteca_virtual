@@ -19,7 +19,45 @@
         <h2>Adicionar Material</h2>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form }}
+
+            <div class="form-group">
+            {{ form.titulo.label_tag }}
+            {{ form.titulo }}
+            </div>
+
+            <div class="form-group">
+            {{ form.autor.label_tag }}
+            {{ form.autor }}
+            </div>
+
+            <div class="form-group">
+            {{ form.descricao.label_tag }}
+            {{ form.descricao }}
+            </div>
+
+            <div class="form-group">
+            {{ form.tipo.label_tag }}
+            {{ form.tipo }}
+            </div>
+
+            <div class="form-group">
+            {{ form.arquivo.label_tag }}
+            {{ form.arquivo }}
+            </div>
+
+            <!-- Toggle switch para avaliações -->
+            <div class="form-group switch">
+            {{ form.avaliacoes_habilitadas }}
+            <span class="slider"></span>
+            <span class="switch-label">Habilitar Avaliações</span>
+            </div>
+
+            <!-- Checkbox padrão para colaboração -->
+            <div class="form-group">
+            {{ form.colaboracao_habilitada.label_tag }}
+            {{ form.colaboracao_habilitada }}
+            </div>
+
             <button type="submit">Criar Material</button>
         </form>
     </div>
