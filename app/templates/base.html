@@ -8,7 +8,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <title>Biblioteca Virtual Alexandria</title>
-    <link rel="icon" href="{% static 'static/img/icon.png' %}" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- <script defer>
@@ -54,121 +53,120 @@
 </head>
 
 <body>
-<style> 
-    /* Menu hamburger - visível em todas as telas 
-    .hamburger {
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        padding: 0.5rem;
-        z-index: 1000;
-    }
+  <style> 
+      /* Menu hamburger - visível em todas as telas 
+      .hamburger {
+          display: flex;
+          flex-direction: column;
+          cursor: pointer;
+          padding: 0.5rem;
+          z-index: 1000;
+      }
 
-    .hamburger span {
-        width: 25px;
-        height: 3px;
-        background-color: white;
-        margin: 3px 0;
-        transition: 0.3s;
-        border-radius: 2px;
-    }*/
+      .hamburger span {
+          width: 25px;
+          height: 3px;
+          background-color: white;
+          margin: 3px 0;
+          transition: 0.3s;
+          border-radius: 2px;
+      }*/
 
-    /* Animação do hamburger quando ativo
-    .hamburger.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
+      /* Animação do hamburger quando ativo
+      .hamburger.active span:nth-child(1) {
+          transform: rotate(-45deg) translate(-5px, 6px);
+      }
 
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-    }
+      .hamburger.active span:nth-child(2) {
+          opacity: 0;
+      }
 
-    .hamburger.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-    }
+      .hamburger.active span:nth-child(3) {
+          transform: rotate(45deg) translate(-5px, -6px);
+      }
 
 
-    /* Responsividade para mobile 
-    @media (max-width: 768px) {
-        .navbar ul {
-            width: 100%;
-        }
+      /* Responsividade para mobile 
+      @media (max-width: 768px) {
+          .navbar ul {
+              width: 100%;
+          }
 
-        .navbar li {
-            font-size: 1.2rem;
-        }
+          .navbar li {
+              font-size: 1.2rem;
+          }
 
-        .navbar a {
-            font-size: 1.1rem;
-            min-width: 200px;
-        }
+          .navbar a {
+              font-size: 1.1rem;
+              min-width: 200px;
+          }
 
-        .logout {
-            min-width: 200px;
-        }
+          .logout {
+              min-width: 200px;
+          }
 
-        .dropdown-item {
-            min-width: 200px;
-        }
-    }*/
-</style>
+          .dropdown-item {
+              min-width: 200px;
+          }
+      }*/
+  </style>
 
-<header class="navbar">
-  <!-- Logo/Brand -->
-  <div class="navbar-left">
-    <a href="{% url 'index' %}" class="navbar-brand"></a>
-  </div>
-
-  <!-- Menu hamburger 
-  <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-  </div>-->
-
-  <!-- Menu de navegação -->
-  <nav class="navbar-center">
-    <ul id="navMenu">
-      <li><a href="{% url 'configuracoes' %}">CONFIGURAÇÕES</a></li>
-      <li><a href="{% url 'meus_materiais' %}">MEUS MATERIAIS</a></li>
-      <li><a href="{% url 'sobre' %}">SOBRE</a></li>
-      <li><a href="{% url 'perfil' %}">ÁREA DO USUÁRIO</a></li>
-      <li><a href="{% url 'login' %}">LOGIN</a></li>
-      <li>
-        <form action="{% url 'logout' %}" method="POST">
-          {% csrf_token %}
-          <button type="submit" class="logout-button">LOGOUT</button>
-        </form>
-      </li>
-    </ul>
-  </nav>
-</header>
-
-<main>
-    <div class="content">
-        {% block content %}{% endblock %}
-        {% block header %}{% endblock %}
+  <header class="navbar">
+    <!-- Logo/Brand -->
+    <div class="navbar-left">
+      <a href="{% url 'index' %}" class="navbar-brand"></a>
     </div>
-</main>
 
-<footer class="footer">
-  <div style="max-width:1000px; margin:auto; display:flex; flex-wrap:wrap; justify-content:space-between;">
-    <div style="flex:1; min-width:200px;">
-      <h3>Biblioteca Virtual Alexandria</h3>
-      <p>Explore, leia, descubra.</p>
+    <!-- Menu hamburger 
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>-->
+
+    <!-- Menu de navegação -->
+    <nav class="navbar-center">
+      <ul id="navMenu">
+        <li><a href="{% url 'configuracoes' %}">CONFIGURAÇÕES</a></li>
+        <li><a href="{% url 'meus_materiais' %}">MEUS MATERIAIS</a></li>
+        <li><a href="{% url 'sobre' %}">SOBRE</a></li>
+        <li><a href="{% url 'perfil' %}">ÁREA DO USUÁRIO</a></li>
+        <li><a href="{% url 'login' %}">LOGIN</a></li>
+        <li>
+          <form action="{% url 'logout' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">LOGOUT</button>
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+      <div class="content">
+          {% block content %}{% endblock %}
+          {% block header %}{% endblock %}
+      </div>
+  </main>
+
+  <footer class="footer">
+    <div style="max-width:1000px; margin:auto; display:flex; flex-wrap:wrap; justify-content:space-between;">
+      <div style="flex:1; min-width:200px;">
+        <h3>Biblioteca Virtual Alexandria</h3>
+        <p>Explore, leia, descubra.</p>
+      </div>
+      <div style="flex:1; min-width:200px;">
+        <h4>Contato</h4>
+        <p>Email: contato@biblioteca.com</p>
+        <p>WhatsApp: (84) 99999-9999</p>
+      </div>
+      <div style="flex:1; min-width:200px;">
+        <h4>Frase do Dia</h4>
+        <p>“Só sei que nada sei.” – Sócrates</p>
+      </div>
     </div>
-    <div style="flex:1; min-width:200px;">
-      <h4>Contato</h4>
-      <p>Email: contato@biblioteca.com</p>
-      <p>WhatsApp: (84) 99999-9999</p>
-    </div>
-    <div style="flex:1; min-width:200px;">
-      <h4>Frase do Dia</h4>
-      <p>“Só sei que nada sei.” – Sócrates</p>
-    </div>
-  </div>
-  <hr style="margin:20px 0; border-color:#7f8c8d;">
-  <p style="text-align:center;">&copy; 2025 Biblioteca Alexandria</p>
-</footer>
+    <hr style="margin:20px 0; border-color:#7f8c8d;">
+    <p style="text-align:center;">&copy; 2025 Biblioteca Alexandria</p>
+  </footer>
 </body>
-
 </html>

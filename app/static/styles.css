@@ -434,11 +434,12 @@ header {
 }
 
 .navbar-left {
-  flex: 0 0 auto;
+    flex: 0 0 auto;
+    margin-left: 10px;
 }
 
 .navbar-center {
-  flex: 1;
+    flex: 1;
 }
 
 .navbar a:hover {
@@ -473,6 +474,23 @@ header {
     right: 0;
 }
 
+/* ICON DO INDEX */
+.icon-brand {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.icon-brand::before {
+    content: "🏛️";
+    font-size: 2.9rem;
+}
+
+/* ICON DO NAV */
 .navbar-brand {
     font-size: 2.4rem;
     font-weight: bold;
@@ -481,6 +499,12 @@ header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.navbar-brand::before {
+    margin-left: 0px;
+    content: "🏛️";
+    font-size: 2.7rem;
 }
 
 .navbar li {
@@ -501,11 +525,6 @@ header {
     border-radius: 8px;
     background-color: transparent;
     transition: all 0.3s ease;
-}
-
-.navbar-brand::before {
-    content: "🏛️";
-    font-size: 2.7rem;
 }
 
 .logout{

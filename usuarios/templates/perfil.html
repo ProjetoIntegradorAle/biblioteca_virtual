@@ -14,11 +14,6 @@
 {% endif %}
 
 <style> 
-    .navbar-brand::before {
-        content: "🏛️";
-        font-size: 2.7rem;
-    }
-
     /* Menu hamburger - visível em todas as telas 
     .hamburger {
         display: flex;
@@ -76,37 +71,36 @@
     }*/
 </style>
 
-<header class="navbar">
-  <!-- Logo/Brand -->
-  <a href="{% url 'index' %}" class="navbar-brand"></a>
-
-  <!-- Menu hamburger -->
-  <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-  </div>
-
-  <!-- Menu de navegação -->
-  <ul id="navMenu">
-      <!--<li><a href="{% url 'index' %}">Início</a></li>-->
-      <li><a href="{% url 'meus_materiais' %}">MEUS MATERIAIS</a></li>
-      <li><a href="{% url 'perfil' %}">ÁREA DO USUÁRIO</a></li>
-      <li><a href="{% url 'configuracoes' %}">CONFIGURAÇÕES</a></li>
-      <li><a href="{% url 'sobre' %}">SOBRE</a></li>
-      <li><a href="{% url 'login' %}">LOGIN</a></li>
-      <li>
-        <form action="{% url 'logout' %}" method="POST">
-          {% csrf_token %}
-          <button type="submit" class="logout-button">
-            LOGOUT
-          </button>
-        </form>
-      </li>
-  </ul>
-</header>
-
 <body>
+    <header class="navbar">
+        <!-- Logo/Brand -->
+        <a href="{% url 'index' %}" class="navbar-brand"></a>
+
+        <!-- Menu hamburger -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Menu de navegação -->
+        <nav class="navbar-center">
+            <ul id="navMenu">
+                <li><a href="{% url 'configuracoes' %}">CONFIGURAÇÕES</a></li>
+                <li><a href="{% url 'meus_materiais' %}">MEUS MATERIAIS</a></li>
+                <li><a href="{% url 'sobre' %}">SOBRE</a></li>
+                <li><a href="{% url 'perfil' %}">ÁREA DO USUÁRIO</a></li>
+                <li><a href="{% url 'login' %}">LOGIN</a></li>
+                <li>
+                <form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">LOGOUT</button>
+                </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
     <div class="perfil-container">
         <div class="perfil-box">
             <h1>Perfil</h1>
