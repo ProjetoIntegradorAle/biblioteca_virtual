@@ -1,4 +1,3 @@
-/* Estrutura geral */
 body, html {
     margin: 0;
     padding: 0;
@@ -587,26 +586,45 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* gap: 20px; */
     background-color: transparent !important;
     border: none !important;
-    width: 100%; /* Ocupa toda a largura disponível */
-    max-width: 600px; /* Largura máxima ajustável conforme necessidade */
+    width: 100%; 
+    max-width: 600px; 
     margin-left: auto;
     margin-right: auto;
+    flex: 1;
+    padding: 5px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    outline: none;
+    color: #333;
+}
+
+/* "DIGITE TÍTULO, AUTOR OU PALAVRA-CHAVE..." */
+.search-bar input[type="text"]::placeholder {
+    color: #635f5f; 
+    font-style: italic; 
+}
+
+.search-bar form {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
 }
 
 /* Estilização específica para o campo de input */
 .search-bar input[type="text"] {
-    padding: 13px 90px;
-    border-radius: 25px;
+    padding: 11px 27px;
+    border-radius: 22px;
     border: 1px solid #ffffff;
     transition: all 0.3s ease;
+    width: 100%; 
+    box-sizing: border-box;
+    flex: 1;
 }
 
-
 /*Botão de Buscar*/
-
 .search-bar input[type="text"]:focus {
     outline: none;
     border-color: #007bff;
@@ -614,18 +632,18 @@ header {
 }
 
 .search-btn {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     gap: 20px;
     border: none;
-    border-radius: 50%; /* Formato totalmente redondo */
+    border-radius: 50%;
     background-color: #4CAF50;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     padding-left: 0px;
     padding-right: 20px;
-
+    margin-left: 10px;
 }
 
 .search-btn::before {
@@ -649,17 +667,6 @@ header {
 
 .search-btn:active {
     transform: scale(0.95);
-}
-
-.search-bar {
-    flex: 1;
-    padding: 5px;
-    border: none;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.9);
-    font-size: 14px;
-    outline: none;
-    color: #333;
 }
 
 /* Resultado */
