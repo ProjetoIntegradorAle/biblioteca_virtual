@@ -89,6 +89,10 @@ main p{
     width: 100%;
 }
 
+input[type="file"] {
+    color: white;
+}
+
 .add-material button {
     background-color: green;
     color: white;
