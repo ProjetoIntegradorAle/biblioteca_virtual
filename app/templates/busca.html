@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
+{% block title %}Resultados da busca{% endblock %}
+
 {% block content %}
-<title>Resultados da Busca</title>
 {% for material in materiais %}
     <div class="material-resultado">
         <div class="card-content">
             <!--<p>ID do material: {{ material.id }}</p>-->
             <h3>Título: {{ material.titulo }}</h3>
             <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>
-            <p class="descricao">Descrição: {{ material.descricao }}</p>
+            <p class="descricao"><strong>Descrição:</strong> {{ material.descricao }}</p>
             <div class="meta-info">
                 <span class="tipo">{{ material.get_tipo_display }}</span>
             </div>
         </div>
         <div class="card-actions">
-            <!-- Botão que abre o modal -->
             <button type="button" class="btn abrir" data-bs-toggle="modal" data-bs-target="#modalMaterial{{ material.id }}">
                 Abrir
             </button>

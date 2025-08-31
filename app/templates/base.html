@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <title>Biblioteca Virtual Alexandria</title>
+    <title>{% block title %}Biblioteca Virtual Alexandria{% endblock %}</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- <script defer>
@@ -168,5 +168,7 @@
     <hr style="margin:20px 0; border-color:#7f8c8d;">
     <p style="text-align:center;">&copy; 2025 Biblioteca Alexandria</p>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
