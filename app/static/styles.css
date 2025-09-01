@@ -23,13 +23,13 @@ body::before {
 
 body::after {
     content: '';
-    position: relative;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 0;
+    z-index: -1;
 }
 
 main {
@@ -836,8 +836,8 @@ header {
 
 .tipo {
     display: inline-block;
-    background: #740e6f77;
-    color: #380536;
+    background: #a3139c60;
+    color: #2c052b;
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -1137,11 +1137,11 @@ label {
     margin: 0 5px;
     padding: 5px 10px;
     text-decoration: none;
-    color: #3805369a;
+    color: #ffffff94;
 }
 
 .step-links a:hover {
-    background-color: #ffffff69;
+    background-color: #a3139c94;
     border-radius: 5px;
 }
 
