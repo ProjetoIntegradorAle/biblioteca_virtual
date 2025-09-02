@@ -5,18 +5,18 @@
 {% block content %}
 <body class="config">
     <main class="content-config">
-        <h1>
+        <h1 style="margin-bottom: 30px;">
             <a class="icon-brand">
                 Configurações
             </a>
         </h1>
 
-        <h2>Configurações da Conta:</h2>
+        <h2 style="font-family: 'Georgia'">Configurações da Conta:</h2>
         <div class="botoes-config">
             <!-- Botões visíveis -->
             <button id="btnMateriais">Materiais Compartilhados</button>  
             <button id="btnHistorico">Histórico de Pesquisa</button>  
-            <button id="btnComentarios">Comentários Recebidos</button>  
+            <button id="btnComentarios">Avaliações Recebidos</button>  
 
             <!-- Script separado -->
             <script>
@@ -29,12 +29,12 @@
                 }
 
                 document.getElementById("btnComentarios").onclick = function() {
-                    window.location.href = "{% url 'coment_receb' %}";
+                    window.location.href = "{% url 'avaliacao_receb' %}";
                 }
             </script>
         </div>
 
-        <h2>Preferências de Notificação:</h2>
+        <h2 style="font-family: 'Georgia'; margin-top: 10px;">Preferências de Notificação:</h2>
         <div class="botoes-config">
 
             <button id="btnPermissoesComent">Permissões de Comentários</button>  
