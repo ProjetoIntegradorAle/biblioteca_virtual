@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Configurações{% endblock %}
+
+{% block content %}
+<h1 style="margin-bottom: 30px;">
+    <a class="icon-brand">
+        Configurações
+    </a>
+</h1>
+
+<h2 style="font-family: 'Georgia'; margin-top: 40px; margin-bottom: 18px; color: white;">Configurações da Conta:</h2>
+<div class="botoes-config">
+    <button id="btnMateriais" class="botao-config">Materiais Compartilhados</button>
+    <button id="btnHistorico" class="botao-config">Histórico de Pesquisa</button>
+    <button id="btnComentarios" class="botao-config">Avaliações Recebidas</button>  
+</div>
+
+<h2 style="font-family: 'Georgia'; margin-top: 30px; margin-bottom: 15px; color: white;">Preferências de Notificação:</h2>
+<div class="botoes-config">
+    <button id="btnPermissoesComent" class="botao-config">Permissões de Comentários</button>
+    <button id="btnConviteColab" class="botao-config">Convites de Colaboração</button>
+</div>
+
+<script>
+    document.getElementById("btnMateriais").onclick = function() {
+        window.location.href = "{% url 'mat_compart' %}";
+    };
+    document.getElementById("btnHistorico").onclick = function() {
+        window.location.href = "{% url 'histor_pesq' %}";
+    };
+    document.getElementById("btnComentarios").onclick = function() {
+        window.location.href = "{% url 'avaliacao_receb' %}";
+    };
+    document.getElementById("btnPermissoesComent").onclick = function() {
+        window.location.href = "{% url 'permis_coment' %}";
+    };
+    document.getElementById("btnConviteColab").onclick = function() {
+        window.location.href = "{% url 'convit_colabora' %}";
+    };
+</script>
+{% endblock %}

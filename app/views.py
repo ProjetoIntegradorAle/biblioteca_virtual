@@ -13,12 +13,24 @@ def sobre(request):
     return render(request, 'sobre.html')
 
 def configuracoes(request):
-    return render(request, 'configuracoes.html')
+    return render(request, 'config-templates/configuracoes.html')
 
 def mat_compart(request):
     usuario = request.user  # Usuário logado
     materiais = Material.objects.filter(usuario=usuario)
-    return render(request, 'mat_compart.html', {'materiais': materiais})
+    return render(request, 'config-templates/mat_compart.html', {'materiais': materiais})
+
+def histor_pesq(request):
+    # Implementar lógica para exibir histórico de pesquisa
+    return render(request, 'config-templates/histor_pesq.html')
+
+def permis_coment(request):
+    # Implementar lógica para gerenciar permissões de comentários
+    return render(request, 'config-templates/permis_coment.html')
+
+def convit_colabora(request):
+    # Implementar lógica para gerenciar convites de colaboração
+    return render(request, 'config-templates/convit_colabora.html')
 
 ################################## COMENTÁRIOS-CURTIDAS ########################################
 def material_detalhe(request, material_id):
@@ -27,7 +39,7 @@ def material_detalhe(request, material_id):
 
 def avaliacao_receb(request):
     materiais_com_interacoes = Material.objects.filter(autor=request.user).prefetch_related('comentarios', 'curtidas')
-    return render(request, 'avaliacao_receb.html', {'materiais': materiais_com_interacoes})
+    return render(request, 'config-templates/avaliacao_receb.html', {'materiais': materiais_com_interacoes})
 
 def comentar(request, material_id):
     material = get_object_or_404(Material, id=material_id)
@@ -50,19 +62,6 @@ def curtir_material(request, material_id):
         material.curtidas.add(request.user)
     return redirect(request.META.get('HTTP_REFERER', '/'))
 #################################### COMENTÁRIOS-CURTIDAS ##########################################
-
-
-def histor_pesq(request):
-    # Implementar lógica para exibir histórico de pesquisa
-    return render(request, 'histor_pesq.html')
-
-def permis_coment(request):
-    # Implementar lógica para gerenciar permissões de comentários
-    return render(request, 'permis_coment.html')
-
-def convit_colabora(request):
-    # Implementar lógica para gerenciar convites de colaboração
-    return render(request, 'convit_colabora.html')
 
 @login_required
 def meus_materiais(request):
