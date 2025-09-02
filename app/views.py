@@ -25,9 +25,9 @@ def material_detalhe(request, material_id):
     material = get_object_or_404(Material, id=material_id)
     return render(request, 'material_detalhe.html', {'material': material})
 
-def coment_receb(request):
-    # Implementar lógica para exibir comentários recebidos
-    return render(request, 'coment_receb.html')
+def avaliacao_receb(request):
+    materiais_com_interacoes = Material.objects.filter(autor=request.user).prefetch_related('comentarios', 'curtidas')
+    return render(request, 'avaliacao_receb.html', {'materiais': materiais_com_interacoes})
 
 def comentar(request, material_id):
     material = get_object_or_404(Material, id=material_id)
@@ -38,7 +38,7 @@ def comentar(request, material_id):
             material=material,
             texto=texto
         )
-    return redirect('buscar_materiais', material_id=material.id)
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 def curtir_material(request, material_id):
     material = get_object_or_404(Material, id=material_id)
@@ -48,8 +48,7 @@ def curtir_material(request, material_id):
         material.curtidas.remove(request.user)
     else:
         material.curtidas.add(request.user)
-
-    return redirect('buscar_materiais', material_id=material.id)
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 #################################### COMENTÁRIOS-CURTIDAS ##########################################
 
 
@@ -67,7 +66,6 @@ def convit_colabora(request):
 
 @login_required
 def meus_materiais(request):
-    # Se for POST, trata a criação de novo material
     if request.method == 'POST':
         form = MaterialForm(request.POST, request.FILES)
         if form.is_valid():

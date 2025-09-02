@@ -16,7 +16,7 @@ urlpatterns = [
     
     path('configuracoes/', views.configuracoes, name="configuracoes"),
     path('mat_compart/', views.mat_compart, name="mat_compart"),
-    path('coment_receb/', views.coment_receb, name="coment_receb"),
+    path('avaliacao_receb/', views.avaliacao_receb, name="avaliacao_receb"),
     path('histor_pesq/', views.histor_pesq, name="histor_pesq"),
     path('permis_coment/', views.permis_coment, name="permis_coment"),
     path('convit_colabora/', views.convit_colabora, name="convit_colabora"),
