@@ -641,7 +641,6 @@ header {
     font-size: 3.5rem;
 }
 
-
 /* Barra de busca */
 .search-bar-busca {
     margin-top: 20px;
@@ -655,7 +654,6 @@ header {
     margin-left: auto;
     margin-right: auto;
     flex: 1;
-    padding: 5px;
     border-radius: 25px;
     background: rgba(255, 255, 255, 0.9);
     font-size: 14px;
