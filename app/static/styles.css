@@ -34,10 +34,10 @@ body::after {
 
 main {
     flex: 1;
-    padding: 80px 40px;
+    padding: 70px 40px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 13px;
 }
 
 main p{
@@ -643,14 +643,15 @@ header {
 
 /* Barra de busca */
 .search-bar-busca {
-    margin-top: 20px;
+    margin-top: 0px;
+    margin-bottom: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: transparent !important;
     border: none !important;
-    width: 100%; 
-    max-width: 600px; 
+    width: 900px; 
+    /*max-width: 600px; */
     margin-left: auto;
     margin-right: auto;
     flex: 1;
@@ -664,7 +665,7 @@ header {
 .search-bar-busca form {
     display: flex;
     width: 100%;
-    max-width: 600px;
+    /*max-width: 600px;*/
 }
 
 .search-bar-busca input[type="text"] {
