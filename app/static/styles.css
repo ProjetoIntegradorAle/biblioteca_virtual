@@ -732,7 +732,16 @@ header {
 }
 
 /* Resultado */
+.materiais-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; 
+    justify-content: left;
+}
+
 .material-resultado {
+    flex: 1 1 300px;
+    max-width: 350px;
     width: 40%;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -741,7 +750,6 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     margin: 20px;
-    display: grid;
 }
 
 .card-buttons {

@@ -4,6 +4,7 @@
 {% block title %}Resultados da busca{% endblock %}
 
 {% block content %}
+<div class="materiais-container">
 {% for material in materiais %}
     <div class="material-resultado">
         <div class="card-content">
@@ -28,6 +29,7 @@
 {% empty %}
     <p>Nenhum material encontrado.</p>
 {% endfor %}
+</div>
 
 {% for material in materiais %}
 <!-- MODAL -->
