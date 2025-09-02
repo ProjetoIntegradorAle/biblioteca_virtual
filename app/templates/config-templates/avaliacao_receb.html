@@ -6,34 +6,33 @@
 {% block content %}
 <h2 style="color: white; font-family: 'Georgia'">Avaliações Recebidas:</h2>
 
+<div class="avalia-receb">
 {% for material in materiais %}
   {% if material.comentarios.exists or material.curtidas.exists %}
-    <div class="card mt-4">
-        <div class="card-header">
-            <strong>{{ material.titulo }}</strong>
-        </div>
-        <div class="card-body">
-            {% if material.comentarios.exists %}
-            <h5>Comentários:</h5>
-            {% for comentario in material.comentarios.all %}
-                <div class="alert alert-secondary">
-                <strong>{{ comentario.autor }}:</strong> {{ comentario.texto }}
-                </div>
-            {% endfor %}
-            {% endif %}
+    <div class="avalia-receb-item">
+      <strong>{{ material.titulo }}</strong>
+      {% if material.comentarios.exists %}
+        <h5>Comentários:</h5>
+        {% for comentario in material.comentarios.all %}
+            <div class="alert alert-secondary">
+              <strong>{{ comentario.autor }}:</strong> {{ comentario.texto }}
+            </div>
+        {% endfor %}
+      {% endif %}
 
-            {% if material.curtidas.exists %}
-            <h5 class="mt-3">Curtidas:</h5>
-            <ul>
-                {% for usuario in material.curtidas.all %}
-                <li>❤️ {{ usuario.username }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        </div>
+      {% if material.curtidas.exists %}
+        <h5>Curtidas:</h5>
+        <ul>
+            {% for usuario in material.curtidas.all %}
+            <li>❤️ {{ usuario.username }}</li>
+            {% endfor %}
+        </ul>
+      {% endif %}
     </div>
   {% endif %}
 {% empty %}
   <p>Você ainda não recebeu comentários ou curtidas.</p>
 {% endfor %}
+</div>
+
 {% endblock %}

@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="mat-compart">
-    <ul>
+<h2 style="color: white; font-family: 'Georgia';">Materiais Compartilhados</h2>
+<hr style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
+<div class="mat-grid">
     {% for material in materiais %}
-        <li>
-            <strong>{{ material.titulo }}</strong><br>
-            <strong>Descrição:</strong> {{ material.descricao }}<br>
-            <a href="{{ material.arquivo.url }}">Baixar</a> |
-            Compartilhado em: {{ material.data_compartilhado }}
-        </li>
+    <div class="mat-compart">
+        <strong>{{ material.titulo }}</strong><br>
+        <strong>Descrição:</strong> {{ material.descricao }}<br>
+        <a style="color: rgb(52, 187, 10); font-weight: bold; text-decoration: none;" 
+        href="{{ material.arquivo.url }}">Baixar</a> |
+        Compartilhado em: {{ material.data_compartilhado }}
+    </div>
     {% empty %}
         <li>Nenhum material compartilhado ainda.</li>
     {% endfor %}
-    </ul>
 </div>
 
 {% endblock %}

@@ -291,13 +291,48 @@ input[type="file"] {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-.mat-compart {
+.avalia-receb{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.avalia-receb-item{
+    text-align: left;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.avalia-receb-item strong{
+    margin-bottom: 15px;
+}
+
+.mat-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.mat-compart {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    color: white;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
 }
 
 .content-config {
@@ -312,15 +347,16 @@ input[type="file"] {
 
 /* Botões de configuração */
 .botao-config {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    color: rgba(117, 117, 117, 0.911);
     border-radius: 22px;
     width: 25%;
     padding: 1rem 2rem;
     font-size: 16px;
-    color: black;
     border: none;
     cursor: pointer;
     margin: 5px 10px;
-    background-color: #f0f0f0; /* exemplo de cor de fundo */
 }
 
 .botoes-config {
@@ -361,6 +397,7 @@ input[type="file"] {
     text-align: center;
     margin-top: 50px;
 }
+
 .image-container img {
     max-width: 100%;
     border: 2px solid #ccc;
