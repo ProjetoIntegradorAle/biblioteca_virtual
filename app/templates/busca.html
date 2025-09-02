@@ -4,6 +4,12 @@
 {% block title %}Resultados da busca{% endblock %}
 
 {% block content %}
+<div class="search-bar-busca">
+    <form method="get" action="{% url 'buscar_materiais' %}">
+        <input type="text" name="q" placeholder="Digite o título, autor ou palavra-chave...">
+        <button type="submit" class="search-btn-busca" aria-label="Pesquisar"></button>
+    </form>
+</div>
 <div class="materiais-container">
 {% for material in materiais %}
     <div class="material-resultado">
