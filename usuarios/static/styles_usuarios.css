@@ -8,6 +8,42 @@ body, html {
     color: white;
 }
 
+body::before {
+    content: '';
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/static/img/foto_fundo.jpg') center center/cover;
+    filter: blur(8px);
+    z-index: 0;
+    transform: scale(1.05);
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+main {
+    flex: 1;
+    padding: 70px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+main p{
+    color: white;
+}
+
 /* Footer */
 .footer {
     text-align: center;
@@ -23,6 +59,8 @@ body, html {
     justify-content: center;
     align-items: center;
     height: 110vh;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .perfil-box {
@@ -30,7 +68,7 @@ body, html {
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 500px;
     text-align: center;
     transition: transform 0.3s;
 }
@@ -121,42 +159,6 @@ body, html {
 input[type="file"] {
     color: white;
     font-size: 14px;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('/static/img/foto_fundo.jpg') center center/cover;
-    filter: blur(8px);
-    z-index: -1;
-    transform: scale(1.05);
-}
-
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: -1; /* Camada intermediária */
-}
-
-main {
-    flex: 1;
-    padding: 80px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-main p{
-    color: white;
 }
 
 /* Novo container para conteúdo rolável */
@@ -266,16 +268,6 @@ header {
     right: 0;
 }
 
-.navbar-brand {
-    font-size: 2.4rem;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
 .navbar li {
     display: flex;
     align-items: center;
@@ -296,7 +288,19 @@ header {
     transition: all 0.3s ease;
 }
 
+/* ICON DO NAV */
+.navbar-brand {
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .navbar-brand::before {
+    margin-left: 0px;
     content: "🏛️";
     font-size: 2.7rem;
 }
