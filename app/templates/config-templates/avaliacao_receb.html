@@ -5,12 +5,13 @@
 {% block title %}Avaliações Recebidas{% endblock %}
 {% block content %}
 <h2 style="color: white; font-family: 'Georgia'">Avaliações Recebidas:</h2>
+<hr style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
 
 <div class="avalia-receb">
 {% for material in materiais %}
   {% if material.comentarios.exists or material.curtidas.exists %}
     <div class="avalia-receb-item">
-      <strong>{{ material.titulo }}</strong>
+      <strong>Título: {{ material.titulo }}</strong>
       {% if material.comentarios.exists %}
         <h5>Comentários:</h5>
         {% for comentario in material.comentarios.all %}
