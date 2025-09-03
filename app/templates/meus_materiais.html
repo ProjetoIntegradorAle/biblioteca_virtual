@@ -40,22 +40,30 @@
             {{ form.tipo }}
             </div>
 
-            <div class="form-group">
+            <div style="margin-top: 5px;" class="form-group">
             {{ form.arquivo.label_tag }}
             {{ form.arquivo }}
             </div>
 
+            <h3 style="margin-bottom: 0px ;margin-top: 4px; color: white; font-size: 16px; font-weight: 400; font-family: Arial, Helvetica, sans-serif;">
+                Permissões:
+            </h3>
             <!-- Toggle switch para avaliações -->
-            <div class="form-group switch">
-            {{ form.avaliacoes_habilitadas }}
-            <span class="slider"></span>
-            <span class="switch-label">Habilitar Avaliações</span>
+            <div class="form-habit">
+                <label for="id_avaliacoes_habilitadas">Habilitar Avaliações:</label>
+                <label class="switch">
+                    <input type="checkbox" name="avaliacoes_habilitadas" id="id_avaliacoes_habilitadas">
+                    <span class="slider"></span>
+                </label>
             </div>
 
             <!-- Checkbox padrão para colaboração -->
-            <div class="form-group">
-            {{ form.colaboracao_habilitada.label_tag }}
-            {{ form.colaboracao_habilitada }}
+            <div class="form-habit">
+                <label for="id_colaboracao_habilitada">Habilitar Colaboração:</label>
+                <label class="switch">
+                    <input type="checkbox" name="colaboracao_habilitada" id="id_colaboracao_habilitada">
+                    <span class="slider"></span>
+                </label>
             </div>
 
             <button type="submit">Criar Material</button>
