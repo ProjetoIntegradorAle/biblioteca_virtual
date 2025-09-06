@@ -42,53 +42,57 @@
 <!-- MODAL -->
 <div class="card-actions">
     <div class="modal fade" id="modalMaterial{{ material.id }}" tabindex="-1" aria-labelledby="modalLabel{{ material.id }}" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalLabel{{ material.id }}">Material: {{ material.titulo }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 
-                <div class="modal-body">
-                    <!-- Curtir -->
-                    <form method="POST" action="{% url 'curtir_material' material.id %}" class="mt-3">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-danger">
-                        {% if user in material.curtidas.all %}
-                            💔 Descurtir
-                        {% else %}
-                            ❤️ Curtir
-                        {% endif %}
-                        ({{ material.curtidas.count }})
-                        </button>
-                    </form>
-        
-                    <!-- Comentários -->
-                    {% if material.avaliacoes_habilitadas %}
-                        <form method="POST" action="{% url 'comentar' material.id %}" class="mt-4">
+                <div class="modal-body d-flex flex-wrap gap-4">
+                    <!-- Lado Esquerdo -->
+                    <div class="col-md-5 d-flex flex-column align-items-center">
+                        <img src="/static/img/imagem-ilustrativa.png" alt="Imagem ilustrativa" class="img-fluid rounded mb-3" style="max-height: 200px; object-fit: cover;">
+
+                        <a href="{{ material.arquivo.url }}" target="_blank" class="btn btn-outline-secondary mb-3">
+                            📄 Visualizar Arquivo
+                        </a>
+
+                        <form method="POST" action="{% url 'curtir_material' material.id %}">
                             {% csrf_token %}
-                            <textarea name="comentario" class="form-control" rows="3" placeholder="Deixe seu comentário"></textarea>
-                            <button type="submit" class="btn btn-primary mt-2">Enviar Comentário</button>
+                            <button type="submit" class="btn btn-outline-danger">
+                                {% if user in material.curtidas.all %}
+                                💔 Descurtir
+                                {% else %}
+                                ❤️ Curtir
+                                {% endif %}
+                                ({{ material.curtidas.count }})
+                            </button>
                         </form>
-                    {% endif %}
+                    </div>
 
-                    <!-- Arquivo visualizável -->
-                    <a style="margin-top: 15px; margin-bottom: 15px;" href="{{ material.arquivo.url }}" target="_blank" class="btn btn-outline-secondary">
-                        📄 Visualizar Arquivo
-                    </a>
+                    <!-- Lado Direito -->
+                    <div class="col-md-6">
 
-                    <!-- Lista de comentários recebidos na postagem -->
-                    <h3 style="margin-top: 15px;">Comentários Recebidos</h3>
-                    {% for comentario in material.comentarios.all %}
-                        <div class="alert alert-secondary mt-3">
-                            <p style="color: black;"><strong>Usuário: </strong>
-                                {{ comentario.autor }}
-                            </p> 
-                            <p style="color: black;"><strong>Comentário: </strong>
-                                {{ comentario.texto }}
-                            </p> 
+                        {% if material.avaliacoes_habilitadas %}
+                        <form method="POST" action="{% url 'comentar' material.id %}">
+                            {% csrf_token %}
+                            <textarea name="comentario" class="form-control mb-2" rows="3" placeholder="Deixe seu comentário"></textarea>
+                            <button type="submit" class="btn btn-comentenv">Enviar Comentário</button>
+                        </form>
+                        {% endif %}
+
+                        <h3 style="color: rgb(148, 144, 144); font-family: 'Georgia';" class="text-center mt-4">Comentários Recebidos</h3>
+                        <div class="comentarios-grid">
+                            {% for comentario in material.comentarios.all %}
+                                <div class="comentario-card alert alert-secondary">
+                                    <p style="color: rgb(148, 144, 144);">Usuário: {{ comentario.autor }}</p>
+                                    <p style="color: rgb(148, 144, 144);">Comentário: {{ comentario.texto }}</p>
+                                </div>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
+
+                    </div>
                 </div>
             </div>
         </div>
