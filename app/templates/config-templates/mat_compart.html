@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block title %}Materiais Compartilhados{% endblock %}
+
 {% block content %}
 
-<h2 style="color: white; font-family: 'Georgia';">Materiais Compartilhados</h2>
+<h1 style="margin-bottom: 50px;">
+    <a class="icon-brand">
+        Materiais Compartilhados
+    </a>
+</h1>
 <hr style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
 <div class="mat-grid">
     {% for material in materiais %}
