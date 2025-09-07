@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-
 {% block title %}Resultados da busca{% endblock %}
 
 {% block content %}
@@ -12,10 +11,9 @@
 </div>
 <h3 style="color: white; margin-bottom: 30px;">Resultados da busca para "{{ query }}"</h3>
 <div class="materiais-container">
-{% for material in materiais %}
+    {% for material in materiais %}
     <div class="material-resultado">
         <div class="card-content">
-            <!--<p>ID do material: {{ material.id }}</p>-->
             <h3>Título: {{ material.titulo }}</h3>
             <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>
             <p class="descricao"><strong>Descrição:</strong> {{ material.descricao }}</p>
@@ -23,6 +21,7 @@
                 <span class="tipo">{{ material.get_tipo_display }}</span>
             </div>
         </div>
+
         <div class="card-buttons">
             <button type="button" class="btn-abrir-modal" data-bs-toggle="modal" data-bs-target="#modalMaterial{{ material.id }}">
                 Abrir
@@ -33,9 +32,9 @@
             </form>
         </div>
     </div>
-{% empty %}
-    <p>Nenhum material encontrado.</p>
-{% endfor %}
+    {% empty %}
+        <p>Nenhum material encontrado.</p>
+    {% endfor %}
 </div>
 
 {% for material in materiais %}
@@ -45,58 +44,67 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel{{ material.id }}">Material: {{ material.titulo }}</h5>
+                    <h5 class="modal-title" id="modalLabel{{ material.id }}">
+                        <a style="color: black; font-size: 25px;" class="icon-brand">
+                            Material: {{ material.titulo }}
+                        </a>
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
-                
-                <div class="modal-body d-flex flex-wrap gap-4">
-                    <!-- Lado Esquerdo -->
-                    <div class="col-md-5 d-flex flex-column align-items-center">
-                        <img src="/static/img/imagem-ilustrativa.png" alt="Imagem ilustrativa" class="img-fluid rounded mb-3" style="max-height: 200px; object-fit: cover;">
 
-                        <a href="{{ material.arquivo.url }}" target="_blank" class="btn btn-outline-secondary mb-3">
-                            📄 Visualizar Arquivo
-                        </a>
+                <div class="modal-body">
+                    <div class="d-flex flex-wrap gap-4 justify-content-center">
+                        <!-- Coluna esquerda -->
+                        <div class="col-md-5 d-flex flex-column align-items-center">
+                            <img src="/static/img/imagem-ilustrativa.png" alt="Imagem ilustrativa" class="img-fluid rounded mb-3" style="max-height: 200px; object-fit: cover;">
 
-                        <form method="POST" action="{% url 'curtir_material' material.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-danger">
-                                {% if user in material.curtidas.all %}
-                                💔 Descurtir
-                                {% else %}
-                                ❤️ Curtir
-                                {% endif %}
-                                ({{ material.curtidas.count }})
-                            </button>
-                        </form>
-                    </div>
+                            <a href="{{ material.arquivo.url }}" target="_blank" class="btn btn-outline-secondary mb-3">
+                                📄 Visualizar Arquivo
+                            </a>
 
-                    <!-- Lado Direito -->
-                    <div class="col-md-6">
-
-                        {% if material.avaliacoes_habilitadas %}
-                        <form method="POST" action="{% url 'comentar' material.id %}">
-                            {% csrf_token %}
-                            <textarea name="comentario" class="form-control mb-2" rows="3" placeholder="Deixe seu comentário"></textarea>
-                            <button type="submit" class="btn btn-comentenv">Enviar Comentário</button>
-                        </form>
-                        {% endif %}
-
-                        <h3 style="color: rgb(148, 144, 144); font-family: 'Georgia';" class="text-center mt-4">Comentários Recebidos</h3>
-                        <div class="comentarios-grid">
-                            {% for comentario in material.comentarios.all %}
-                                <div class="comentario-card alert alert-secondary">
-                                    <p style="color: rgb(148, 144, 144);">Usuário: {{ comentario.autor }}</p>
-                                    <p style="color: rgb(148, 144, 144);">Comentário: {{ comentario.texto }}</p>
-                                </div>
-                            {% endfor %}
+                            <form method="POST" action="{% url 'curtir_material' material.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger">
+                                    {% if user in material.curtidas.all %}
+                                    💔 Descurtir
+                                    {% else %}
+                                    ❤️ Curtir
+                                    {% endif %}
+                                    ({{ material.curtidas.count }})
+                                </button>
+                            </form>
                         </div>
 
+                        {% if material.avaliacoes_habilitadas %}
+                        <!-- Coluna direita -->
+                        <div class="col-md-6">
+                            <form method="POST" action="{% url 'comentar' material.id %}">
+                                {% csrf_token %}
+                                <textarea name="comentario" class="form-control mb-2" rows="3" placeholder="Deixe seu comentário"></textarea>
+                                <button type="submit" class="btn btn-comentenv">Enviar Comentário</button>
+                            </form>
+                        </div>
+                        {% endif %}
                     </div>
+
+                    {% if material.avaliacoes_habilitadas %}
+                    <!-- Comentários recebidos -->
+                    <h3 class="text-center mt-4" style="font-size: 19px; color: rgb(0, 0, 0); font-family: 'Georgia';">
+                        <hr>Comentários Recebidos<hr>
+                    </h3>
+                    <div class="comentarios-grid d-flex flex-wrap justify-content-center gap-3 mt-3">
+                        {% for comentario in material.comentarios.all %}
+                        <div class="comentario-card alert alert-secondary" style="flex: 0 1 calc(50% - 1rem); min-width: 250px;">
+                            <p style="color: rgb(148, 144, 144);">Usuário: {{ comentario.autor }}</p>
+                            <p style="color: rgb(148, 144, 144);">Comentário: {{ comentario.texto }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 </div>
 {% endfor %}
 
