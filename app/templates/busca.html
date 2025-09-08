@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+
 {% block title %}Resultados da busca{% endblock %}
 
 {% block content %}
@@ -9,7 +10,9 @@
         <button type="submit" class="search-btn-busca" aria-label="Pesquisar"></button>
     </form>
 </div>
+
 <h3 style="color: white; margin-bottom: 30px;">Resultados da busca para "{{ query }}"</h3>
+
 <div class="materiais-container">
     {% for material in materiais %}
     <div class="material-resultado">
@@ -21,7 +24,6 @@
                 <span class="tipo">{{ material.get_tipo_display }}</span>
             </div>
         </div>
-
         <div class="card-buttons">
             <button type="button" class="btn-abrir-modal" data-bs-toggle="modal" data-bs-target="#modalMaterial{{ material.id }}">
                 Abrir
@@ -33,7 +35,7 @@
         </div>
     </div>
     {% empty %}
-        <p>Nenhum material encontrado.</p>
+    <p>Nenhum material encontrado.</p>
     {% endfor %}
 </div>
 
@@ -45,16 +47,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalLabel{{ material.id }}">
-                        <a style="color: black; font-size: 25px;" class="icon-brand">
+                        <a style="color: rgb(142, 136, 151); font-size: 25px;" class="icon-brand">
                             Material: {{ material.titulo }}
                         </a>
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    <button style="color: rgb(142, 136, 151); font-size: 18px; margin-right: 10px;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
 
                 <div class="modal-body">
                     <div class="d-flex flex-wrap gap-4 justify-content-center">
-                        <!-- Coluna esquerda -->
+                        <!-- Coluna única com imagem e botão -->
                         <div class="col-md-5 d-flex flex-column align-items-center">
                             <img src="/static/img/imagem-ilustrativa.png" alt="Imagem ilustrativa" class="img-fluid rounded mb-3" style="max-height: 200px; object-fit: cover;">
 
@@ -62,9 +64,10 @@
                                 📄 Visualizar Arquivo
                             </a>
 
+                            {% if material.avaliacoes_habilitadas %}
                             <form method="POST" action="{% url 'curtir_material' material.id %}">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-danger">
+                                <button style="padding-left: 36px; padding-right: 36px;" type="submit" class="btn btn-outline-danger">
                                     {% if user in material.curtidas.all %}
                                     💔 Descurtir
                                     {% else %}
@@ -73,10 +76,11 @@
                                     ({{ material.curtidas.count }})
                                 </button>
                             </form>
+                            {% endif %}
                         </div>
 
                         {% if material.avaliacoes_habilitadas %}
-                        <!-- Coluna direita -->
+                        <!-- Coluna direita com formulário de comentário -->
                         <div class="col-md-6">
                             <form method="POST" action="{% url 'comentar' material.id %}">
                                 {% csrf_token %}
@@ -89,7 +93,7 @@
 
                     {% if material.avaliacoes_habilitadas %}
                     <!-- Comentários recebidos -->
-                    <h3 class="text-center mt-4" style="font-size: 19px; color: rgb(0, 0, 0); font-family: 'Georgia';">
+                    <h3 class="text-center mt-4" style="font-size: 19px; color: rgb(131, 130, 130);">
                         <hr>Comentários Recebidos<hr>
                     </h3>
                     <div class="comentarios-grid d-flex flex-wrap justify-content-center gap-3 mt-3">
@@ -99,6 +103,13 @@
                             <p style="color: rgb(148, 144, 144);">Comentário: {{ comentario.texto }}</p>
                         </div>
                         {% endfor %}
+                    </div>
+                    {% else %}
+                    <!-- Mensagem quando avaliações não estão habilitadas -->
+                    <div class="text-center mt-4">
+                        <p style="color: rgb(148, 144, 144); font-style: italic;">
+                            Este material não está disponível para avaliação.
+                        </p>
                     </div>
                     {% endif %}
                 </div>
