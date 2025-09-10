@@ -34,7 +34,7 @@ body::after {
 
 main {
     flex: 1;
-    padding: 70px 40px;
+    padding: 100px 40px;
     display: flex;
     flex-direction: column;
     gap: 13px;
@@ -42,6 +42,15 @@ main {
 
 main p{
     color: white;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    background-color: #00000042;
+    padding: 40px 20px;
+    color: white;
+    width: 100%;
 }
 
 .container-mat{
@@ -260,15 +269,6 @@ input:checked + .slider:before {
 .card-actions .btn.abrir { background-color: green; }
 .card-actions .btn.editar { background-color: orange; }
 .card-actions .btn.deletar { background-color: red; }
-
-/* Footer */
-.footer {
-    text-align: center;
-    background-color: #00000042;
-    padding: 40px 20px;
-    color: white;
-    width: 100%;
-}
 
 /* MODAL */
 .modal-backdrop {
@@ -588,10 +588,6 @@ header {
     border-radius: 5px;
 }
 
-.navbar ul.active {
-    transform: translateX(0);
-}
-
 .navbar ul {
     display: flex;
     justify-content: space-evenly;
@@ -602,6 +598,11 @@ header {
     width: 100%;
 }
 
+.navbar ul.active {
+    transform: translateX(0);
+    right: 0;
+}
+
 #navMenu a, #navMenu button {
     text-decoration: none;
     color: white;
@@ -610,8 +611,25 @@ header {
     padding: 10px 15px;
 }
 
-.navbar ul.active {
-    right: 0;
+.navbar li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar a, .logout-button {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    padding: 7px 9px;
+    font-family: sans-serif;
+    font-size: 14px;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    margin-left: 10px;
 }
 
 /* ICON DO INDEX */
@@ -645,26 +663,6 @@ header {
     margin-left: 0px;
     content: "🏛️";
     font-size: 2.7rem;
-}
-
-.navbar li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar a, .logout-button {
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    padding: 7px 9px;
-    font-family: sans-serif;
-    font-size: 14px;
-    border-radius: 8px;
-    background-color: transparent;
-    transition: all 0.3s ease;
 }
 
 .logout{
