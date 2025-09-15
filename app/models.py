@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.conf import settings
 from django.utils import timezone
 
@@ -63,3 +64,12 @@ class MaterialSalvo(models.Model):
 
     def __str__(self):
         return f"{self.usuario.username} salvou {self.material.titulo}"
+    
+class HistoricoPesquisa(models.Model):
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    termo = models.CharField(max_length=255)
+    url_resultado = models.URLField()
+    data_pesquisa = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.termo} ({self.data_pesquisa.strftime('%d/%m/%Y %H:%M')})"

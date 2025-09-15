@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Material, MaterialSalvo, Comentario
+from .models import Material, MaterialSalvo, Comentario, HistoricoPesquisa
 from .forms import MaterialForm
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.utils.http import urlencode
 
 def index(request):
     return render(request, 'index.html')
@@ -12,6 +13,7 @@ def index(request):
 def sobre(request):
     return render(request, 'sobre.html')
 
+@login_required
 def configuracoes(request):
     return render(request, 'config-templates/configuracoes.html')
 
@@ -20,9 +22,10 @@ def mat_compart(request):
     materiais = Material.objects.filter(usuario=usuario)
     return render(request, 'config-templates/mat_compart.html', {'materiais': materiais})
 
+@login_required
 def histor_pesq(request):
-    # Implementar lógica para exibir histórico de pesquisa
-    return render(request, 'config-templates/histor_pesq.html')
+    historico = HistoricoPesquisa.objects.filter(usuario=request.user).order_by('-data_pesquisa')
+    return render(request, 'config-templates/histor_pesq.html', {'historico': historico})
 
 def permis_coment(request):
     # Implementar lógica para gerenciar permissões de comentários
@@ -41,6 +44,7 @@ def avaliacao_receb(request):
     materiais_com_interacoes = Material.objects.filter(autor=request.user).prefetch_related('comentarios', 'curtidas')
     return render(request, 'config-templates/avaliacao_receb.html', {'materiais': materiais_com_interacoes})
 
+@login_required
 def comentar(request, material_id):
     material = get_object_or_404(Material, id=material_id)
     if request.method == 'POST':
@@ -52,6 +56,7 @@ def comentar(request, material_id):
         )
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
+@login_required
 def curtir_material(request, material_id):
     material = get_object_or_404(Material, id=material_id)
 
@@ -138,7 +143,7 @@ def deletar_material(request, id_material):
 @login_required
 def buscar_materiais(request):
     query = request.GET.get('q')
-    materiais = Material.objects.none()  
+    materiais = Material.objects.none()
 
     if query:
         materiais = Material.objects.filter(
@@ -148,7 +153,13 @@ def buscar_materiais(request):
             Q(tipo__icontains=query)
         )
 
-    print("Materiais encontrados:", materiais)  # Verifique se a consulta retorna objetos
+        # Salvar no histórico
+        url_resultado = request.build_absolute_uri('?'+urlencode({'q': query}))
+        HistoricoPesquisa.objects.create(
+            usuario=request.user,
+            termo=query,
+            url_resultado=url_resultado
+        )
 
     return render(request, 'busca.html', {'materiais': materiais})
 
