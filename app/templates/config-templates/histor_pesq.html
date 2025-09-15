@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Histórico de Pesquisa{% endblock %}
+
+{% block content %}
+
+<h1 style="margin-bottom: 30px; margin-top: 0px;">
+    <a class="icon-brand">
+        Histórico de Pesquisa
+    </a>
+</h1>
+<hr style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
+
+<div class="mat-grid">
+    {% for item in historico %}
+    <div class="mat-compart" style="color: white;">
+        <a style="color: rgb(52, 187, 10); font-weight: bold; text-decoration: none;" href="{{ item.url_resultado }}">{{ item.termo }}</a>
+        <span style="color: white;">— Pesquisa em: {{ item.data_pesquisa|date:"d/m/Y H:i" }}</span>
+    </div>
+    {% empty %}
+        <li style="color: white;">Nenhuma pesquisa realizada ainda.</li>
+    {% endfor %}
+</div>
+
+{% endblock %}
