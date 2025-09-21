@@ -6,6 +6,8 @@ from .forms import MaterialForm
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.utils.http import urlencode
+from django.http import JsonResponse
+from django.contrib.auth.models import User
 
 def index(request):
     return render(request, 'index.html')
@@ -32,8 +34,24 @@ def permis_coment(request):
     return render(request, 'config-templates/permis_coment.html')
 
 def convit_colabora(request):
-    # Implementar lógica para gerenciar convites de colaboração
-    return render(request, 'config-templates/convit_colabora.html')
+    usuario = request.user
+    materiais = Material.objects.filter(usuario=usuario)
+    convites_recebidos = Material.objects.filter(colaboradores_pendentes=usuario)
+    return render(request, 'config-templates/convit_colabora.html', {
+        'materiais': materiais,
+        'convites_recebidos': convites_recebidos
+    })
+
+def save(self, *args, **kwargs):
+    if self.colaboradores_confirmados.count() > 1:
+        raise ValueError("Só é permitido um colaborador por material.")
+    super().save(*args, **kwargs)
+    
+def buscar_usuarios(request):
+    termo = request.GET.get('q', '')
+    resultados = User.objects.filter(username__icontains=termo)[:5]
+    data = [{'id': u.id, 'nome': u.username} for u in resultados]
+    return JsonResponse(data, safe=False)
 
 ################################## COMENTÁRIOS-CURTIDAS ########################################
 def material_detalhe(request, material_id):
@@ -77,22 +95,37 @@ def meus_materiais(request):
             novo_material.usuario = request.user
             novo_material.autor = request.user.username
             novo_material.save()
+
+            # Verifica se colaboração está habilitada
+            colaboracao_habilitada = request.POST.get('colaboracao_habilitada')
+            colaborador_id = request.POST.get('colaborador_id')
+
+            if colaboracao_habilitada and colaborador_id:
+                try:
+                    colaborador = User.objects.get(id=colaborador_id)
+
+                    # Verifica se já há colaborador pendente
+                    if novo_material.colaboradores_pendentes.count() >= 1:
+                        messages.warning(request, 'Só é permitido um colaborador por material.')
+                    else:
+                        novo_material.colaboracao_habilitada = True
+                        novo_material.colaboradores_pendentes.add(colaborador)
+                        novo_material.save()
+                except User.DoesNotExist:
+                    messages.warning(request, 'Colaborador não encontrado.')
+
             messages.success(request, 'Material criado com sucesso!')
-            return redirect('meus_materiais')  # Evita reenvio do formulário
+            return redirect('meus_materiais')
         else:
             messages.error(request, 'Erro ao criar material. Verifique os campos.')
     else:
         form = MaterialForm()
 
-    # Materiais criados pelo usuário logado
     materiais_criados = Material.objects.filter(usuario=request.user)
-
-    # Paginação dos materiais criados
     paginator = Paginator(materiais_criados, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    # Materiais salvos pelo usuário, separados por tipo
     documentos_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Documento')
     videos_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Vídeo')
     slides_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Slide')

@@ -23,4 +23,6 @@ urlpatterns = [
     path('material/<int:material_id>/', views.material_detalhe, name='material_detalhe'),
     path('material/<int:material_id>/comentar/', views.comentar, name='comentar'),
     path('curtir_material/<int:material_id>/', views.curtir_material, name='curtir_material'),
+    
+    path('buscar_usuarios/', views.buscar_usuarios, name='buscar_usuarios'),
 ]
