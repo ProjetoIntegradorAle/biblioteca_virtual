@@ -80,6 +80,7 @@
         </form>
     </div>
 
+    <!-- MATERIAIS SALVOS -->
     <div class="content-mat">
         <h2 style="font-family: 'Georgia'; font-size: 35px;" class="titulo">Materiais Salvos</h2>
         
@@ -129,6 +130,7 @@
         </div>
     </div>
 
+    <!-- MATERIAIS CRIADOS -->
     <div class="materiais-criados-container">
         <h2 style="font-family: 'Georgia'; font-size: 35px;" class="titulo-principal">Materiais Criados</h2>
         <div class="materiais-grid">
@@ -150,22 +152,6 @@
                         {% csrf_token %}
                         <button type="submit" class="btn deletar">Deletar</button>
                     </form>
-                    
-                    <div style="display:inline-block; margin-left: 10px;">
-                        <form action="{% url 'habilitar_comentarios' material.id %}" method="post">
-                            {% csrf_token %}
-                            <label class="switch" style="vertical-align: middle;">
-                                <input type="checkbox" name="comentarios_habilitados" 
-                                       onchange="this.form.submit()" 
-                                       {% if material.comentarios_habilitados %}checked{% endif %}>
-                                <span class="slider"></span>
-                            </label>
-                            <span style="vertical-align: middle; color: white; font-size: 14px;">
-                                Comentários
-                            </span>
-                        </form>
-                    </div>
-
                 </div>
             </div>
             {% endfor %}
