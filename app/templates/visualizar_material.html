@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Visualizar Material{% endblock %}
 
-{% block content  %}
+{% block content %}
 <div class="file-container">
     {% if material.arquivo %}
         {# Verifica o tipo de arquivo pela extensão #}
@@ -10,7 +10,6 @@
             {% if file_extension == '.jpg' or file_extension == 'jpeg' or file_extension == '.png' or file_extension == '.gif' %}
                 {# Prévia para Imagens #}
                 <img src="{{ material.arquivo.url }}" alt="{{ material.titulo }}" style="max-width: 100%; height: auto;">
-
             {% elif file_extension == '.pdf' %}
                 {# Prévia para PDFs #}
                 <iframe 
@@ -19,21 +18,18 @@
                     height="600px"
                     style="border: none;"
                 ></iframe>
-
             {% elif file_extension == '.mp4' or file_extension == 'webm' or file_extension == 'ogg' %}
                 {# Prévia para Vídeos #}
                 <video controls style="width: 100%;">
                     <source src="{{ material.arquivo.url }}" type="video/{{ file_extension|slice:'1:' }}">
                     Seu navegador não suporta o formato de vídeo.
                 </video>
-
             {% elif file_extension == '.mp3' or file_extension == '.wav' %}
                 {# Prévia para Áudio #}
                 <audio controls style="width: 100%;">
                     <source src="{{ material.arquivo.url }}" type="audio/{{ file_extension|slice:'1:' }}">
                     Seu navegador não suporta o formato de áudio.
                 </audio>
-
             {% else %}
                 {# Fallback para outros formatos (Word, Excel, etc.) #}
                 <div class="unsupported-file">
@@ -47,6 +43,39 @@
     {% else %}
         <p>Nenhum arquivo anexado.</p>
     {% endif %}
+</div>
+
+<hr style="margin-top: 20px;">
+<div class="comments-section">
+    <h2 style="font-family: 'Georgia'; font-size: 30px;">Comentários</h2>
+
+    {% if material.comentarios_habilitados %}
+        {% if user.is_authenticated and user != material.usuario %}
+            <form method="post" action="{% url 'adicionar_comentario' material.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <textarea name="texto" rows="4" class="form-control" placeholder="Adicione seu comentário..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Comentar</button>
+            </form>
+        {% elif not user.is_authenticated %}
+            <p>Faça login para poder comentar.</p>
+        {% endif %}
+    {% else %}
+        <p>Comentários desabilitados pelo autor.</p>
+    {% endif %}
+
+    <div class="comentarios-lista mt-4">
+        {% for comentario in material.comentarios.all %}
+            <div class="card p-3 mb-2">
+                <strong>{{ comentario.autor.username }}</strong>
+                <small class="text-muted">{{ comentario.criado_em|date:"d/m/Y H:i" }}</small>
+                <p>{{ comentario.texto }}</p>
+            </div>
+        {% empty %}
+            <p>Nenhum comentário ainda.</p>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

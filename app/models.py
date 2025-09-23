@@ -25,6 +25,8 @@ class Material(models.Model):
     
     avaliacoes_habilitadas = models.BooleanField(default=False)
 
+    comentarios_habilitados = models.BooleanField(default=False)
+
     colaboracao_habilitada = models.BooleanField(default=False)
     colaboradores_pendentes = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
@@ -43,10 +45,9 @@ class Material(models.Model):
         blank=True
     )
 
-    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  # Define um valor padrão
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
     data_compartilhado = models.DateTimeField(null=True, default=timezone.now)
 
-    
     def __str__(self):
         return self.titulo
     

@@ -20,9 +20,11 @@ urlpatterns = [
     path('histor_pesq/', views.histor_pesq, name="histor_pesq"),
     path('permis_coment/', views.permis_coment, name="permis_coment"),
     path('convit_colabora/', views.convit_colabora, name="convit_colabora"),
-    path('material/<int:material_id>/', views.material_detalhe, name='material_detalhe'),
-    path('material/<int:material_id>/comentar/', views.comentar, name='comentar'),
     path('curtir_material/<int:material_id>/', views.curtir_material, name='curtir_material'),
     
     path('buscar_usuarios/', views.buscar_usuarios, name='buscar_usuarios'),
+    
+    # NOVAS URLS ADICIONADAS AQUI
+    path('material/<int:material_id>/habilitar_comentarios/', views.habilitar_comentarios, name='habilitar_comentarios'),
+    path('material/<int:material_id>/comentar/', views.comentar, name='comentar'),
 ]
