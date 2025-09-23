@@ -53,6 +53,15 @@
                 Permissões:
             </h3>
 
+            <!-- Toggle switch para avaliações -->
+            <div class="form-habit">
+                <label for="id_avaliacoes_habilitadas">Habilitar Avaliações:</label>
+                <label class="switch">
+                    <input type="checkbox" name="avaliacoes_habilitadas" id="id_avaliacoes_habilitadas">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
             <input type="hidden" name="colaborador_id" id="colaborador_id">
             <div class="form-habit">
                 <label for="id_colaboracao_habilitada">Habilitar Colaboração:</label>
@@ -65,14 +74,6 @@
                 <label for="busca_colaborador">Buscar colaborador:</label>
                 <input type="text" id="busca_colaborador" name="busca_colaborador" placeholder="Digite nome ou e-mail">
                 <div id="resultadosBusca" class="resultados-busca"></div>
-            </div>
-
-            <div class="form-habit">
-                <label for="id_colaboracao_habilitada">Habilitar Colaboração:</label>
-                <label class="switch">
-                    <input type="checkbox" name="colaboracao_habilitada" id="id_colaboracao_habilitada">
-                    <span class="slider"></span>
-                </label>
             </div>
 
             <button type="submit">Criar Material</button>
