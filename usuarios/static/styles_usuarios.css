@@ -32,6 +32,22 @@ body::after {
     z-index: -2;
 }
 
+.icon-brand {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.icon-brand::before {
+    content: "🏛️";
+    font-size: 2.9rem;
+}
+
 main {
     flex: 1;
     padding: 70px 40px;
@@ -54,12 +70,19 @@ main p{
 }
 
 /* Perfil */
+.perfil-titulo{
+    font-family: 'Georgia'; 
+    margin-top: 60px; 
+    margin-bottom: 0px; 
+    color: white; 
+}
+
 .perfil-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 110vh;
-    margin-top: 30px;
+    height: 75vh;
+    margin-top: 0px;
     margin-bottom: 30px;
 }
 
@@ -353,27 +376,6 @@ header {
 .dropdown-item:hover {
     transform: translateX(5px);
     background: rgba(255, 255, 255, 0.1);
-}
-
-/* Conteúdo principal */
-.content {
-    text-align: center;
-    top: 630px;
-}
-
-.content h1 {
-    font-size: 15px;
-    font-family: 'Georgia';
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-.content .icon {
-    font-size: 3.5rem;
 }
 
 /* Barra de busca */
