@@ -1,6 +1,6 @@
-# 📚 Biblioteca Virtual - Alexandria
+# 🏛️ Biblioteca Virtual - Alexandria
 
-## 🧠 Sobre
+## 📑 Sobre
 A Biblioteca Virtual é um software que reúne trabalhos acadêmicos em um repositório digital acessível online. Com interface intuitiva e recursos de pesquisa eficientes, facilita o acesso a documentos, artigos, relatórios e vídeos produzidos por alunos do campus, promovendo o conhecimento de forma simples e democrática. 
 
 ## 🛠️ Tecnologias
