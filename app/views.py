@@ -29,9 +29,11 @@ def histor_pesq(request):
     historico = HistoricoPesquisa.objects.filter(usuario=request.user).order_by('-data_pesquisa')
     return render(request, 'config-templates/histor_pesq.html', {'historico': historico})
 
-def permis_coment(request):
-    # Implementar lógica para gerenciar permissões de comentários
-    return render(request, 'config-templates/permis_coment.html')
+def permissoes_avali(request):
+    materiais_permitidos = Material.objects.filter(avaliacoes_habilitadas=True)
+    return render(request, 'config-templates/permissoes_avali.html', {
+        'materiais': materiais_permitidos
+    })
 
 def convit_colabora(request):
     usuario = request.user

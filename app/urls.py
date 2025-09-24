@@ -18,7 +18,7 @@ urlpatterns = [
     path('mat_compart/', views.mat_compart, name="mat_compart"),
     path('avaliacao_receb/', views.avaliacao_receb, name="avaliacao_receb"),
     path('histor_pesq/', views.histor_pesq, name="histor_pesq"),
-    path('permis_coment/', views.permis_coment, name="permis_coment"),
+    path('permissoes_avali/', views.permissoes_avali, name="permissoes_avali"),
     path('convit_colabora/', views.convit_colabora, name="convit_colabora"),
     path('curtir_material/<int:material_id>/', views.curtir_material, name='curtir_material'),
     

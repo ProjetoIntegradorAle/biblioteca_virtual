@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 style="margin-bottom: 50px;">
+    <a class="icon-brand">
+        Materiais com Avaliações Permitidas
+    </a>
+</h1>
+<hr style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
+
+
+{% if materiais %}
+<div class="mat-grid">
+    {% for material in materiais %}
+    <div class="mat-compart">
+        <strong>{{ material.titulo }}</strong><br>
+        {{ material.descricao }}<br>
+        <span style="color: rgb(255, 255, 255);">✅ Avaliações permitidas</span>
+    </div>
+    {% empty %}
+    <p>Nenhum material com avaliações habilitadas.</p>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}
