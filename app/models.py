@@ -74,3 +74,26 @@ class HistoricoPesquisa(models.Model):
 
     def __str__(self):
         return f"{self.termo} ({self.data_pesquisa.strftime('%d/%m/%Y %H:%M')})"
+    
+class ConviteColaboracao(models.Model):
+    material = models.ForeignKey(Material, on_delete=models.CASCADE)
+    remetente = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='convites_enviados'
+    )
+    destinatario = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='convites_recebidos_detalhados'  # <-- nome único
+    )
+    status = models.CharField(max_length=20, choices=[
+        ('pendente', 'Pendente'),
+        ('aceito', 'Aceito'),
+        ('negado', 'Negado')
+    ], default='pendente')
+    data_envio = models.DateTimeField(auto_now_add=True)
+    data_resposta = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"Convite de {self.remetente.username} para {self.destinatario.username} - {self.status}"
