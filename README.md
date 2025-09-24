@@ -7,5 +7,5 @@ A Biblioteca Virtual é um software que reúne trabalhos acadêmicos em um repos
 HTML | CSS | PYTHON | DJANGO
 
 ## 👥 Equipe 
-[Luana Lima](https://github.com/luanatslima)
+[Luana Lima](https://github.com/luanatslima) e 
 [João Victor](https://github.com/jv-victtor)
