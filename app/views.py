@@ -273,3 +273,15 @@ def convites(request):
         'recebidos': recebidos,
         'enviados': enviados
     })
+    
+@login_required
+def publicar_material(request, material_id):
+    material = get_object_or_404(Material, id=material_id)
+    if request.user in material.colaboradores_confirmados.all():
+        material.data_compartilhado = timezone.now()
+        material.save()
+        messages.success(request, "Material publicado com os dois autores.")
+        return redirect('material_detalhe', material_id=material.id)
+    else:
+        messages.error(request, "Você não tem permissão para publicar este material.")
+        return redirect('convites')
