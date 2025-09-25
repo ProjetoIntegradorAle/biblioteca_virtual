@@ -259,7 +259,7 @@ def responder_convite(request, convite_id):
 def convites(request):
     recebidos = ConviteColaboracao.objects.filter(destinatario=request.user)
     enviados = ConviteColaboracao.objects.filter(remetente=request.user)
-    return render(request, 'convites.html', {
+    return render(request, 'config-templates/convites.html', {
         'recebidos': recebidos,
         'enviados': enviados
     })
