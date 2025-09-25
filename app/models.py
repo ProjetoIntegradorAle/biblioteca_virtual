@@ -25,8 +25,6 @@ class Material(models.Model):
     
     avaliacoes_habilitadas = models.BooleanField(default=False)
 
-    comentarios_habilitados = models.BooleanField(default=False)
-
     colaboracao_habilitada = models.BooleanField(default=False)
     colaboradores_pendentes = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
