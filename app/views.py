@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Material, MaterialSalvo, Comentario, HistoricoPesquisa
+from .models import Material, MaterialSalvo, Comentario, HistoricoPesquisa, ConviteColaboracao
 from .forms import MaterialForm
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.utils.http import urlencode
 from django.http import JsonResponse
 from django.contrib.auth.models import User
+from django.utils import timezone
+
 
 def index(request):
     return render(request, 'index.html')
@@ -111,6 +113,16 @@ def meus_materiais(request):
                         messages.warning(request, 'Só é permitido um colaborador por material.')
                     else:
                         novo_material.colaboracao_habilitada = True
+                        novo_material.save()
+                        # Cria o convite
+                        ConviteColaboracao.objects.create(
+                            material=novo_material,
+                            remetente=request.user,
+                            destinatario=colaborador,
+                            status='pendente'
+                        )
+
+                        # Adiciona colaborador pendente
                         novo_material.colaboradores_pendentes.add(colaborador)
                         novo_material.save()
                 except User.DoesNotExist:
@@ -211,3 +223,45 @@ def salvar_material(request, id_material):
         
         return redirect('meus_materiais')
 
+################### Views's para gerenciamento de convites de colaboração ########################
+@login_required
+def enviar_convite(request, id_material):
+    material = get_object_or_404(Material, id_material)
+    if request.method == 'POST':
+        email = request.POST.get('email_colaborador')
+        try:
+            colaborador = User.objects.get(email=email)
+        except User.DoesNotExist:
+            messages.error(request, "Usuário não encontrado.")
+            return redirect('material_detalhe', material_id=material.id)
+
+        convite = ConviteColaboracao.objects.create(
+            material=material,
+            remetente=request.user,
+            colaborador=colaborador
+        )
+        material.colaboradores_pendentes.add(colaborador)
+        material.colaboracao_habilitada = True
+        material.save()
+        messages.success(request, "Convite enviado com sucesso.")
+        return redirect('convites')
+
+
+def responder_convite(request, convite_id):
+    convite = get_object_or_404(ConviteColaboracao, id=convite_id)
+    if request.method == 'POST':
+        resposta = request.POST.get('resposta')
+        convite.status = resposta
+        convite.data_resposta = timezone.now()
+        convite.save()
+
+        material = convite.material
+        if resposta == 'aceito':
+            material.colaboradores_confirmados.add(request.user)
+            material.colaboradores_pendentes.remove(request.user)
+        elif resposta == 'negado':
+            material.colaboradores_pendentes.remove(request.user)
+        material.save()
+        messages.success(request, f"Convite {resposta} com sucesso.")
+        return redirect('convites')
+    
