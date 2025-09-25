@@ -62,6 +62,7 @@
                 </label>
             </div>
 
+            <!-- Checkbox padrão para colaboração -->
             <input type="hidden" name="colaborador_id" id="colaborador_id">
             <div class="form-habit">
                 <label for="id_colaboracao_habilitada">Habilitar Colaboração:</label>
@@ -70,6 +71,8 @@
                     <span class="slider"></span>
                 </label>
             </div>
+
+            <!-- Campo de busca de colaborador -->
             <div id="campoColaborador" style="display: none; margin-top: 10px;">
                 <label for="busca_colaborador">Buscar colaborador:</label>
                 <input type="text" id="busca_colaborador" name="busca_colaborador" placeholder="Digite nome ou e-mail">
@@ -84,11 +87,13 @@
     <div class="content-mat">
         <h2 style="font-family: 'Georgia'; font-size: 35px;" class="titulo">Materiais Salvos</h2>
         
+        <!-- Materiais Salvos: Vídeos -->
         <div class="videos">
             <h2>Vídeos</h2>
             {% for video in videos_salvos %}
             <div class="material-item">
-                <p>{{ video.material.titulo }}</p>  <button><a href="{{ video.material.arquivo.url }}" target="_blank">Abrir</a></button>
+                <p>{{ video.material.titulo }}</p>  
+                <button><a href="{{ video.material.arquivo.url }}" target="_blank">Abrir</a></button>
                 <form action="{% url 'salvar_material' video.material.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-success">Salvar</button>
@@ -99,11 +104,13 @@
             {% endfor %}
         </div>
 
+        <!-- Materiais Salvos: Slides -->
         <div class="slides">
             <h2>Slides</h2>
             {% for slide in slides_salvos %}
             <div class="material-item">
-                <p>{{ slide.material.titulo }}</p>  <button><a href="{{ slide.material.arquivo.url }}" target="_blank">Abrir</a></button>
+                <p>{{ slide.material.titulo }}</p>  
+                <button><a href="{{ slide.material.arquivo.url }}" target="_blank">Abrir</a></button>
                 <form action="{% url 'salvar_material' slide.material.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-success">Salvar</button>
@@ -114,11 +121,13 @@
             {% endfor %}
         </div>
 
+        <!-- Materiais Salvos: Documentos -->
         <div class="documentos">
             <h2>Documentos</h2>
             {% for documento in documentos_salvos %}
             <div class="material-item">
-                <p>{{ documento.material.titulo }}</p>  <button><a href="{{ documento.material.arquivo.url }}" target="_blank">Abrir</a></button>
+                <p>{{ documento.material.titulo }}</p>  
+                <button><a href="{{ documento.material.arquivo.url }}" target="_blank">Abrir</a></button>
                 <form action="{% url 'salvar_material' documento.material.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-success">Salvar</button>
@@ -177,6 +186,7 @@
     </div>
 </div>
 
+<!-- HABILITAR COLABORAÇÃO -->
 <script>
 document.getElementById('id_colaboracao_habilitada').addEventListener('change', function() {
     const campo = document.getElementById('campoColaborador');

@@ -211,16 +211,3 @@ def salvar_material(request, id_material):
         
         return redirect('meus_materiais')
 
-# views.py
-from django.shortcuts import get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
-from .models import Material
-
-@login_required
-def habilitar_comentarios(request, material_id):
-    material = get_object_or_404(Material, pk=material_id)
-    # Apenas o autor do material pode habilitar os comentários
-    if material.usuario == request.user:
-        material.comentarios_habilitados = not material.comentarios_habilitados
-        material.save()
-    return redirect('nome_da_sua_pagina_de_detalhes_do_material') # Redirecione para a página do material
