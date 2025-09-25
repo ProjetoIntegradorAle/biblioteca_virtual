@@ -19,7 +19,7 @@
 <h2 style="font-family: 'Georgia'; margin-top: 30px; margin-bottom: 15px; color: white;">Preferências de Notificação:</h2>
 <div class="botoes-config">
     <button id="btnPermissoesAvaliacao" class="botao-config">Permissões de Avaliações</button>
-    <button id="btnConviteColab" class="botao-config">Convites de Colaboração</button>
+    <button id="btnConvites" class="botao-config">Convites de Colaboração</button>
 </div>
 
 <script>
@@ -35,8 +35,8 @@
     document.getElementById("btnPermissoesAvaliacao").onclick = function() {
         window.location.href = "{% url 'permissoes_avali' %}";
     };
-    document.getElementById("btnConviteColab").onclick = function() {
-        window.location.href = "{% url 'convit_colabora' %}";
+    document.getElementById("btnConvites").onclick = function() {
+        window.location.href = "{% url 'convites' %}";
     };
 </script>
 {% endblock %}
