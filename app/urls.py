@@ -19,7 +19,6 @@ urlpatterns = [
     path('avaliacao_receb/', views.avaliacao_receb, name="avaliacao_receb"),
     path('histor_pesq/', views.histor_pesq, name="histor_pesq"),
     path('permissoes_avali/', views.permissoes_avali, name="permissoes_avali"),
-    path('convit_colabora/', views.convit_colabora, name="convit_colabora"),
     path('curtir_material/<int:material_id>/', views.curtir_material, name='curtir_material'),
     path('material/<int:material_id>/', views.material_detalhe, name='material_detalhe'),
     path('material/<int:material_id>/comentar/', views.comentar, name='comentar'),

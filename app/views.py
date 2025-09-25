@@ -10,7 +10,6 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-
 def index(request):
     return render(request, 'index.html')
 
@@ -35,15 +34,6 @@ def permissoes_avali(request):
     materiais_permitidos = Material.objects.filter(avaliacoes_habilitadas=True)
     return render(request, 'config-templates/permissoes_avali.html', {
         'materiais': materiais_permitidos
-    })
-
-def convit_colabora(request):
-    usuario = request.user
-    materiais = Material.objects.filter(usuario=usuario)
-    convites_recebidos = Material.objects.filter(colaboradores_pendentes=usuario)
-    return render(request, 'config-templates/convit_colabora.html', {
-        'materiais': materiais,
-        'convites_recebidos': convites_recebidos
     })
 
 def save(self, *args, **kwargs):
@@ -246,7 +236,7 @@ def enviar_convite(request, id_material):
         messages.success(request, "Convite enviado com sucesso.")
         return redirect('convites')
 
-
+@login_required
 def responder_convite(request, convite_id):
     convite = get_object_or_404(ConviteColaboracao, id=convite_id)
     if request.method == 'POST':
