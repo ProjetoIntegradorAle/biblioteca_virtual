@@ -11,20 +11,7 @@
 </h1>
 <hr style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
 
-<ul>
-  {% for material in materiais %}
-    {% for colaborador in material.colaboradores_pendentes.all %}
-      <li>{{ colaborador.username }} (Material: {{ material.titulo }})</li>
-    {% endfor %}
-  {% endfor %}
-</ul>
-
 <h2 style="font-family: 'Georgia'; margin-top: 40px; margin-bottom: 18px; color: white;">Convites Recebidos:</h2>
-<ul>
-  {% for material in convites_recebidos %}
-    <li>{{ material.titulo }} - Autor: {{ material.usuario.username }}</li>
-  {% endfor %}
-</ul>
 
 
 {% endblock %}
