@@ -73,10 +73,9 @@
             </div>
 
             <!-- Campo de busca de colaborador -->
-            <div id="campoColaborador" style="display: none; margin-top: 10px;">
-                <label for="busca_colaborador">Buscar colaborador:</label>
-                <input type="text" id="busca_colaborador" name="busca_colaborador" placeholder="Digite nome ou e-mail">
-                <div id="resultadosBusca" class="resultados-busca"></div>
+            <div class="form-group" id="campoColaborador" style="margin-top: 10px;">
+                {{ form.email_colaborador.label_tag }}
+                {{ form.email_colaborador }}
             </div>
 
             <button type="submit">Criar Material</button>
@@ -188,9 +187,16 @@
 
 <!-- HABILITAR COLABORAÇÃO -->
 <script>
-document.getElementById('id_colaboracao_habilitada').addEventListener('change', function() {
-    const campo = document.getElementById('campoColaborador');
-    campo.style.display = this.checked ? 'block' : 'none';
+document.addEventListener('DOMContentLoaded', function () {
+    const colaboracaoCheckbox = document.getElementById('id_colaboracao_habilitada');
+    const campoColaborador = document.getElementById('campoColaborador');
+
+    function toggleCampo() {
+        campoColaborador.style.display = colaboracaoCheckbox.checked ? 'block' : 'none';
+    }
+
+    colaboracaoCheckbox.addEventListener('change', toggleCampo);
+    toggleCampo(); // Executa na carga inicial
 });
 </script>
 
