@@ -7,7 +7,8 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.utils.http import urlencode
 from django.http import JsonResponse
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from django.utils import timezone
 
 def index(request):
@@ -92,11 +93,11 @@ def meus_materiais(request):
 
             # Verifica se colaboração está habilitada
             colaboracao_habilitada = request.POST.get('colaboracao_habilitada')
-            colaborador_id = request.POST.get('colaborador_id')
+            email_colaborador = request.POST.get('email_colaborador')
 
-            if colaboracao_habilitada and colaborador_id:
+            if colaboracao_habilitada and email_colaborador:
                 try:
-                    colaborador = User.objects.get(id=colaborador_id)
+                    colaborador = User.objects.get(email=email_colaborador)
 
                     # Verifica se já há colaborador pendente
                     if novo_material.colaboradores_pendentes.count() >= 1:
