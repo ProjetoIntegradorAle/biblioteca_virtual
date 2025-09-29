@@ -11,9 +11,11 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.utils import timezone
 
+@login_required
 def index(request):
     return render(request, 'index.html')
 
+@login_required
 def sobre(request):
     return render(request, 'sobre.html')
 
