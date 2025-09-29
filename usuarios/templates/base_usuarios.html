@@ -4,13 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'styles_usuarios.css' %}">
-    <title>{% block title %}Autenticação{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'responsive.css' %}">
+    <title>{% block title %}Biblioteca Virtual Alexandria{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    {% block content %}{% endblock %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <header class="navbar">
+    <nav class="navbar-center">
+      <ul id="navMenu">
+        <li><a href="{% url 'index' %}" class="navbar-brand">INÍCIO</a></li>
+        <li><a href="{% url 'configuracoes' %}">CONFIGURAÇÕES</a></li>
+        <li><a href="{% url 'meus_materiais' %}">MEUS MATERIAIS</a></li>
+        <li><a href="{% url 'sobre' %}">SOBRE</a></li>
+        <li><a href="{% url 'perfil' %}">ÁREA DO USUÁRIO</a></li>
+        <li>
+          <form action="{% url 'logout' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">LOGOUT</button>
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+      <div class="content">
+          {% block content %}{% endblock %}
+      </div>
+  </main>
+
+  <footer class="footer">
+    <div style="max-width: 1000px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
+      <div style="flex:1; min-width:200px;">
+        <h3 style="font-family: Georgia;">Biblioteca Virtual Alexandria</h3>
+        <p>Explore. Leia. Descubra.</p>
+      </div>
+      <div style="flex:1; min-width:200px;">
+        <h4 style="font-family: Georgia;">Contato</h4>
+        <p>Email: contato@biblioteca.com</p>
+        <p>WhatsApp: (84) 99999-9999</p>
+      </div>
+      <div style="flex:1; min-width:200px;">
+        <h4 style="font-family: Georgia;">Frase do Dia</h4>
+        <p>“Só sei que nada sei.” – Sócrates</p>
+      </div>
+    </div>
+    <hr style="margin:20px 0; border-color:#7f8c8d;">
+    <p style="text-align:center; font-family: Georgia;">&copy; 2025 Biblioteca Alexandria</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 </body>
 </html>

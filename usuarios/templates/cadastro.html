@@ -1,4 +1,4 @@
-{% extends 'base_usuarios.html' %}
+{% extends 'base_priv.html' %}
 {% load static crispy_forms_filters %}
 {% block title %}Cadastro{% endblock %}
 
@@ -12,17 +12,17 @@
     {% endfor %}
   </div>
 {% endif %}
-<body>
-    <div class="cadastro-container">
-        <div class="cadastro-box">
-            <h1>Alexandria</h1>
-            <form method="post" action="{% url 'cadastro' %}">
-                {% csrf_token %}
-                {{ form.as_p  }}
-                <button type="submit" class="btn-login">Cadastrar</button>
-                <a href="{% url 'login' %}" class="btn-cadastrar">Já tem conta? Faça login</a>
-            </form>
-        </div>
+
+<div class="cadastro-container">
+    <div class="cadastro-box">
+        <h1>Alexandria</h1>
+        <form method="post" action="{% url 'cadastro' %}">
+            {% csrf_token %}
+            {{ form.as_p  }}
+            <button type="submit" class="btn-login">Cadastrar</button>
+            <a href="{% url 'login' %}" class="btn-cadastrar">Já tem conta? Faça login</a>
+        </form>
     </div>
-</body>
+</div>
+
 {% endblock %}
