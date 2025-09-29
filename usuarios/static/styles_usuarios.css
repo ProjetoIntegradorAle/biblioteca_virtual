@@ -32,25 +32,9 @@ body::after {
     z-index: -2;
 }
 
-.icon-brand {
-    font-size: 2.8rem;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    justify-content: center;
-}
-
-.icon-brand::before {
-    content: "🏛️";
-    font-size: 2.9rem;
-}
-
 main {
     flex: 1;
-    padding: 70px 40px;
+    padding: 100px 40px;
     display: flex;
     flex-direction: column;
     gap: 13px;
@@ -60,7 +44,6 @@ main p{
     color: white;
 }
 
-/* Footer */
 .footer {
     text-align: center;
     background-color: #00000042;
@@ -69,38 +52,222 @@ main p{
     width: 100%;
 }
 
-/* Perfil */
-.perfil-titulo{
-    font-family: 'Georgia'; 
-    margin-top: 60px; 
-    margin-bottom: 0px; 
-    color: white; 
+.icon-brand::before {
+    content: "🏛️";
+    font-size: 2.9rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    width: 100%;
+    margin: auto;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 95px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+
+.navbar-left {
+    flex: 0 0 auto;
+    margin-left: 10px;
+}
+
+.navbar-center {
+    flex: 1;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.navbar ul.active {
+    transform: translateX(0);
+    right: 0;
+}
+
+.navbar li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar a,
+.logout-button {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    padding: 7px 9px;
+    font-family: sans-serif;
+    font-size: 14px;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+}
+
+.navbar a:hover,
+.logout-button:hover {
+    transform: scale(1.08);
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+#navMenu a,
+#navMenu button {
+    text-decoration: none;
+    color: white;
+    font-family: sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+table {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.titulos {
+    align-items: flex-start;
+}
+
+.btn.btn-secondary,
+.btn.btn-primary {
+    display: block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 17px;
+    padding-bottom: 3px;
+}
+
+.btn.btn-danger {
+    width: 97%;
+    padding: 8px;
+    margin: 5px auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* PERFIL */
+.perfil-titulo {
+    font-family: 'Georgia';
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 40px;
+    color: white;
+}
+
+.icon-brand {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .perfil-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 110vh;
-    margin-top: 0px;
-    margin-bottom: 30px;
+    margin: 40px auto;
+    width: 100%;
 }
 
 .perfil-box {
-    background-color: rgba(255, 255, 255, 0.1);;
+    background: rgba(255, 255, 255, 0.9);
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 550px;
-    text-align: center;
-    transition: transform 0.3s;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    color: #333;
 }
 
-.perfil-box:hover {
-    transform: translateY(-10px);
+.perfil-box form {
+    display: flex;
+    flex-direction: column;
 }
 
-.perfil-box label{
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    font-family: Georgia, serif;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.btn-salvar {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-salvar:hover {
+    background-color: #45a049;
+}
+
+
+.perfil-box label {
     color: #fffefe;
     font-family: Georgia;
 }
@@ -136,22 +303,22 @@ main p{
     transform: scale(1.05);
 }
 
-.perfil-box input{
+.perfil-box input {
     margin: 8px;
 }
 
 .perfil-box input[type="text"],
 .perfil-box input[type="email"],
 .perfil-box input[type="date"],
-.perfil-box textarea {
+.perfil-box textarea,
+.perfil-box input[type="file"] {
     width: 100%;
     padding: 10px;
     margin: 5px 0 15px 0;
-    display: inline-block;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box;
     font-size: 14px;
+    box-sizing: border-box;
 }
 
 .perfil-box input[type="text"]:focus,
@@ -163,154 +330,12 @@ main p{
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
-.form-row {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.form-row .form-group {
-    flex: 1;
-    min-width: 100px;
-}
-
-.form-group textarea {
-    height: 100px;
-}
-
 input[type="file"] {
     color: white;
     font-size: 14px;
 }
 
-/* Novo container para conteúdo rolável */
-.content-wrapper {
-    position: relative;
-    z-index: 1; /* Garante que o conteúdo fique acima dos backgrounds */
-    min-height: 100vh;
-    overflow-y: auto; /* Habilita scroll vertical quando necessário */
-}
-
-.btn.btn-secondary{
-    display: block;
-    margin-top: 15px;
-    text-decoration: none;
-    color: #000000;
-    font-size: 17px;
-    padding-bottom: 3px;
-}
-
-.btn.btn-primary{
-    display: block;
-    margin-top: 15px;
-    text-decoration: none;
-    color: #000000;
-    font-size: 17px;
-    padding-bottom: 3px;
-}
-
-.btn.btn-danger{
-    width: 97%;
-    padding: 8px;
-    margin: 5px auto;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-table{
-    display: flex;
-    align-items: flex-start;
-    padding: 20px;
-}
-
-.titulos{
-    align-items: flex-start;
-}
-
-/* Cabeçalho */
-header {
-    display: flex;
-    justify-content: space-between; /* Distribui o espaço entre os itens */
-    align-items: center;
-    padding: 10px 5%; /* Adicionei um padding lateral para evitar que os itens encostem nas bordas */
-    width: 100%; /* Defina um limite máximo de largura para o header */
-    margin: auto; /* Centraliza o header na página */
-}
-
-/* Barra de navegação */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-    height: 95px;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.25);
-}
-
-.navbar-left {
-    flex: 0 0 auto;
-    margin-left: 10px;
-}
-
-.navbar-center {
-    flex: 1;
-}
-
-.navbar a:hover {
-    transform: scale(1.08);
-    background-color: #575757;
-    border-radius: 5px;
-}
-
-.navbar ul {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-
-.navbar ul.active {
-    transform: translateX(0);
-    right: 0;
-}
-
-.navbar li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar a, .logout-button {
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    padding: 7px 9px;
-    font-family: sans-serif;
-    font-size: 14px;
-    border-radius: 8px;
-    background-color: transparent;
-    transition: all 0.3s ease;
-    margin-left: 15px;
-}
-
-#navMenu a, #navMenu button {
-    text-decoration: none;
-    color: white;
-    font-family: sans-serif;
-    font-size: 14px;
-    padding: 10px 15px;
-}
-
-/* ICON DO NAV */
+/* Ícone da marca na navbar */
 .navbar-brand {
     font-size: 2.4rem;
     font-weight: bold;
@@ -322,12 +347,13 @@ header {
 }
 
 .navbar-brand::before {
-    margin-left: 0px;
     content: "🏛️";
-    font-size: 2.7rem;
+    font-size: 2.1rem;
+    margin-left: 0;
 }
 
-.logout{
+/* Botão de logout */
+.logout {
     background: none;
     border: none;
     font-weight: bold;
@@ -352,25 +378,20 @@ header {
     border-radius: 5px;
 }
 
-/* Dropdown melhorado */
+/* Dropdown */
 .dropdown-item {
-    min-width: 180px;
-    padding: 1rem 2rem;
-    margin: 0.25rem 0;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 6px;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-    color: #ffffff !important;
-    font-family: Georgia, serif;
     background: transparent;
-    margin: 0;
+    border: none;
     border-radius: 8px;
     font-size: 1rem;
     min-width: 250px;
     text-align: center;
-    border: none;
+    font-family: Georgia, serif;
+    color: #ffffff !important;
     cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 1rem 2rem;
+    margin: 0;
 }
 
 .dropdown-item:hover {
@@ -385,15 +406,19 @@ header {
     justify-content: center;
     align-items: center;
     gap: 5px;
-    background-color: transparent !important;
-    border: none !important;
-    width: 100%; /* Ocupa toda a largura disponível */
-    max-width: 600px; /* Largura máxima ajustável conforme necessidade */
+    width: 100%;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    color: #333;
+    outline: none;
 }
 
-/* Estilização específica para o campo de input */
 .search-bar input[type="text"] {
     width: 100%;
     padding: 12px 20px;
@@ -402,20 +427,18 @@ header {
     transition: all 0.3s ease;
 }
 
-
-/*Botão de Buscar*/
-
 .search-bar input[type="text"]:focus {
     outline: none;
     border-color: #007bff;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
 }
 
+/* Botão de busca */
 .search-btn {
     width: 40px;
     height: 40px;
     border: none;
-    border-radius: 50%; /* Formato totalmente redondo */
+    border-radius: 50%;
     background-color: #007bff;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -451,18 +474,8 @@ header {
     padding: 20px;
 }
 
-.search-bar {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.9);
-    font-size: 14px;
-    outline: none;
-    color: #333;
-}
-
-.redefinir_senha{
+/* Redefinir senha */
+.redefinir_senha {
     background: rgba(255, 255, 255, 0.9);
     padding: 25px;
     border-radius: 8px;
@@ -472,39 +485,45 @@ header {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-.container-senha{
+.container-senha {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.redefinir_senha h2{
+.redefinir_senha h2 {
     font-family: 'Georgia', serif;
     font-size: 27px;
     color: #333;
 }
 
-.redefinir_senha.form-text{
+.redefinir_senha.form-text,
+.form-text {
     display: none;
 }
 
-.form-text{ /* mensagens em Definir Nova Senha password_reset_confirm */
-    display: none;
-}
-
-.text-decoration-none{
+.text-decoration-none {
     text-decoration: none;
     color: #000000;
+    background: #4CAF50;
+    display: block;
+    width: 75%;
+    padding: 8px;
+    margin: 5px auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-.text-center{
+.text-center {
     text-align: center;
     margin-bottom: 20px;
     color: #555;
 }
 
-.passwordinput.form-control{ /* INPUT de Definir nova senha password_reset_confirm */
+.passwordinput.form-control {
     width: 80%;
     padding: 9px;
     margin-bottom: 13px;
@@ -512,34 +531,8 @@ header {
     border-radius: 5px;
 }
 
-.btn.btn-primary{ /* BOTÃO de Refinir nova senha password_reset_confirm */
-    background: #4CAF50;
-    color: white;
-    display: block;
-    width: 75%;
-    padding: 8px;
-    margin: 5px auto;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.text-decoration-none{
-    background: #4CAF50;
-    color: white;
-    display: block;
-    width: 75%;
-    padding: 8px;
-    margin: 5px auto;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    text-decoration: none;
-}
-
-.btn.btn-senha{
+.btn.btn-primary,
+.btn.btn-senha {
     background: #4CAF50;
     color: white;
     display: block;
@@ -560,18 +553,16 @@ header {
     height: 100vh;
 }
 
-/* Caixa de login */
 .login-box {
     background: rgba(255, 255, 255, 0.9);
     padding: 25px;
     border-radius: 8px;
     text-align: center;
     width: 100%;
-    max-width: 340px; /* Define a largura máxima da caixa de login */
+    max-width: 340px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-/* Título */
 .login-box h1 {
     font-size: 28px;
     margin-bottom: 20px;
@@ -583,40 +574,38 @@ header {
 }
 
 .login-box h1:before {
-    content: "\1F3DB"; /* Emoji de templo grego */
+    content: "\1F3DB";
     margin-right: 8px;
     font-size: 32px;
 }
 
-/* Espaçamento entre campos de entrada */
-.login-box .form-group { 
-    margin-bottom: 20px; /* Adiciona espaço entre os campos de entrada */
+.login-box .form-group {
+    margin-bottom: 20px;
 }
 
-/* Campos de entrada */
 .login-box input {
-    width: 80%; /* Define a largura dos campos de entrada */
+    width: 80%;
     padding: 10px;
-    margin-bottom: 13px; /* Adiciona espaço entre os campos de entrada */
+    margin-bottom: 13px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-/* Botões */
-.btn-login, .btn-suap {
-    width: 75%; /* Define a largura dos botões */
+.btn-login,
+.btn-suap {
+    width: 75%;
     padding: 8px;
-    margin: 5px auto; /* Centraliza os botões horizontalmente */
+    margin: 5px auto;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    display: block;
 }
 
 .btn-login {
     background: #4CAF50;
     color: white;
-    display: block;
 }
 
 .btn-suap {
@@ -628,12 +617,10 @@ label {
     color: #333;
 }
 
-/* Remover asteriscos */
 .form-group label::after {
-    content: ""; /* Remove o conteúdo do pseudo-elemento */
+    content: "";
 }
 
-/* Estilo dos campos */
 .input-group {
     margin-bottom: 15px;
     text-align: left;
@@ -653,6 +640,7 @@ label {
     border-radius: 5px;
     font-size: 16px;
 }
+
 
 /* Botão cadastrar */
 .btn-cadastrar {
@@ -685,9 +673,7 @@ label {
     color: #000;
 }
 
-/*CADASTRE-SE/*
-
-/* Container principal */
+/* Container principal do cadastro */
 .cadastro-container {
     display: flex;
     justify-content: center;
@@ -701,14 +687,14 @@ label {
     padding: 25px;
     border-radius: 8px;
     text-align: center;
-    max-width: 600px; /* Define a largura máxima da caixa de login */
+    max-width: 600px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-.cadastro-box input{
-    width: 80%; /* Define a largura dos campos de entrada */
+.cadastro-box input {
+    width: 80%;
     padding: 10px;
-    margin-bottom: 13px; /* Adiciona espaço entre os campos de entrada */
+    margin-bottom: 13px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -729,12 +715,13 @@ label {
     color: #000;
 }
 
-.helptext{
+/* Ocultar textos de ajuda */
+.helptext {
     visibility: hidden;
     display: none;
 }
 
-/* Título */
+/* Título do cadastro */
 .cadastro-box h1 {
     font-size: 28px;
     margin-bottom: 20px;
@@ -746,21 +733,20 @@ label {
 }
 
 .cadastro-box h1:before {
-    content: "\1F3DB"; /* Emoji de templo grego */
+    content: "\1F3DB";
     margin-right: 8px;
     font-size: 32px;
 }
 
-/* recuperar senha */
-.password-reset-container{
+/* Recuperar senha */
+.password-reset-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    
 }
 
-.password-reset-box{
+.password-reset-box {
     background: rgba(255, 255, 255, 0.9);
     padding: 25px;
     border-radius: 8px;
@@ -771,53 +757,57 @@ label {
     color: #000;
 }
 
-.btn-login-password{
-    border: none;
+.password-reset-box h1 {
+    font-family: 'Georgia', serif;
+    font-size: 27px;
+}
+
+.password-reset-box input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 13px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
+}
+
+.emailinput.form-control {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 13px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-label.requiredField {
+    cursor: default;
+}
+
+/* Botão redefinir senha */
+.btn-login-password {
     background: #4CAF50;
     color: white;
     display: block;
     width: 75%;
     padding: 9px;
     margin: 5px auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     font-size: 15px;
 }
 
-.emailinput.form-control{
-    width: 80%;
-    padding: 10px;
-    margin-bottom: 13px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.form-label.requiredField{
-    cursor: default;
-}
-
-.password-reset-box input{
-    width: 80%;
-    padding: 10px;
-    margin-bottom: 13px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.password-reset-box h1{
-    font-family: 'Georgia', serif;
-    font-size: 27px;
-}
-
-/* mensagem de aviso login e cadastro */
-.cadastro-box ul li{
+/* Mensagem de aviso login e cadastro */
+.cadastro-box ul li {
     color: #457a3b;
     display: none;
 }
 
-.errorlist.nonfield li{
+.errorlist.nonfield li {
     color: #555;
     display: block;
     text-align: center;
+}
+
+body {
+    overflow-x: hidden;
 }
