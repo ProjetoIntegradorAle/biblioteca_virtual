@@ -1,0 +1,501 @@
+@media (max-width: 768px) {
+  main {
+    padding: 60px 20px;
+    gap: 10px;
+  }
+
+  .footer {
+    padding: 30px 15px;
+  }
+
+  .container-mat {
+    padding: 15px 10px;
+    gap: 30px;
+  }
+
+  .add-material {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .add-material h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .add-material input,
+  .add-material select,
+  .add-material textarea,
+  .add-material button {
+    font-size: 14px;
+  }
+
+  .form-habit {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-habit label {
+    margin-left: 0;
+  }
+
+  .content-mat {
+    margin-left: 20px;
+    margin-right: 20px;
+    gap: 15px;
+  }
+
+  .content-mat h2 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .videos, .slides, .documentos {
+    padding: 15px;
+  }
+
+  .material-item button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .materiais-criados-container {
+    margin-bottom: 80px;
+    padding: 0 20px;
+  }
+
+  .materiais-criados-container .titulo-principal {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .material-card {
+    padding: 15px;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .card-actions .btn {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-body {
+    padding: 15px;
+  }
+
+  .btn-outline-secondary,
+  .btn-outline-danger,
+  .btn-primary {
+    font-size: 14px;
+  }
+
+  .comentarios-grid {
+    gap: 15px;
+  }
+
+  .comentario-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+
+  .config h1 {
+    font-size: 2rem;
+    text-align: center;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .avalia-receb,
+  .mat-grid {
+    grid-template-columns: 1fr;
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+
+  .avalia-receb-item,
+  .mat-compart {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .content-config {
+    padding: 1rem;
+  }
+
+  .botao-config {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .botoes-config {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sobre h1 {
+    font-size: 1.8rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .sobre .s_texto {
+    font-size: 1rem;
+    margin: 20px 0;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .image-container {
+    margin-top: 30px;
+  }
+
+  .file-container {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .btn-download {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .visualizar-card {
+    padding: 2rem;
+    margin: 10px;
+  }
+
+  .mensagem {
+    text-align: center;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 0 15px;
+  }
+
+  .btn.btn-secondary,
+  .btn.btn-primary {
+    font-size: 15px;
+    padding-bottom: 2px;
+  }
+
+  .btn.btn-danger {
+    width: 100%;
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  table {
+    padding: 10px;
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 15px;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #navMenu a,
+  #navMenu button,
+  .logout-button {
+    font-size: 13px;
+    padding: 8px 12px;
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .icon-brand,
+  .navbar-brand {
+    font-size: 1.8rem;
+    gap: 0.3rem;
+  }
+
+  .icon-brand::before,
+  .navbar-brand::before {
+    content: "🏛️";
+    font-size: 2rem;
+  }
+
+  .dropdown-item {
+    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
+    min-width: 100%;
+  }
+
+  .content h1 {
+    font-size: 1rem;
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
+
+  .search-bar-busca {
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 30px auto;
+    padding: 10px;
+  }
+
+  .search-bar-busca form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-bar-busca input[type="text"] {
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 18px;
+  }
+
+  .search-btn-busca {
+    width: 40px;
+    height: 40px;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .search-btn-busca::before {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    flex-direction: row; /* Mantém os elementos lado a lado */
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  .search-bar form {
+    display: flex;
+    flex-direction: row; /* Alinha campo e botão horizontalmente */
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .search-bar input[type="text"] {
+    flex: 1;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 18px;
+  }
+
+  .search-btn {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .search-btn::before {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Mantém os demais estilos como estavam */
+  .materiais-container {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .material-resultado {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem;
+    margin: 10px 0;
+  }
+
+  .card-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-salvar,
+  .btn-abrir-modal {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  .materiais-criados-container {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .titulo-principal {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .material-card {
+    padding: 1rem;
+  }
+
+  .card-content h3 {
+    font-size: 1rem;
+  }
+
+  .autor, .descricao {
+    font-size: 0.85rem;
+  }
+
+  .tipo {
+    font-size: 13px;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  .material-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-container {
+    padding: 20px;
+    height: auto;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-box {
+    padding: 20px;
+    max-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .login-box h1 {
+    font-size: 22px;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .login-box h1:before {
+    font-size: 28px;
+    margin-bottom: 5px;
+  }
+
+  .login-box input {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .btn-login,
+  .btn-suap {
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .btn-cadastrar {
+    font-size: 15px;
+  }
+
+  .forgot-password {
+    font-size: 15px;
+  }
+
+  .cadastro-container {
+    flex-direction: column;
+    padding: 20px;
+    height: auto;
+  }
+
+  .cadastro-box {
+    padding: 20px;
+    max-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .cadastro-box h1 {
+    font-size: 22px;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .cadastro-box h1:before {
+    font-size: 28px;
+    margin-bottom: 5px;
+  }
+
+  .cadastro-box input {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .btn-voltar {
+    font-size: 20px;
+    top: 10px;
+    left: 10px;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .step-links a,
+  .step-links span {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+
+  .alert.alert-success {
+    margin-left: 0;
+    font-size: 14px;
+  }
+
+  .btn.btn-comentenv {
+    font-size: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
