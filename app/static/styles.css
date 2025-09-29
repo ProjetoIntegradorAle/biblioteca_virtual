@@ -10,14 +10,14 @@ body, html {
 
 body::before {
     content: '';
-    position: relative;
+    position: fixed; /* Mantém fixed para blur estático */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: url('/static/img/foto_fundo.jpg') center center/cover;
     filter: blur(8px);
-    z-index: 0;
+    z-index: -2; /* Camada mais baixa */
     transform: scale(1.05);
 }
 
@@ -179,9 +179,6 @@ input:checked + .slider:before {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
-    margin-left: 70px;
-    margin-right: 70px;
-
 }
 
 .content-mat h2 {
@@ -490,19 +487,6 @@ input:checked + .slider:before {
     margin: 18px;
 }
 
-body::before {
-    content: '';
-    position: fixed; /* Mantém fixed para blur estático */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('/static/img/foto_fundo.jpg') center center/cover;
-    filter: blur(8px);
-    z-index: -2; /* Camada mais baixa */
-    transform: scale(1.05);
-}
-
 .mensagem{
     align-items: center;
 }
@@ -662,7 +646,7 @@ header {
 .navbar-brand::before {
     margin-left: 0px;
     content: "🏛️";
-    font-size: 2.7rem;
+    font-size: 2.1rem;
 }
 
 .logout{
