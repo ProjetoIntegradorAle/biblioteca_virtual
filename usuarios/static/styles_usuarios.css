@@ -219,14 +219,12 @@ table {
 
 .form-group {
     margin-bottom: 20px;
-    text-align: left;
 }
 
 .form-group label {
-    font-weight: bold;
     margin-bottom: 8px;
     display: block;
-    font-family: Georgia, serif;
+    font-family: Arial, sans-serif;;
     color: #333;
 }
 
