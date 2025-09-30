@@ -11,24 +11,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <header class="navbar">
+  <header class="navbar d-flex justify-content-between align-items-center px-4">
     <!-- Menu de navegação -->
     <nav class="navbar-center">
-      <ul id="navMenu">
-        <li><a href="{% url 'index' %}" class="navbar-brand">INÍCIO</a></li>
-        <li><a href="{% url 'configuracoes' %}">CONFIGURAÇÕES</a></li>
-        <li><a href="{% url 'meus_materiais' %}">MEUS MATERIAIS</a></li>
-        <li><a href="{% url 'sobre' %}">SOBRE</a></li>
-        <li><a href="{% url 'perfil' %}">ÁREA DO USUÁRIO</a></li>
-        <!--<li><a href="{% url 'login' %}">LOGIN</a></li>-->
+      <ul id="navMenu" class="nav">
+        <li class="nav-item"><a href="{% url 'index' %}" class="nav-brand">INÍCIO</a></li>
+        <li class="nav-item"><a href="{% url 'meus_materiais' %}" class="nav-link">MEUS MATERIAIS</a></li>
+        <li class="nav-item"><a href="{% url 'sobre' %}" class="nav-link">SOBRE</a></li>
+      </ul>
+    </nav>
+
+    <!-- Menu do usuário -->
+    <div class="dropdown">
+      <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        👤 Usuário
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" href="#">ÁREA DO USUÁRIO</a></li>
+        <li><a class="dropdown-item" href="#">CONFIGURAÇÕES</a></li>
+        <li><hr class="dropdown-divider"></li>
         <li>
-          <form action="{% url 'logout' %}" method="POST">
-            {% csrf_token %}
-            <button type="submit" class="logout-button">LOGOUT</button>
+          <form action="#" method="POST" class="px-3">
+            <button type="submit" class="btn btn-link text-danger p-0">LOGOUT</button>
           </form>
         </li>
       </ul>
-    </nav>
+    </div>
   </header>
 
   <main>

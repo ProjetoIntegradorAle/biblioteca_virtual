@@ -1,12 +1,50 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    color: white;
+body {
+  margin: 0;
+  padding: 0;
+  background: url('/static/img/foto_fundo.jpg') center center / cover no-repeat fixed;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow-x: hidden;
 }
+
+header {
+  position: relative;
+  z-index: 100;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  transform: scale(1.05);
+  background-color: #575757;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.dropdown-menu {
+  background-color: #1c1c1c;
+  border: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  min-width: 200px;
+}
+
+.dropdown-item {
+  color: white;
+}
+
+.dropdown-item:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.btn-outline-light {
+  font-weight: bold;
+}
+
 
 body::before {
     content: '';
@@ -536,16 +574,6 @@ table{
     align-items: flex-start;
 }
 
-/* Cabeçalho */
-header {
-    display: flex;
-    justify-content: space-between; /* Distribui o espaço entre os itens */
-    align-items: center;
-    padding: 10px 5%; /* Adicionei um padding lateral para evitar que os itens encostem nas bordas */
-    width: 100%; /* Defina um limite máximo de largura para o header */
-    margin: auto; /* Centraliza o header na página */
-}
-
 /* Barra de navegação */
 .navbar {
     display: flex;
@@ -560,10 +588,6 @@ header {
 .navbar-left {
     flex: 0 0 auto;
     margin-left: 10px;
-}
-
-.navbar-center {
-    flex: 1;
 }
 
 .navbar a:hover {
@@ -674,7 +698,7 @@ header {
     border-radius: 5px;
 }
 
-/* Dropdown melhorado */
+/* Dropdown melhorado 
 .dropdown-item {
     min-width: 180px;
     padding: 1rem 2rem;
@@ -698,7 +722,7 @@ header {
 .dropdown-item:hover {
     transform: translateX(5px);
     background: rgba(255, 255, 255, 0.1);
-}
+} */
 
 .content {
     text-align: center;
@@ -1321,3 +1345,7 @@ label {
 .step-links .current {
     font-weight: bold;
 }
+
+/* MENU */
+
+

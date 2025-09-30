@@ -206,12 +206,6 @@
     display: block;
   }
 
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 20px;
-  }
-
   .navbar {
     flex-direction: column;
     height: auto;
@@ -289,6 +283,25 @@
     height: 18px;
   }
 }
+
+@media (max-width: 768px) {
+  header {
+    padding: 10px 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown-menu {
+    right: 0;
+    left: auto;
+    position: absolute;
+  }
+
+  .dropdown-wrapper {
+    padding-right: 10px;
+  }
+}
+
 
 @media (max-width: 768px) {
   .search-bar {
