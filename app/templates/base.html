@@ -27,12 +27,13 @@
         👨‍🏫 Usuário
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
-        <li><a class="dropdown-item" href="#">👤 ÁREA DO USUÁRIO</a></li>
-        <li><a class="dropdown-item" href="#">⚙️ CONFIGURAÇÕES</a></li>
+        <li><a class="dropdown-item" href="{% url 'perfil' %}">👤 ÁREA DO USUÁRIO</a></li>
+        <li><a class="dropdown-item" href="{% url 'configuracoes' %}">⚙️ CONFIGURAÇÕES</a></li>
         <li><hr class="dropdown-divider"></li>
         <li>
-          <form action="#" method="POST" class="px-3">
-            <button type="submit" class="btn btn-link text-danger p-0">LOGOUT</button>
+          <form action="{% url 'logout' %}" method="POST" class="px-3">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">LOGOUT</button>
           </form>
         </li>
       </ul>
