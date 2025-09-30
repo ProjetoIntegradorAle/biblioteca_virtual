@@ -597,7 +597,6 @@ table{
 }
 
 .navbar ul {
-    display: flex;
     justify-content: space-evenly;
     align-items: center;
     list-style: none;
@@ -629,7 +628,6 @@ table{
 
 .navbar a, .logout-button {
     text-decoration: none;
-    color: white;
     font-weight: 600;
     padding: 7px 9px;
     font-family: sans-serif;
