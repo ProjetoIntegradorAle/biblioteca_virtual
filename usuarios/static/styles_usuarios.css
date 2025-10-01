@@ -1,23 +1,61 @@
-body, html {
+body {
     margin: 0;
     padding: 0;
+    background: url('/static/img/foto_fundo.jpg') center center / cover no-repeat fixed;
     font-family: Arial, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    color: white;
+    overflow-x: hidden;
+}
+
+header {
+    position: relative;
+    z-index: 100;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    transform: scale(1.05);
+    background-color: #575757;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.dropdown-menu {
+    background-color: #1c1c1c;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    min-width: 200px;
+}
+
+.dropdown-item {
     color: white;
 }
 
+.dropdown-item:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.btn-outline-light {
+    font-weight: bold;
+}
+
+
 body::before {
     content: '';
-    position: fixed;
+    position: fixed; /* Mantém fixed para blur estático */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('img/foto_fundo.jpg') center center/cover;
+    background: url('/static/img/foto_fundo.jpg') center center/cover;
     filter: blur(8px);
-    z-index: -2;
+    z-index: -2; /* Camada mais baixa */
     transform: scale(1.05);
 }
 
@@ -43,6 +81,7 @@ main {
 main p{
     color: white;
 }
+
 
 .footer {
     text-align: center;
@@ -217,15 +256,45 @@ table {
     flex-direction: column;
 }
 
-.form-group {
-    margin-bottom: 20px;
+textarea {
+    min-height: 120px;
+    resize: vertical;
 }
 
+
+.textarea-bio {
+    width: 100%;
+    height: 150px;
+    resize: vertical; /* permite redimensionar verticalmente */
+}
+
+.form-control{
+    display: flex;
+    width: 300px;
+    text-align: center;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.form-group {
+    display: flex !important;
+    flex-direction: column !important;
+    margin-bottom: 15px;
+}
+  
 .form-group label {
-    margin-bottom: 8px;
-    display: block;
-    font-family: Arial, sans-serif;;
-    color: #333;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .form-group input,
