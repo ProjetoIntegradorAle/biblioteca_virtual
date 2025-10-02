@@ -209,9 +209,58 @@ table {
     font-family: 'Georgia';
     font-size: 2rem;
     text-align: center;
-    margin-top: 40px;
     color: white;
 }
+
+.perfil-edite {
+    text-align: center;
+    margin-top: 40px;
+    color: white;
+    padding: 0 20px;
+}
+
+.perfil-edite h3 {
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.button-edite {
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 10px;
+    padding: 10px 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(100, 105, 110);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.button-edite a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.button-edite:hover {
+    background-color: rgb(80, 85, 90);
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .perfil-edite h3 {
+        font-size: 1rem;
+    }
+
+    .button-edite {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+
 
 .icon-brand {
     font-size: 2.5rem;
@@ -231,7 +280,7 @@ table {
 }
 
 .perfil-box {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255 255 255 / 8%);
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -375,6 +424,7 @@ textarea {
     border-radius: 5px;
     font-size: 14px;
     box-sizing: border-box;
+    color: black;
 }
 
 .perfil-box input[type="text"]:focus,

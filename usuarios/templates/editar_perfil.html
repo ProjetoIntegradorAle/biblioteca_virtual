@@ -1,0 +1,28 @@
+{% extends 'base_usuarios.html' %}
+{% load static %}
+{% block title %}Perfil{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+  <div class="mensagem">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<h1 class="perfil-titulo">
+    <span class="icon-brand">Perfil</span>
+</h1>
+
+<div class="perfil-edite">
+  <h3>Deseja editar seu perfil?</h3>
+  <button class="button-edite">
+    <a href="{% url 'perfil' %}">Edite-o ✏️</a>
+  </button>
+</div>
+
+{% endblock %}

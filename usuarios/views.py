@@ -63,3 +63,6 @@ def alterar_senha(request):
         form = PasswordChangeForm(request.user)
     
     return render(request, 'password_change_done.html', {'form': form})
+
+def editar_perfil(request):
+    return render(request, 'editar_perfil.html')
