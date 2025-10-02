@@ -29,22 +29,60 @@ header {
     background-color: #1c1c1c;
     border: none;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    min-width: 200px;
+    min-width: 200px !important; 
+    padding-top: 6px !important;
 }
 
 .dropdown-item {
     color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 30px 35px;
+    white-space: nowrap;
 }
 
 .dropdown-item:hover {
+    background-color: transparent !important; /* remove o fundo cinza */
+    color: rgb(0, 0, 0) !important; /* mantém a cor do texto */
+    transform: scale(1.05) !important; /* aplica o zoom */
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    color: black;
+    font-family: sans-serif;
+    padding: 10px 15px;
+    width: 100%;
+    font-size: 14px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.logout-button:hover {
     background-color: #333;
     color: #fff;
+    background-color: transparent !important; /* remove o fundo cinza */
+    color: rgb(0, 0, 0) !important; /* mantém a cor do texto */
+    transform: scale(1.05) !important;
+}
+
+.logout{
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
 }
 
 .btn-outline-light {
     font-weight: bold;
 }
-
 
 body::before {
     content: '';
@@ -456,53 +494,6 @@ input[type="file"] {
     content: "🏛️";
     font-size: 2.1rem;
     margin-left: 0;
-}
-
-/* Botão de logout */
-.logout {
-    background: none;
-    border: none;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-}
-
-.logout-button {
-    background: none;
-    border: none;
-    color: white;
-    font-family: sans-serif;
-    font-size: 14px;
-    padding: 10px 15px;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.logout-button:hover {
-    transform: scale(1.08);
-    background-color: #575757;
-    border-radius: 5px;
-}
-
-/* Dropdown */
-.dropdown-item {
-    background: transparent;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    min-width: 250px;
-    text-align: center;
-    font-family: Georgia, serif;
-    color: #ffffff !important;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    padding: 1rem 2rem;
-    margin: 0;
-}
-
-.dropdown-item:hover {
-    transform: translateX(5px);
-    background: rgba(255, 255, 255, 0.1);
 }
 
 /* Barra de busca */
