@@ -418,9 +418,7 @@ input:checked + .slider:before {
 }
 
 .avalia-receb{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+    text-align: left;
     padding: 1rem;
 }
 
@@ -446,6 +444,11 @@ input:checked + .slider:before {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
     padding: 1rem;
+}
+
+.mat-grid li{
+    color: white;
+    list-style-type: none;
 }
 
 .mat-compart {
