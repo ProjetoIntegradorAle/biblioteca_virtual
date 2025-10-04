@@ -1333,3 +1333,63 @@ label {
 .step-links .current {
     font-weight: bold;
 }
+
+.comments-section h2{
+    color: white;
+}
+
+/* CONVITES DE COLABORAÇÃO - BOTÕES E STATUS */
+
+/* Botões padrão 
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: background-color 0.3s ease;
+}*/
+
+/* Botão verde */
+.btn-aceitar {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-aceitar:hover {
+  background-color: #218838;
+}
+
+/* Botão vermelho */
+.btn-negar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-negar:hover {
+  background-color: #c82333;
+}
+
+/* Botão branco */
+.btn-visualizar {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.btn-visualizar:hover {
+  background-color: #f0f0f0;
+}
+
+/* Status */
+.status-pendente {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.status-aceito {
+  color: #28a745;
+  font-weight: bold;
+}
+
