@@ -1340,45 +1340,87 @@ label {
 
 /* CONVITES DE COLABORAÇÃO - BOTÕES E STATUS */
 
-/* Botão verde */
+/* BOTÕES DE AÇÃO */
+
+.btn-c {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px 5px 0 0;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  min-width: 120px;
+}
+
+/* Botão verde — Aceitar */
 .btn-aceitar {
-  background-color: #28a745;
-  color: white;
+    background-color: #28a745;
+    color: #fff;
+    border-color: #28a745;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
 .btn-aceitar:hover {
   background-color: #218838;
+  border-color: #218838;
 }
 
-/* Botão vermelho */
+/* Botão vermelho — Negar */
 .btn-negar {
   background-color: #dc3545;
-  color: white;
+  color: #fff;
+  border-color: #dc3545;
 }
 
 .btn-negar:hover {
   background-color: #c82333;
+  border-color: #c82333;
 }
 
-/* Botão branco */
+/* Botão branco — Visualizar */
 .btn-visualizar {
-  background-color: white;
+  background-color: #fff;
   color: #333;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
 }
 
 .btn-visualizar:hover {
-  background-color: #f0f0f0;
+  background-color: #f9f9f9;
+  border-color: #bbb;
 }
 
-/* Status */
+/* STATUS DO CONVITE */
+
 .status-pendente {
   color: #dc3545;
   font-weight: bold;
+  font-size: 15px;
+  margin-top: 8px;
+  display: inline-block;
 }
 
 .status-aceito {
   color: #28a745;
   font-weight: bold;
+  font-size: 15px;
+  margin-top: 8px;
+  display: inline-block;
 }
+
+.status-negado {
+  color: #6c757d;
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 8px;
+  display: inline-block;
+}
+
 
