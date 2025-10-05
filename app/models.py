@@ -13,6 +13,11 @@ class Material(models.Model):
         (VIDEO, 'Vídeo'),
         (DOCUMENTO, 'Documento'),
     ]
+    STATUS_CHOICES = [
+        ('rascunho', 'Rascunho'),
+        ('aguardando', 'Aguardando colaboração'),
+        ('publicado', 'Publicado'),
+    ]
     
     autor = models.CharField(max_length=100)
     descricao = models.TextField(max_length=100)
@@ -45,6 +50,7 @@ class Material(models.Model):
     )
 
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='rascunho')
     data_compartilhado = models.DateTimeField(null=True, default=timezone.now)
 
     def __str__(self):

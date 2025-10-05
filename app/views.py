@@ -83,6 +83,7 @@ def curtir_material(request, material_id):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 #################################### COMENTÁRIOS-CURTIDAS ##########################################
 
+
 @login_required
 def meus_materiais(request):
     if request.method == 'POST':
@@ -91,7 +92,10 @@ def meus_materiais(request):
             novo_material = form.save(commit=False)
             novo_material.usuario = request.user
             novo_material.autor = request.user.username
-            novo_material.save()
+
+            # Define status inicial como rascunho
+            novo_material.status = 'rascunho'
+            novo_material.save()  # Para salvar primeiro e então gerar o ID
 
             # Verifica se colaboração está habilitada
             colaboracao_habilitada = request.POST.get('colaboracao_habilitada')
@@ -101,13 +105,14 @@ def meus_materiais(request):
                 try:
                     colaborador = User.objects.get(email=email_colaborador)
 
-                    # Verifica se já há colaborador pendente
                     if novo_material.colaboradores_pendentes.count() >= 1:
                         messages.warning(request, 'Só é permitido um colaborador por material.')
                     else:
                         novo_material.colaboracao_habilitada = True
-                        novo_material.save()
-                        # Cria o convite
+                        novo_material.status = 'aguardando'
+                        novo_material.save()  # Para atualizar status
+
+                        # Cria convite
                         ConviteColaboracao.objects.create(
                             material=novo_material,
                             remetente=request.user,
@@ -115,11 +120,14 @@ def meus_materiais(request):
                             status='pendente'
                         )
 
-                        # Adiciona colaborador pendente
+                        # Material com ID --> Adiciona colaborador
                         novo_material.colaboradores_pendentes.add(colaborador)
-                        novo_material.save()
                 except User.DoesNotExist:
                     messages.warning(request, 'Colaborador não encontrado.')
+            else:
+                novo_material.status = 'publicado'
+                novo_material.save()
+
 
             messages.success(request, 'Material criado com sucesso!')
             return redirect('meus_materiais')
@@ -128,7 +136,8 @@ def meus_materiais(request):
     else:
         form = MaterialForm()
 
-    materiais_criados = Material.objects.filter(usuario=request.user)
+    # Filtra apenas materiais publicados
+    materiais_criados = Material.objects.filter(usuario=request.user, status='publicado')
     paginator = Paginator(materiais_criados, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -144,6 +153,7 @@ def meus_materiais(request):
         'videos_salvos': videos_salvos,
         'slides_salvos': slides_salvos,
     })
+
 
 @login_required
 def visualizar_material(request, id_material):
@@ -270,11 +280,19 @@ def convites(request):
 @login_required
 def publicar_material(request, material_id):
     material = get_object_or_404(Material, id=material_id)
-    if request.user in material.colaboradores_confirmados.all():
+
+    # Verifica se o usuário é colaborador confirmado
+    convite = ConviteColaboracao.objects.filter(material=material, destinatario=request.user, status='aceito').first()
+    if convite:
+        # Confirma colaboração
+        material.colaboradores_confirmados.add(request.user)
+        material.status = 'publicado'
         material.data_compartilhado = timezone.now()
         material.save()
-        messages.success(request, "Material publicado com os dois autores.")
-        return redirect('material_detalhe', material_id=material.id)
+
+        messages.success(request, "Material publicado com sucesso!")
+        return redirect('meus_materiais')
     else:
         messages.error(request, "Você não tem permissão para publicar este material.")
         return redirect('convites')
+
