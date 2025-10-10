@@ -1,69 +1,37 @@
-/* Responsividade para telas menores */
+/* Responsividade geral */
 @media (max-width: 768px) {
-  main {
-    padding: 60px 20px;
-  }
-
-  .dropdown-item {
-    padding: 15px 20px;
-    font-size: 14px;
-  }
-
-  .nav-link {
-    padding: 8px;
-    font-size: 14px;
-  }
-
-  .logout-button {
-    font-size: 12px;
-    padding: 8px 10px;
-  }
-
-  .footer {
-    padding: 30px 15px;
-    font-size: 14px;
-  }
-}
-
-/* Ajustes para telas muito pequenas */
-@media (max-width: 480px) {
-  main {
-    padding: 40px 15px;
-  }
-
-  .dropdown-menu {
-    min-width: 100% !important;
-  }
-
-  .dropdown-item {
+  header {
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px 15px;
+    padding: 20px;
   }
 
-  .nav-link {
-    display: block;
-    margin-bottom: 10px;
+  .navbar-center {
+    width: 100%;
   }
 
-  .footer {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 768px) {
-  main {
-    padding: 60px 20px;
+  #navMenu {
+    flex-direction: column;
     gap: 10px;
   }
 
-  .footer {
-    padding: 30px 15px;
+  .dropdown {
+    width: 100%;
+    margin-top: 10px;
   }
 
-  .container-mat {
-    padding: 15px 10px;
-    gap: 30px;
+  main {
+    padding: 60px 20px;
+  }
+
+  .footer > div {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer > div > div {
+    margin-bottom: 20px;
   }
 
   .add-material {
@@ -71,16 +39,14 @@
     max-width: 100%;
   }
 
-  .add-material h2 {
-    font-size: 20px;
-    text-align: center;
+  .dropdown-item {
+    padding: 15px 20px;
+    font-size: 14px;
   }
 
-  .add-material input,
-  .add-material select,
-  .add-material textarea,
-  .add-material button {
-    font-size: 14px;
+  .logout-button {
+    font-size: 13px;
+    padding: 8px 12px;
   }
 
   .form-habit {
@@ -88,42 +54,22 @@
     align-items: flex-start;
   }
 
-  .form-habit label {
-    margin-left: 0;
+  .switch {
+    width: 45px;
+    height: 24px;
   }
 
-  .content-mat {
-    margin-left: 20px;
-    margin-right: 20px;
-    gap: 15px;
+  .slider:before {
+    height: 18px;
+    width: 18px;
   }
 
-  .content-mat h2 {
-    font-size: 22px;
-    text-align: center;
-  }
-
-  .videos, .slides, .documentos {
-    padding: 15px;
-  }
-
-  .material-item button {
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  .materiais-criados-container {
-    margin-bottom: 80px;
-    padding: 0 20px;
+  input:checked + .slider:before {
+    transform: translateX(21px);
   }
 
   .materiais-criados-container .titulo-principal {
-    font-size: 22px;
-    text-align: center;
-  }
-
-  .material-card {
-    padding: 15px;
+    font-size: 24px;
   }
 
   .card-actions {
@@ -134,68 +80,86 @@
   .card-actions .btn {
     width: 100%;
     text-align: center;
+  }
+}
+
+/* Responsividade para telas muito pequenas */
+@media (max-width: 480px) {
+  .add-material h2,
+  .materiais-criados-container .titulo-principal {
+    font-size: 20px;
+  }
+
+  .content-mat h2 {
+    font-size: 22px;
+  }
+
+  .material-item button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .card-content {
+    font-size: 14px;
+  }
+
+  .footer {
+    padding: 30px 10px;
+  }
+
+  .footer p {
     font-size: 14px;
   }
 }
 
 @media (max-width: 768px) {
+  /* Modal */
   .modal-body {
     padding: 15px;
+  }
+
+  .modal-body img {
+    width: 100%;
+    height: auto;
   }
 
   .btn-outline-secondary,
   .btn-outline-danger,
   .btn-primary {
     font-size: 14px;
+    padding: 10px;
   }
 
+  /* Comentários */
   .comentarios-grid {
+    flex-direction: column;
     gap: 15px;
   }
 
-  .comentario-card {
-    flex: 1 1 100%;
-    max-width: 100%;
-    font-size: 0.95rem;
-    padding: 12px;
-  }
-
+  /* Configurações */
   .config h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     text-align: center;
     flex-direction: column;
-    gap: 5px;
   }
 
-  .avalia-receb,
-  .mat-grid {
-    grid-template-columns: 1fr;
-    padding: 0.5rem;
-    gap: 1rem;
-  }
-
-  .avalia-receb-item,
-  .mat-compart {
-    padding: 1rem;
-    font-size: 1rem;
+  .botao-config {
+    width: 80%;
+    font-size: 14px;
+    padding: 0.8rem 1.2rem;
   }
 
   .content-config {
     padding: 1rem;
   }
 
-  .botao-config {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    font-size: 14px;
-    margin: 5px 0;
+  /* Avaliações */
+  .avalia-receb-item {
+    font-size: 1rem;
+    padding: 1rem;
   }
 
-  .botoes-config {
-    flex-direction: column;
-    align-items: center;
-  }
-
+  /* Sobre */
   .sobre h1 {
     font-size: 1.8rem;
     flex-direction: column;
@@ -204,15 +168,12 @@
 
   .sobre .s_texto {
     font-size: 1rem;
-    margin: 20px 0;
     padding-left: 20px;
     padding-right: 20px;
+    margin: 20px 0;
   }
 
-  .image-container {
-    margin-top: 30px;
-  }
-
+  /* Arquivos */
   .file-container {
     max-width: 100%;
     padding: 20px;
@@ -224,93 +185,122 @@
     font-size: 14px;
   }
 
+  /* Visualização */
   .visualizar-card {
     padding: 2rem;
     margin: 10px;
   }
 
-  .mensagem {
-    text-align: center;
-    padding: 10px;
-  }
-}
-
-@media (max-width: 768px) {
-  .content-wrapper {
-    padding: 0 15px;
-  }
-
+  /* Botões */
   .btn.btn-secondary,
   .btn.btn-primary {
     font-size: 15px;
-    padding-bottom: 2px;
+    padding: 8px;
   }
 
   .btn.btn-danger {
-    width: 100%;
     font-size: 14px;
     padding: 6px;
   }
 
+  /* Tabelas */
   table {
-    padding: 10px;
     width: 100%;
     overflow-x: auto;
     display: block;
   }
 
+  .titulos {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .config h1,
+  .sobre h1 {
+    font-size: 1.6rem;
+  }
+
+  .botao-config {
+    font-size: 13px;
+    padding: 0.6rem 1rem;
+  }
+
+  .avalia-receb-item,
+  .mat-compart {
+    font-size: 0.95rem;
+    padding: 1rem;
+  }
+
+  .comentario-card {
+    padding: 10px;
+  }
+
+  .btn-download {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .visualizar-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Navbar */
   .navbar {
     flex-direction: column;
     height: auto;
-    padding: 10px 15px;
+    padding: 1rem;
+    align-items: flex-start;
   }
 
   .navbar ul {
     flex-direction: column;
     gap: 10px;
+    width: 100%;
   }
 
-  #navMenu a,
-  #navMenu button,
-  .logout-button {
-    font-size: 13px;
-    padding: 8px 12px;
+  .navbar li {
+    justify-content: flex-start;
+  }
+
+  .navbar a {
+    font-size: 15px;
+    padding: 10px;
     margin-left: 0;
     width: 100%;
-    text-align: center;
   }
 
-  .icon-brand,
-  .navbar-brand {
-    font-size: 1.8rem;
+  .navbar-brand,
+  .icon-brand {
+    font-size: 2rem;
     gap: 0.3rem;
   }
 
-  .icon-brand::before,
-  .navbar-brand::before {
-    content: "🏛️";
+  .navbar-brand::before,
+  .icon-brand::before {
     font-size: 2rem;
   }
 
-  .dropdown-item {
-    font-size: 0.9rem;
-    padding: 0.8rem 1rem;
-    min-width: 100%;
-  }
-
+  /* Conteúdo */
   .content h1 {
-    font-size: 1rem;
+    font-size: 14px;
     flex-direction: column;
-    gap: 5px;
     text-align: center;
   }
 
+  .content .icon {
+    font-size: 2.5rem;
+  }
+
+  /* Barra de busca principal */
   .search-bar-busca {
     flex-direction: column;
     width: 100%;
     max-width: 100%;
-    margin: 0 auto 30px auto;
     padding: 10px;
+    margin-bottom: 30px;
   }
 
   .search-bar-busca form {
@@ -319,9 +309,8 @@
   }
 
   .search-bar-busca input[type="text"] {
-    padding: 10px 15px;
-    font-size: 13px;
-    border-radius: 18px;
+    padding: 10px 20px;
+    font-size: 14px;
   }
 
   .search-btn-busca {
@@ -331,78 +320,64 @@
     margin-top: 10px;
   }
 
-  .search-btn-busca::before {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-@media (max-width: 768px) {
-  header {
-    padding: 10px 1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .dropdown-menu {
-    right: 0;
-    left: auto;
-    position: absolute;
-  }
-
-  .dropdown-wrapper {
-    padding-right: 10px;
-  }
-}
-
-
-@media (max-width: 768px) {
+  /* Barra de busca secundária */
   .search-bar {
-    flex-direction: row; /* Mantém os elementos lado a lado */
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     max-width: 100%;
     padding: 10px;
-    margin-top: 10px;
   }
 
   .search-bar form {
-    display: flex;
-    flex-direction: row; /* Alinha campo e botão horizontalmente */
-    align-items: center;
+    flex-direction: column;
     gap: 10px;
-    width: 100%;
   }
 
   .search-bar input[type="text"] {
-    flex: 1;
-    padding: 10px 15px;
-    font-size: 13px;
-    border-radius: 18px;
+    padding: 10px 20px;
+    font-size: 14px;
   }
 
   .search-btn {
-    flex-shrink: 0;
     width: 40px;
     height: 40px;
     margin-left: 0;
-    margin-top: 0;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-brand,
+  .icon-brand {
+    font-size: 1.8rem;
   }
 
-  .search-btn::before {
-    width: 18px;
-    height: 18px;
+  .navbar-brand::before,
+  .icon-brand::before {
+    font-size: 1.8rem;
   }
 
-  /* Mantém os demais estilos como estavam */
+  .search-bar-busca input[type="text"],
+  .search-bar input[type="text"] {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+
+  .search-btn-busca,
+  .search-btn {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Cards de resultado */
   .materiais-container {
-    justify-content: center;
-    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
   }
 
   .material-resultado {
-    width: 100%;
+    width: 90%;
     max-width: 100%;
     padding: 1.5rem;
     margin: 10px 0;
@@ -416,22 +391,19 @@
   .btn-salvar,
   .btn-abrir-modal {
     width: 100%;
-    justify-content: center;
     font-size: 0.85rem;
+    padding: 0.5rem;
   }
 
+  /* Materiais criados */
   .materiais-criados-container {
-    width: 100%;
-    padding: 0 10px;
+    width: 95%;
+    padding: 0;
   }
 
   .titulo-principal {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin-bottom: 1.5rem;
-  }
-
-  .material-card {
-    padding: 1rem;
   }
 
   .card-content h3 {
@@ -449,49 +421,28 @@
 
   .card-actions {
     flex-direction: column;
-    gap: 0.5rem;
+    align-items: stretch;
   }
 
   .btn {
     width: 100%;
-    justify-content: center;
     font-size: 0.85rem;
+    padding: 0.5rem;
   }
 
-  .material-list {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .login-container {
-    padding: 20px;
-    height: auto;
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 768px) {
+  /* Login */
   .login-box {
     padding: 20px;
-    max-width: 100%;
-    box-shadow: none;
-    border-radius: 0;
+    max-width: 90%;
   }
 
   .login-box h1 {
-    font-size: 22px;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .login-box h1:before {
-    font-size: 28px;
-    margin-bottom: 5px;
+    font-size: 24px;
   }
 
   .login-box input {
     width: 100%;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .btn-login,
@@ -500,6 +451,53 @@
     font-size: 15px;
   }
 
+  .input-group input {
+    font-size: 15px;
+  }
+
+  .btn-cadastrar {
+    font-size: 16px;
+  }
+
+  .forgot-password {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .material-resultado {
+    padding: 1rem;
+  }
+
+  .btn-salvar,
+  .btn-abrir-modal {
+    font-size: 0.8rem;
+    padding: 0.4rem;
+  }
+
+  .titulo-principal {
+    font-size: 1.4rem;
+  }
+
+  .card-content h3 {
+    font-size: 0.95rem;
+  }
+
+  .autor, .descricao {
+    font-size: 0.8rem;
+  }
+
+  .btn {
+    font-size: 0.8rem;
+    padding: 0.4rem;
+  }
+
+  .login-box h1 {
+    font-size: 22px;
+  }
+
+  .btn-login,
+  .btn-suap,
   .btn-cadastrar {
     font-size: 15px;
   }
@@ -507,42 +505,40 @@
   .forgot-password {
     font-size: 15px;
   }
+}
 
+@media (max-width: 768px) {
+  /* Container de cadastro */
   .cadastro-container {
-    flex-direction: column;
     padding: 20px;
     height: auto;
+    align-items: flex-start;
   }
 
   .cadastro-box {
     padding: 20px;
     max-width: 100%;
-    box-shadow: none;
-    border-radius: 0;
+    margin-top: 40px;
   }
 
   .cadastro-box h1 {
-    font-size: 22px;
+    font-size: 24px;
     flex-direction: column;
-    gap: 5px;
-  }
-
-  .cadastro-box h1:before {
-    font-size: 28px;
-    margin-bottom: 5px;
+    text-align: center;
   }
 
   .cadastro-box input {
     width: 100%;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .btn-voltar {
     font-size: 20px;
-    top: 10px;
-    left: 10px;
+    top: 15px;
+    left: 15px;
   }
 
+  /* Paginação */
   .pagination {
     flex-direction: column;
     gap: 10px;
@@ -554,14 +550,107 @@
     padding: 4px 8px;
   }
 
-  .alert.alert-success {
-    margin-left: 0;
+  /* Botões de convite */
+  .btn-c {
     font-size: 14px;
+    padding: 8px 16px;
+    min-width: 100px;
   }
 
-  .btn.btn-comentenv {
+  .btn-aceitar,
+  .btn-negar,
+  .btn-visualizar {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  /* Status */
+  .status-pendente,
+  .status-aceito,
+  .status-negado {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cadastro-box h1 {
+    font-size: 20px;
+  }
+
+  .cadastro-box input {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .btn-c {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .btn-aceitar,
+  .btn-negar,
+  .btn-visualizar {
+    font-size: 13px;
+    padding: 5px 8px;
+  }
+
+  .status-pendente,
+  .status-aceito,
+  .status-negado {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  header.navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    height: auto;
+  }
+
+  .navbar-center {
+    width: 100%;
+  }
+
+  #navMenu {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding-left: 0;
+  }
+
+  #navMenu li {
+    width: 100%;
+  }
+
+  #navMenu a {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+  }
+
+  .dropdown {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .dropdown-menu {
+    width: 100%;
     font-size: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
+  }
+
+  .dropdown-item {
+    padding: 12px 16px;
+  }
+
+  .btn-outline-light {
+    width: 100%;
+    text-align: left;
+    padding: 12px 16px;
   }
 }
