@@ -83,61 +83,77 @@ def curtir_material(request, material_id):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 #################################### COMENTÁRIOS-CURTIDAS ##########################################
 
-
 @login_required
 def meus_materiais(request):
     if request.method == 'POST':
         form = MaterialForm(request.POST, request.FILES)
+        
+        # --- DEBUG PRINT 1: Ver o que o formulário enviou ---
+        print("--- DADOS DO POST RECEBIDOS ---")
+        print(request.POST)
+        print("-------------------------------")
+
         if form.is_valid():
             novo_material = form.save(commit=False)
             novo_material.usuario = request.user
             novo_material.autor = request.user.username
-
-            # Define status inicial como rascunho
             novo_material.status = 'rascunho'
-            novo_material.save()  # Para salvar primeiro e então gerar o ID
+            novo_material.save()
 
-            # Verifica se colaboração está habilitada
             colaboracao_habilitada = request.POST.get('colaboracao_habilitada')
-            email_colaborador = request.POST.get('email_colaborador')
+            email_colaborador = request.POST.get('email_colaborador', '').strip() # .strip() remove espaços em branco
 
+            # --- DEBUG PRINT 2: Ver os valores das variáveis ---
+            print(f"Checkbox 'colaboracao_habilitada': {colaboracao_habilitada}")
+            print(f"Campo 'email_colaborador': {email_colaborador}")
+
+            # A condição é VERDADEIRA se o checkbox estiver marcado E o campo de email NÃO estiver vazio
             if colaboracao_habilitada and email_colaborador:
+                print(">>> CONDIÇÃO DE COLABORAÇÃO ATENDIDA. Tentando criar convite...")
                 try:
-                    colaborador = User.objects.get(email=email_colaborador)
+                    # Usamos 'iexact' para ignorar maiúsculas/minúsculas no email
+                    colaborador = User.objects.get(email__iexact=email_colaborador)
 
-                    if novo_material.colaboradores_pendentes.count() >= 1:
-                        messages.warning(request, 'Só é permitido um colaborador por material.')
-                    else:
-                        novo_material.colaboracao_habilitada = True
-                        novo_material.status = 'aguardando'
-                        novo_material.save()  # Para atualizar status
+                    # VERIFICAÇÃO IMPORTANTE: Não deixar o usuário convidar a si mesmo
+                    if colaborador == request.user:
+                        messages.warning(request, 'Você não pode convidar a si mesmo para colaborar.')
+                        # Mesmo com o erro, o material já foi criado como rascunho
+                        return redirect('meus_materiais')
 
-                        # Cria convite
-                        ConviteColaboracao.objects.create(
-                            material=novo_material,
-                            remetente=request.user,
-                            destinatario=colaborador,
-                            status='pendente'
-                        )
+                    # Cria o convite
+                    ConviteColaboracao.objects.create(
+                        material=novo_material,
+                        remetente=request.user,
+                        destinatario=colaborador
+                    )
 
-                        # Material com ID --> Adiciona colaborador
-                        novo_material.colaboradores_pendentes.add(colaborador)
+                    # Adiciona aos pendentes e atualiza o material
+                    novo_material.colaboradores_pendentes.add(colaborador)
+                    novo_material.colaboracao_habilitada = True
+                    novo_material.status = 'aguardando'
+                    novo_material.save()
+                    messages.info(request, f'Convite de colaboração enviado para {colaborador.username}.')
+
                 except User.DoesNotExist:
-                    messages.warning(request, 'Colaborador não encontrado.')
+                    messages.warning(request, f'Colaborador com o email "{email_colaborador}" não foi encontrado.')
+                    print(f">>> ERRO: Usuário com email '{email_colaborador}' não existe.")
+            
             else:
+                print(">>> CONDIÇÃO DE COLABORAÇÃO NÃO ATENDIDA. Publicando material diretamente.")
                 novo_material.status = 'publicado'
                 novo_material.save()
-
-
-            messages.success(request, 'Material criado com sucesso!')
+                messages.success(request, 'Material criado com sucesso!')
+            
             return redirect('meus_materiais')
+        
         else:
             messages.error(request, 'Erro ao criar material. Verifique os campos.')
+    
     else:
         form = MaterialForm()
 
-    # Filtra apenas materiais publicados
-    materiais_criados = Material.objects.filter(usuario=request.user, status='publicado')
+    # Corrigindo o warning da paginação
+    materiais_criados = Material.objects.filter(usuario=request.user).order_by('-data_compartilhado')
     paginator = Paginator(materiais_criados, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -153,7 +169,6 @@ def meus_materiais(request):
         'videos_salvos': videos_salvos,
         'slides_salvos': slides_salvos,
     })
-
 
 @login_required
 def visualizar_material(request, id_material):
@@ -249,34 +264,7 @@ def enviar_convite(request, id_material):
         messages.success(request, "Convite enviado com sucesso.")
         return redirect('convites')
 
-@login_required
-def responder_convite(request, convite_id):
-    convite = get_object_or_404(ConviteColaboracao, id=convite_id)
-    if request.method == 'POST':
-        resposta = request.POST.get('resposta')
-        convite.status = resposta
-        convite.data_resposta = timezone.now()
-        convite.save()
 
-        material = convite.material
-        if resposta == 'aceito':
-            material.colaboradores_confirmados.add(request.user)
-            material.colaboradores_pendentes.remove(request.user)
-        elif resposta == 'negado':
-            material.colaboradores_pendentes.remove(request.user)
-        material.save()
-        messages.success(request, f"Convite {resposta} com sucesso.")
-        return redirect('convites')
-    
-@login_required
-def convites(request):
-    recebidos = ConviteColaboracao.objects.filter(destinatario=request.user)
-    enviados = ConviteColaboracao.objects.filter(remetente=request.user)
-    return render(request, 'config-templates/convites.html', {
-        'recebidos': recebidos,
-        'enviados': enviados
-    })
-    
 @login_required
 def publicar_material(request, material_id):
     material = get_object_or_404(Material, id=material_id)
@@ -296,3 +284,63 @@ def publicar_material(request, material_id):
         messages.error(request, "Você não tem permissão para publicar este material.")
         return redirect('convites')
 
+
+# VIEWS PARA GERENCIAMENTO DE CONVITES DE COLABORAÇÃO
+
+
+@login_required
+def listar_convites(request):
+    """
+    Exibe os convites de colaboração recebidos e enviados pelo usuário logado.
+    """
+    print("--- A view 'listar_convites' foi executada! ---")
+    convites_recebidos = ConviteColaboracao.objects.filter(
+        destinatario=request.user
+    ).order_by('-data_envio')
+    
+    convites_enviados = ConviteColaboracao.objects.filter(
+        remetente=request.user
+    ).order_by('-data_envio')
+
+    print(f"Convites recebidos: {convites_recebidos.count()}")
+    print(f"Convites enviados: {convites_enviados.count()}")
+    
+    context = {
+        'convites_recebidos': convites_recebidos,
+        'convites_enviados': convites_enviados
+    }
+    return render(request, 'config-templates/convites.html', context)
+
+
+@login_required
+def responder_convite(request, convite_id):
+    """
+    Processa a resposta (aceite ou recusa) a um convite de colaboração.
+    """
+    convite = get_object_or_404(ConviteColaboracao, id=convite_id, destinatario=request.user)
+
+    if request.method == 'POST':
+        resposta = request.POST.get('resposta') # 'aceito' ou 'negado'
+
+        if resposta in ['aceito', 'negado']:
+            convite.status = resposta
+            convite.data_resposta = timezone.now()
+            convite.save()
+            
+            material = convite.material
+            # Remove o usuário da lista de pendentes em ambos os casos
+            material.colaboradores_pendentes.remove(request.user)
+            
+            if resposta == 'aceito':
+                # Adiciona à lista de confirmados se aceito
+                material.colaboradores_confirmados.add(request.user)
+                material.status = 'publicado' # Atualiza o status do material para publicado
+                material.save()
+                messages.success(request, f'Você aceitou colaborar no material "{material.titulo}".')
+            else:
+                messages.info(request, f'Você recusou colaborar no material "{material.titulo}".')
+            
+            return redirect('listar_convites')
+
+    # Redireciona de volta se o método não for POST ou a resposta for inválida
+    return redirect('listar_convites')
