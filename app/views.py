@@ -241,10 +241,10 @@ def salvar_material(request, id_material):
         
         return redirect('meus_materiais')
 
-################### Views's para gerenciamento de convites de colaboração ########################
+# ENVIO DE CONVITE
 @login_required
 def enviar_convite(request, id_material):
-    material = get_object_or_404(Material, id_material)
+    material = get_object_or_404(Material, id=id_material)
     if request.method == 'POST':
         email = request.POST.get('email_colaborador')
         try:
@@ -256,25 +256,72 @@ def enviar_convite(request, id_material):
         convite = ConviteColaboracao.objects.create(
             material=material,
             remetente=request.user,
-            colaborador=colaborador
+            destinatario=colaborador
         )
         material.colaboradores_pendentes.add(colaborador)
         material.colaboracao_habilitada = True
         material.save()
+
         messages.success(request, "Convite enviado com sucesso.")
         return redirect('convites')
 
+# LISTAGEM DE CONVITES
+@login_required
+def listar_convites(request):
+    convites_recebidos = ConviteColaboracao.objects.filter(
+        destinatario=request.user
+    ).order_by('-data_envio')
 
+    convites_enviados = ConviteColaboracao.objects.filter(
+        remetente=request.user
+    ).order_by('-data_envio')
+
+    context = {
+        'convites_recebidos': convites_recebidos,
+        'convites_enviados': convites_enviados
+    }
+    return render(request, 'config-templates/convites.html', context)
+
+# RESPOSTA A CONVITE
+@login_required
+def responder_convite(request, convite_id):
+    convite = get_object_or_404(ConviteColaboracao, id=convite_id, destinatario=request.user)
+
+    if request.method == 'POST':
+        resposta = request.POST.get('resposta')  # 'aceito' ou 'negado'
+
+        if resposta in ['aceito', 'negado']:
+            convite.status = resposta
+            convite.data_resposta = timezone.now()
+            convite.save()
+
+            material = convite.material
+            material.colaboradores_pendentes.remove(request.user)
+
+            if resposta == 'aceito':
+                material.colaboradores_confirmados.add(request.user)
+                messages.success(request, f'Você aceitou colaborar no material "{material.titulo}".')
+            else:
+                messages.info(request, f'Você recusou colaborar no material "{material.titulo}".')
+
+            material.save()
+            return redirect('convites')
+
+    return redirect('convites')
+
+# PUBLICAÇÃO DE MATERIAL DEPOIS DE ACEITO
 @login_required
 def publicar_material(request, material_id):
     material = get_object_or_404(Material, id=material_id)
 
-    # Verifica se o usuário é colaborador confirmado
-    convite = ConviteColaboracao.objects.filter(material=material, destinatario=request.user, status='aceito').first()
+    convite = ConviteColaboracao.objects.filter(
+        material=material,
+        destinatario=request.user,
+        status='aceito'
+    ).first()
+
     if convite:
-        # Confirma colaboração
         material.colaboradores_confirmados.add(request.user)
-        material.status = 'publicado'
         material.data_compartilhado = timezone.now()
         material.save()
 
@@ -283,64 +330,3 @@ def publicar_material(request, material_id):
     else:
         messages.error(request, "Você não tem permissão para publicar este material.")
         return redirect('convites')
-
-
-# VIEWS PARA GERENCIAMENTO DE CONVITES DE COLABORAÇÃO
-
-
-@login_required
-def listar_convites(request):
-    """
-    Exibe os convites de colaboração recebidos e enviados pelo usuário logado.
-    """
-    print("--- A view 'listar_convites' foi executada! ---")
-    convites_recebidos = ConviteColaboracao.objects.filter(
-        destinatario=request.user
-    ).order_by('-data_envio')
-    
-    convites_enviados = ConviteColaboracao.objects.filter(
-        remetente=request.user
-    ).order_by('-data_envio')
-
-    print(f"Convites recebidos: {convites_recebidos.count()}")
-    print(f"Convites enviados: {convites_enviados.count()}")
-    
-    context = {
-        'convites_recebidos': convites_recebidos,
-        'convites_enviados': convites_enviados
-    }
-    return render(request, 'config-templates/convites.html', context)
-
-
-@login_required
-def responder_convite(request, convite_id):
-    """
-    Processa a resposta (aceite ou recusa) a um convite de colaboração.
-    """
-    convite = get_object_or_404(ConviteColaboracao, id=convite_id, destinatario=request.user)
-
-    if request.method == 'POST':
-        resposta = request.POST.get('resposta') # 'aceito' ou 'negado'
-
-        if resposta in ['aceito', 'negado']:
-            convite.status = resposta
-            convite.data_resposta = timezone.now()
-            convite.save()
-            
-            material = convite.material
-            # Remove o usuário da lista de pendentes em ambos os casos
-            material.colaboradores_pendentes.remove(request.user)
-            
-            if resposta == 'aceito':
-                # Adiciona à lista de confirmados se aceito
-                material.colaboradores_confirmados.add(request.user)
-                material.status = 'publicado' # Atualiza o status do material para publicado
-                material.save()
-                messages.success(request, f'Você aceitou colaborar no material "{material.titulo}".')
-            else:
-                messages.info(request, f'Você recusou colaborar no material "{material.titulo}".')
-            
-            return redirect('listar_convites')
-
-    # Redireciona de volta se o método não for POST ou a resposta for inválida
-    return redirect('listar_convites')
