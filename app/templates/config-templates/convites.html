@@ -1,93 +1,97 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Meus Convites de Colaboração{% endblock %}
+{% block title %}Convites de Colaboração{% endblock %}
 
 {% block content %}
+
 <h1 style="margin-bottom: 50px;">
-    <a class="icon-brand">
-        Convites de Colaboração
-    </a>
+    <a class="icon-brand">Convites de Colaboração</a>
 </h1>
 <hr style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
 
-<div class="container mt-5 mb-5">
-
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
-    {% endif %}
-
-    <div class="card shadow-sm mb-5">
-        <div class="card-header bg-dark text-white">
-            <h4 class="mb-0">Convites Recebidos</h4>
-        </div>
-        <div class="list-group list-group-flush">
-            {% for convite in convites_recebidos %}
-                <div class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <div class="me-3">
-                        <p class="mb-1">
-                            <strong>{{ convite.remetente.username }}</strong> convidou você para colaborar no material: 
-                            <a href="{% url 'visualizar_material' convite.material.id %}"><strong>"{{ convite.material.titulo }}"</strong></a>.
-                        </p>
-                        <small class="text-muted">Enviado em: {{ convite.data_envio|date:"d/m/Y H:i" }}</small>
-                    </div>
-
-                    <div class="mt-2 mt-md-0">
-                        {% if convite.status == 'pendente' %}
-                            <form action="{% url 'responder_convite' convite.id %}" method="POST" class="d-inline">
-                                {% csrf_token %}
-                                <button type="submit" name="resposta" value="aceito" class="btn btn-success btn-sm">Aceitar</button>
-                            </form>
-                            <form action="{% url 'responder_convite' convite.id %}" method="POST" class="d-inline">
-                                {% csrf_token %}
-                                <button type="submit" name="resposta" value="negado" class="btn btn-danger btn-sm">Recusar</button>
-                            </form>
-                        {% elif convite.status == 'aceito' %}
-                            <span class="badge bg-success">Aceito em {{ convite.data_resposta|date:"d/m/Y" }}</span>
-                        {% elif convite.status == 'negado' %}
-                            <span class="badge bg-secondary">Recusado em {{ convite.data_resposta|date:"d/m/Y" }}</span>
-                        {% endif %}
-                    </div>
-                </div>
-            {% empty %}
-                <div class="list-group-item text-center text-muted">Você não tem nenhum convite recebido.</div>
-            {% endfor %}
-        </div>
+<!-- MENSAGENS DO SISTEMA -->
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+  {% endfor %}
+{% endif %}
 
-    <div class="card shadow-sm">
-        <div class="card-header bg-dark text-white">
-            <h4 class="mb-0">Convites Enviados</h4>
-        </div>
-        <div class="list-group list-group-flush">
-            {% for convite in convites_enviados %}
-                <div class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <div>
-                        <p class="mb-1">
-                            Você convidou <strong>{{ convite.destinatario.username }}</strong> para o material: 
-                            <a href="{% url 'visualizar_material' convite.material.id %}"><strong>"{{ convite.material.titulo }}"</strong></a>.
-                        </p>
-                        <small class="text-muted">Enviado em: {{ convite.data_envio|date:"d/m/Y H:i" }}</small>
-                    </div>
-                    <div class="mt-2 mt-md-0">
-                        {% if convite.status == 'pendente' %}
-                            <span class="badge bg-warning text-dark">Pendente</span>
-                        {% elif convite.status == 'aceito' %}
-                            <span class="badge bg-success">Aceito</span>
-                        {% elif convite.status == 'negado' %}
-                            <span class="badge bg-danger">Recusado</span>
-                        {% endif %}
-                    </div>
-                </div>
-            {% empty %}
-                <div class="list-group-item text-center text-muted">Você não enviou nenhum convite.</div>
-            {% endfor %}
-        </div>
+<!-- CONVITES RECEBIDOS -->
+<h2 style="font-family: 'Georgia'; margin-top: 40px; margin-bottom: 18px; color: white;">
+  Convites Recebidos:
+</h2>
+
+<div class="mat-grid">
+  {% for convite in convites_recebidos %}
+    <div class="mat-compart">
+      <h3>Título: {{ convite.material.titulo }}</h3>
+      <p>Descrição: {{ convite.material.descricao }}</p>
+      <p>De: {{ convite.remetente.username }}</p>
+      <p>Enviado em: {{ convite.data_envio|date:"d/m/Y H:i" }}</p>
+
+      <a href="{% url 'visualizar_material' convite.material.id %}" class="btn-c btn-visualizar">
+        Visualizar Material
+      </a>
+
+      {% if convite.status == 'pendente' %}
+        <p>Status: <span class="status-pendente">Pendente</span></p>
+        <form method="POST" action="{% url 'responder_convite' convite.id %}">
+          {% csrf_token %}
+          <button name="resposta" value="aceito" class="btn-c btn-aceitar">Aceitar</button>
+          <button name="resposta" value="negado" class="btn-c btn-negar">Negar</button>
+        </form>
+      {% elif convite.status == 'aceito' %}
+        {% if convite.material.status == 'publicado' %}
+          <p class="status-aceito">Convite aceito e material publicado.</p>
+        {% else %}
+          <p class="status-aceito">Convite aceito. Você pode publicar o material:</p>
+          <form method="POST" action="{% url 'publicar_material' convite.material.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn-c btn-visualizar">Publicar Material</button>
+          </form>
+        {% endif %}
+      {% elif convite.status == 'negado' %}
+        <p class="status-pendente">Você recusou este convite.</p>
+      {% endif %}
     </div>
+  {% empty %}
+    <p>Você não tem convites recebidos.</p>
+  {% endfor %}
 </div>
+
+<!-- CONVITES ENVIADOS -->
+<h2 style="font-family: 'Georgia'; margin-top: 40px; margin-bottom: 18px; color: white;">
+  Convites Enviados:
+</h2>
+
+<div class="mat-grid">
+  {% for convite in convites_enviados %}
+    <div class="mat-compart">
+      <h3>Título: {{ convite.material.titulo }}</h3>
+      <p>Descrição: {{ convite.material.descricao }}</p>
+      <p>Para: {{ convite.destinatario.username }}</p>
+      <p>Enviado em: {{ convite.data_envio|date:"d/m/Y H:i" }}</p>
+      <p>Status: {{ convite.get_status_display }}</p>
+
+      {% if convite.status == 'negado' %}
+        <p>O colaborador {{ convite.destinatario.username }} recusou o convite.</p>
+      {% elif convite.status == 'aceito' %}
+        {% if convite.material.status == 'publicado' %}
+          <p class="status-aceito">Convite aceito e material publicado.</p>
+        {% else %}
+          <p>Convite aceito. Aguardando publicação pelo colaborador.</p>
+        {% endif %}
+      {% else %}
+        <p>Convite ainda pendente.</p>
+      {% endif %}
+    </div>
+  {% empty %}
+    <p>Você não enviou nenhum convite.</p>
+  {% endfor %}
+</div>
+
 {% endblock %}
