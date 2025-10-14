@@ -285,7 +285,7 @@ table {
     padding: 10px 16px;
     border-radius: 5px;
     border: none;
-    background-color: rgb(100, 105, 110);
+    background-color: rgb(114, 113, 44);
     font-family: inherit;
     font-size: 1rem;
     transition: background-color 0.3s ease;
@@ -298,7 +298,7 @@ table {
 }
 
 .button-edite:hover {
-    background-color: rgb(80, 85, 90);
+    background-color: rgb(156, 156, 55);
 }
 
 /* Responsividade */
