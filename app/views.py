@@ -23,6 +23,7 @@ def sobre(request):
 def configuracoes(request):
     return render(request, 'config-templates/configuracoes.html')
 
+@login_required
 def mat_compart(request):
     usuario = request.user  # Usuário logado
     materiais = Material.objects.filter(usuario=usuario)
@@ -50,11 +51,14 @@ def buscar_usuarios(request):
     data = [{'id': u.id, 'nome': u.username} for u in resultados]
     return JsonResponse(data, safe=False)
 
-################################## COMENTÁRIOS-CURTIDAS ########################################
+
+## COMENTÁRIOS-CURTIDAS ##
+@login_required
 def material_detalhe(request, material_id):
     material = get_object_or_404(Material, id=material_id)
     return render(request, 'material_detalhe.html', {'material': material})
 
+@login_required
 def avaliacao_receb(request):
     materiais_com_interacoes = Material.objects.filter(autor=request.user).prefetch_related('comentarios', 'curtidas')
     return render(request, 'config-templates/avaliacao_receb.html', {'materiais': materiais_com_interacoes})
@@ -81,7 +85,7 @@ def curtir_material(request, material_id):
     else:
         material.curtidas.add(request.user)
     return redirect(request.META.get('HTTP_REFERER', '/'))
-#################################### COMENTÁRIOS-CURTIDAS ##########################################
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 
 
 @login_required
