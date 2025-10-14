@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Convites de Colaboração{% endblock %}
 
 {% block content %}
 
 <h1 style="margin-bottom: 50px;">
-    <a class="icon-brand">Convites de Colaboração</a>
+    <a class="icon-brand">
+        Convites de Colaboração
+    </a>
 </h1>
 <hr style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
 
@@ -22,45 +23,48 @@
 
 <!-- CONVITES RECEBIDOS -->
 <h2 style="font-family: 'Georgia'; margin-top: 40px; margin-bottom: 18px; color: white;">
-  Convites Recebidos:
+    Convites Recebidos:
 </h2>
 
 <div class="mat-grid">
-  {% for convite in convites_recebidos %}
-    <div class="mat-compart">
-      <h3>Título: {{ convite.material.titulo }}</h3>
-      <p>Descrição: {{ convite.material.descricao }}</p>
-      <p>De: {{ convite.remetente.username }}</p>
-      <p>Enviado em: {{ convite.data_envio|date:"d/m/Y H:i" }}</p>
+  {% for convite in recebidos %}
 
-      <a href="{% url 'visualizar_material' convite.material.id %}" class="btn-c btn-visualizar">
-        Visualizar Material
-      </a>
+  <div class="mat-compart">
+    <h3>Título: {{ convite.material.titulo }}</h3>
+    <p>Descrição: {{ convite.material.descricao }}</p>
+    <p>De: {{ convite.remetente.username }}</p>
+    <p>Enviado em: {{ convite.data_envio|date:"d/m/Y H:i" }}</p>
 
-      {% if convite.status == 'pendente' %}
-        <p>Status: <span class="status-pendente">Pendente</span></p>
+    <a href="{% url 'visualizar_material' convite.material.id %}" class="btn-c btn-visualizar">
+      Visualizar Material
+    </a>
+
+    {% if convite.status == 'pendente' %}
+    <p>Status: <span class="status-pendente">Pendente</span></p>
         <form method="POST" action="{% url 'responder_convite' convite.id %}">
-          {% csrf_token %}
-          <button name="resposta" value="aceito" class="btn-c btn-aceitar">Aceitar</button>
-          <button name="resposta" value="negado" class="btn-c btn-negar">Negar</button>
+        {% csrf_token %}
+        <button name="resposta" value="aceito" class="btn-c btn-aceitar">Aceitar</button>
+        <button name="resposta" value="negado" class="btn-c btn-negar">Negar</button>
         </form>
-      {% elif convite.status == 'aceito' %}
+    {% elif convite.status == 'aceito' %}
         {% if convite.material.status == 'publicado' %}
-          <p class="status-aceito">Convite aceito e material publicado.</p>
+            <p class="status-aceito">Convite aceito e material publicado.</p>
         {% else %}
-          <p class="status-aceito">Convite aceito. Você pode publicar o material:</p>
-          <form method="POST" action="{% url 'publicar_material' convite.material.id %}">
+            <p class="status-aceito">Convite aceito. Você pode publicar o material:</p>
+            <form method="POST" action="{% url 'publicar_material' convite.material.id %}">
             {% csrf_token %}
             <button type="submit" class="btn-c btn-visualizar">Publicar Material</button>
-          </form>
+            </form>
         {% endif %}
-      {% elif convite.status == 'negado' %}
-        <p class="status-pendente">Você recusou este convite.</p>
-      {% endif %}
-    </div>
+        {% elif convite.status == 'negado' %}
+            <p class="status-pendente">Você recusou este convite.</p>
+        {% endif %}
+  </div>
+
   {% empty %}
     <p>Você não tem convites recebidos.</p>
   {% endfor %}
+
 </div>
 
 <!-- CONVITES ENVIADOS -->
@@ -69,29 +73,32 @@
 </h2>
 
 <div class="mat-grid">
-  {% for convite in convites_enviados %}
-    <div class="mat-compart">
-      <h3>Título: {{ convite.material.titulo }}</h3>
-      <p>Descrição: {{ convite.material.descricao }}</p>
-      <p>Para: {{ convite.destinatario.username }}</p>
-      <p>Enviado em: {{ convite.data_envio|date:"d/m/Y H:i" }}</p>
-      <p>Status: {{ convite.get_status_display }}</p>
+  {% for convite in enviados %}
 
-      {% if convite.status == 'negado' %}
-        <p>O colaborador {{ convite.destinatario.username }} recusou o convite.</p>
-      {% elif convite.status == 'aceito' %}
+  <div class="mat-compart">
+    <h3>Título: {{ convite.material.titulo }}</h3>
+    <p>Descrição: {{ convite.material.descricao }}</p>
+    <p>Para: {{ convite.destinatario.username }}</p>
+    <p>Enviado em: {{ convite.data_envio|date:"d/m/Y H:i" }}</p>
+    <p>Status: {{ convite.get_status_display }}</p>
+
+    {% if convite.status == 'negado' %}
+      <p>O colaborador {{ convite.destinatario.username }} recusou o convite.</p>
+    {% elif convite.status == 'aceito' %}
         {% if convite.material.status == 'publicado' %}
-          <p class="status-aceito">Convite aceito e material publicado.</p>
+            <p class="status-aceito">Convite aceito e material publicado.</p>
         {% else %}
-          <p>Convite aceito. Aguardando publicação pelo colaborador.</p>
+            <p>Convite aceito. Aguardando publicação pelo colaborador.</p>
         {% endif %}
-      {% else %}
-        <p>Convite ainda pendente.</p>
-      {% endif %}
-    </div>
+    {% else %}
+      <p>Convite ainda pendente.</p>
+    {% endif %}
+  </div>
+
   {% empty %}
     <p>Você não enviou nenhum convite.</p>
   {% endfor %}
+
 </div>
 
 {% endblock %}
