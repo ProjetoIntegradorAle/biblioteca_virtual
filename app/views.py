@@ -104,7 +104,11 @@ def meus_materiais(request):
             # Verifica se colaboração está habilitada
             colaboracao_habilitada = request.POST.get('colaboracao_habilitada')
             email_colaborador = request.POST.get('email_colaborador')
+            if email_colaborador == request.user.email:
+                messages.error(request, "Você não pode se convidar para colaborar consigo mesma.")
+                return redirect('meus_materiais')
 
+            
             if colaboracao_habilitada and email_colaborador:
                 try:
                     colaborador = User.objects.get(email=email_colaborador)
@@ -141,7 +145,11 @@ def meus_materiais(request):
         form = MaterialForm()
 
     # Filtra apenas materiais publicados
-    materiais_criados = Material.objects.filter(usuario=request.user, status='publicado')
+    materiais_criados = Material.objects.filter(
+        Q(usuario=request.user) | Q(colaboradores_confirmados=request.user),
+        status='publicado'
+    ).distinct()
+    
     paginator = Paginator(materiais_criados, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -290,6 +298,16 @@ def publicar_material(request, material_id):
     if convite:
         # Confirma colaboração
         material.colaboradores_confirmados.add(request.user)
+        # Atualiza o campo autor com os dois nomes
+        autor_principal = material.usuario.username
+        colaborador = request.user.username
+
+        # Evita duplicação se o colaborador for o mesmo que o autor
+        if autor_principal != colaborador:
+            material.autor = f"{autor_principal} e {colaborador}"
+        else:
+            material.autor = autor_principal
+
         material.status = 'publicado'
         material.data_compartilhado = timezone.now()
         material.save()
