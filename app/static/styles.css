@@ -5,11 +5,78 @@ body {
     font-family: Arial, sans-serif;
     color: white;
     overflow-x: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
     position: relative;
     z-index: 100;
+}
+
+body::before {
+    content: '';
+    position: fixed; /* Mantém fixed para blur estático */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/static/img/foto_fundo.jpg') center center/cover;
+    filter: blur(8px);
+    z-index: -2; /* Camada mais baixa */
+    transform: scale(1.05);
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -2;
+}
+
+main {
+    flex: 1;
+    padding: 100px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+main p{
+    color: white;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    background-color: #00000042;
+    padding: 40px 20px;
+    color: white;
+    width: 100%;
+}
+
+.content {
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 15px;
+    font-family: 'Georgia';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.content .icon {
+    font-size: 3.5rem;
 }
 
 .nav-link {
@@ -82,51 +149,6 @@ header {
     font-weight: bold;
     color: white;
     cursor: pointer;
-}
-
-body::before {
-    content: '';
-    position: fixed; /* Mantém fixed para blur estático */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('/static/img/foto_fundo.jpg') center center/cover;
-    filter: blur(8px);
-    z-index: -2; /* Camada mais baixa */
-    transform: scale(1.05);
-}
-
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: -2;
-}
-
-main {
-    flex: 1;
-    padding: 100px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-}
-
-main p{
-    color: white;
-}
-
-/* Footer */
-.footer {
-    text-align: center;
-    background-color: #00000042;
-    padding: 40px 20px;
-    color: white;
-    width: 100%;
 }
 
 .container-mat{
@@ -710,26 +732,6 @@ table{
     margin-left: 0px;
     content: "🏛️";
     font-size: 2.1rem;
-}
-
-.content {
-    text-align: center;
-    top: 630px;
-}
-
-.content h1 {
-    font-size: 15px;
-    font-family: 'Georgia';
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-.content .icon {
-    font-size: 3.5rem;
 }
 
 /* Barra de busca */
