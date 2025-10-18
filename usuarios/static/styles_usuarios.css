@@ -117,7 +117,7 @@ main p{
 .logout-button {
     background: none;
     border: none;
-    color: black;
+    color: rgb(37, 36, 36);
     font-family: sans-serif;
     padding: 10px 15px;
     width: 100%;
@@ -127,15 +127,14 @@ main p{
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .logout-button:hover {
-    background-color: #333;
-    color: #fff;
     background-color: transparent !important; /* remove o fundo cinza */
     color: rgb(0, 0, 0) !important; /* mantém a cor do texto */
-    transform: scale(1.05) !important;
+    transform: scale(1.05) !important; /* aplica o zoom */
+    font-weight: bold;
 }
 
 .logout{
