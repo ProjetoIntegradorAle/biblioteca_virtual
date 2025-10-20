@@ -15,21 +15,21 @@
 {% for material in materiais %}
   {% if material.comentarios.exists or material.curtidas.exists %}
     <div class="avalia-receb-item">
-      <strong>Título: {{ material.titulo }}</strong>
+      <h2><strong>Título: {{ material.titulo }}</strong></h2>
       {% if material.comentarios.exists %}
-        <h5>Comentários:</h5>
+        <h4>Comentários:</h4>
         {% for comentario in material.comentarios.all %}
             <div class="alert alert-secondary">
-              <strong>{{ comentario.autor }}:</strong> {{ comentario.texto }}
+              <h5>{{ comentario.autor }}: {{ comentario.texto }}</h5>
             </div>
         {% endfor %}
       {% endif %}
 
       {% if material.curtidas.exists %}
-        <h5>Curtidas:</h5>
+        <h4>Curtidas:</h4>
         <ul>
             {% for usuario in material.curtidas.all %}
-            <li>❤️ {{ usuario.username }}</li>
+            <div><h5>❤️ {{ usuario.username }}</h5></div>
             {% endfor %}
         </ul>
       {% endif %}
