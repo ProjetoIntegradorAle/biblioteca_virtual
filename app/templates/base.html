@@ -39,7 +39,8 @@
     </div>
   </header>
 
-  <main>
+  <div class="wrapper">
+    <main>
       <div class="content">
           {% if messages %}
             <div class="message-container">
@@ -54,10 +55,10 @@
           {% block content %}{% endblock %}
           {% block header %}{% endblock %}
       </div>
-  </main>
+    </main>
 
-  <footer class="footer">
-    <div style="max-width: 1000px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
+    <footer class="footer">
+      <div style="max-width: 1000px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
       <div style="flex:1; min-width:200px;">
         <h3 style="font-family: Georgia; font-weight: bold;">Biblioteca Virtual Alexandria</h3>
         <p style="font-family: Georgia;">Explore. Leia. Descubra.</p>
@@ -71,10 +72,11 @@
         <h3 style="font-family: Georgia; font-weight: bold">Frase do Dia</h3>
         <p style="font-family: Georgia;">“Só sei que nada sei.” – Sócrates</p>
       </div>
-    </div>
-    <hr style="margin:20px 0; border-color:#7f8c8d;">
-    <p style="text-align:center; font-family: Georgia; margin-top: 45px;">&copy; 2025 Biblioteca Alexandria</p>
-  </footer>
+      </div>
+      <hr style="margin:20px 0; border-color:#7f8c8d;">
+      <p style="text-align:center; font-family: Georgia; margin-top: 45px;">&copy; 2025 Biblioteca Alexandria</p>
+    </footer>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

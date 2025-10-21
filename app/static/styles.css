@@ -1,13 +1,23 @@
 body {
-    margin: 0;
     padding: 0;
     background: url('/static/img/foto_fundo.jpg') center center / cover no-repeat fixed;
     font-family: Arial, sans-serif;
     color: white;
     overflow-x: hidden;
+}
+
+html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -77,6 +87,70 @@ main p{
 
 .content .icon {
     font-size: 3.5rem;
+}
+
+/* Barra de navegação */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 95px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.navbar-left {
+    flex: 0 0 auto;
+    margin-left: 10px;
+}
+
+.navbar a:hover {
+    transform: scale(1.08);
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+.navbar ul {
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.navbar ul.active {
+    transform: translateX(0);
+    right: 0;
+}
+
+#navMenu a, #navMenu button {
+    text-decoration: none;
+    color: white;
+    font-family: sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+}
+
+.navbar li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar a{
+    text-decoration: none;
+    font-weight: 600;
+    padding: 7px 9px;
+    font-family: sans-serif;
+    font-size: 14px;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    margin-left: 10px;
 }
 
 .nav-link {
@@ -634,70 +708,6 @@ table{
 
 .titulos{
     align-items: flex-start;
-}
-
-/* Barra de navegação */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-    height: 95px;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.25);
-}
-
-.navbar-left {
-    flex: 0 0 auto;
-    margin-left: 10px;
-}
-
-.navbar a:hover {
-    transform: scale(1.08);
-    background-color: #575757;
-    border-radius: 5px;
-}
-
-.navbar ul {
-    justify-content: space-evenly;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-
-.navbar ul.active {
-    transform: translateX(0);
-    right: 0;
-}
-
-#navMenu a, #navMenu button {
-    text-decoration: none;
-    color: white;
-    font-family: sans-serif;
-    font-size: 14px;
-    padding: 10px 15px;
-}
-
-.navbar li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar a{
-    text-decoration: none;
-    font-weight: 600;
-    padding: 7px 9px;
-    font-family: sans-serif;
-    font-size: 14px;
-    border-radius: 8px;
-    background-color: transparent;
-    transition: all 0.3s ease;
-    margin-left: 10px;
 }
 
 /* ICON DO INDEX */
