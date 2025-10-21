@@ -11,16 +11,6 @@
 </h1>
 <hr style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
 
-<!-- MENSAGENS DO SISTEMA -->
-{% if messages %}
-  {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-      {{ message }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  {% endfor %}
-{% endif %}
-
 <!-- CONVITES RECEBIDOS -->
 <h2 style="font-family: 'Georgia'; margin-top: 40px; margin-bottom: 18px; color: white;">
     Convites Recebidos:
