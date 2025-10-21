@@ -13,9 +13,9 @@
 <div class="mat-grid">
     {% for material in materiais %}
     <div class="mat-compart">
-        <strong>{{ material.titulo }}</strong><br>
-        {{ material.descricao }}<br>
-        <span style="color: rgb(255, 255, 255);">✅ Avaliações Permitidas</span>
+        <strong>Título: {{ material.titulo }}</strong><br> 
+        Descrição: {{ material.descricao }}<br>
+        <span style="color: rgb(255, 255, 255);"> ✅ Avaliações permitidas</span>
     </div>
     {% empty %}
         <p>Nenhum material com avaliações habilitadas.</p>
