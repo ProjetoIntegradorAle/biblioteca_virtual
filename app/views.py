@@ -222,8 +222,7 @@ def buscar_materiais(request):
             termo=query,
             url_resultado=url_resultado
         )
-
-    return render(request, 'busca.html', {'materiais': materiais})
+    return render(request, 'busca.html', {'materiais': materiais, 'query': query})
 
 @login_required
 def salvar_material(request, id_material):
