@@ -30,9 +30,11 @@
         <li><a class="dropdown-item" href="{% url 'editar_perfil' %}">👤 ÁREA DO USUÁRIO</a></li>
         <li><a class="dropdown-item" href="{% url 'configuracoes' %}">⚙️ CONFIGURAÇÕES</a></li>
         <li>
-          <form action="{% url 'logout' %}" method="POST" class="px-3">
+          <form action="{% url 'logout' %}" method="POST" style="margin: 0;">
             {% csrf_token %}
-            <button type="submit" class="logout-button">📥 SAIR</button>
+            <button type="submit" class="dropdown-item" style="border: none; font-weight: 650;">
+              📥 SAIR
+            </button>
           </form>
         </li>
       </ul>

@@ -124,37 +124,6 @@ main p{
     transform: scale(1.05) !important; /* aplica o zoom */
 }
 
-.logout-button {
-    background: none;
-    border: none;
-    color: rgb(37, 36, 36);
-    font-family: sans-serif;
-    padding: 10px 15px;
-    width: 100%;
-    font-size: 14px;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.logout-button:hover {
-    background-color: transparent !important; /* remove o fundo cinza */
-    color: rgb(0, 0, 0) !important; /* mantém a cor do texto */
-    transform: scale(1.05) !important; /* aplica o zoom */
-    font-weight: bold;
-}
-
-.logout{
-    background: none;
-    border: none;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-}
-
 .btn-outline-light {
     font-weight: bold;
 }
