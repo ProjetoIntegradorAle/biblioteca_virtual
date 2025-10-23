@@ -116,6 +116,8 @@ main p{
     gap: 8px;
     padding: 30px 35px;
     white-space: nowrap;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .dropdown-item:hover {
@@ -284,7 +286,7 @@ table {
     padding: 10px 16px;
     border-radius: 5px;
     border: none;
-    background-color: rgb(114, 113, 44);
+    background-color: rgb(44, 72, 114);
     font-family: inherit;
     font-size: 1rem;
     transition: background-color 0.3s ease;
@@ -297,7 +299,7 @@ table {
 }
 
 .button-edite:hover {
-    background-color: rgb(156, 156, 55);
+    background-color: rgb(73, 110, 165);
 }
 
 /* Responsividade */

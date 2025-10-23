@@ -181,6 +181,7 @@ main p{
     gap: 8px;
     padding: 30px 35px;
     white-space: nowrap;
+    font-weight: bold;
     font-size: 14px;
 }
 
