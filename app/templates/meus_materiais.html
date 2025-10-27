@@ -2,16 +2,6 @@
 {% load crispy_forms_tags %}
 {% block title %}Meus Materiais{% endblock %}
 
-{% if messages %}
-  <div class="message-container">
-    {% for message in messages %}
-      <div class="alert {{ message.tags }}">
-        {{ message }}
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
-
 {% block content %}
 <div style="padding: 0px 0px;" class="container-mat">
     <h1 style="margin-bottom: 20px;">
