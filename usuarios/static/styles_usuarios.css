@@ -910,3 +910,42 @@ label {
     display: block;
     text-align: center;
 }
+
+/* MENSAGENS DO SISTEMA */
+.message-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.alert {
+    padding: 18px 24px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+/* Tipos de alerta com contraste forte */
+.alert.success {
+    background-color: #2ecc71; /* Verde vibrante */
+}
+
+.alert.error {
+    background-color: #e74c3c; /* Vermelho intenso */
+}
+
+.alert.warning {
+    background-color: #f39c12; /* Amarelo escuro */
+    color: #222;
+}
+
+.alert.info {
+    background-color: #3498db; /* Azul forte */
+}
+

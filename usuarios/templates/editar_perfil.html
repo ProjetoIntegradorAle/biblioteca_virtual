@@ -4,16 +4,6 @@
 
 {% block content %}
 
-{% if messages %}
-  <div class="mensagem">
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-          {{ message }}
-        </div>
-    {% endfor %}
-  </div>
-{% endif %}
-
 <h1 class="perfil-titulo">
     <span class="icon-brand">Perfil</span>
 </h1>
