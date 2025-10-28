@@ -115,12 +115,10 @@
             <h2>Documentos</h2>
             {% for documento in documentos_salvos %}
             <div class="material-item">
-                <p>{{ documento.material.titulo }}</p>  
+                <h3>{{ material.titulo }}</h3>
+                <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>
+                <p class="descricao"><strong>Descrição:</strong> {{ material.descricao }}</p>
                 <button><a href="{{ documento.material.arquivo.url }}" target="_blank">Abrir</a></button>
-                <form action="{% url 'salvar_material' documento.material.id %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-success">Salvar</button>
-                </form>
             </div>
             {% empty %}
             <p>Não há documentos salvos.</p>
