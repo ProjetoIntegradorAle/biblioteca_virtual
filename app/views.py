@@ -90,6 +90,11 @@ def curtir_material(request, material_id):
 
 @login_required
 def meus_materiais(request):
+    salvos = MaterialSalvo.objects.filter(usuario=request.user)
+    documentos_salvos = salvos.filter(material__tipo=Material.DOCUMENTO)
+    slides_salvos = salvos.filter(material__tipo=Material.SLIDE)
+    videos_salvos = salvos.filter(material__tipo=Material.VIDEO)
+    
     if request.method == 'POST':
         form = MaterialForm(request.POST, request.FILES)
         if form.is_valid():
@@ -154,17 +159,15 @@ def meus_materiais(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    documentos_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Documento')
-    videos_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Vídeo')
-    slides_salvos = MaterialSalvo.objects.filter(usuario=request.user, material__tipo='Slide')
-
-    return render(request, 'meus_materiais.html', {
+    context = {
         'form': form,
         'page_obj': page_obj,
         'documentos_salvos': documentos_salvos,
-        'videos_salvos': videos_salvos,
         'slides_salvos': slides_salvos,
-    })
+        'videos_salvos': videos_salvos,
+    }
+    
+    return render(request, 'meus_materiais.html', context)
 
 
 @login_required
