@@ -56,13 +56,7 @@ class Material(models.Model):
     def __str__(self):
         return self.titulo
     
-class Comentario(models.Model):
-    autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    material = models.ForeignKey(Material, on_delete=models.CASCADE, related_name='comentarios')
-    texto = models.TextField()
-    curtidas = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='comentarios_curtidos', blank=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-
+    
 class MaterialSalvo(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     material = models.ForeignKey('Material', on_delete=models.CASCADE)
@@ -70,6 +64,15 @@ class MaterialSalvo(models.Model):
 
     def __str__(self):
         return f"{self.usuario.username} salvou {self.material.titulo}"
+
+
+class Comentario(models.Model):
+    autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    material = models.ForeignKey(Material, on_delete=models.CASCADE, related_name='comentarios')
+    texto = models.TextField()
+    curtidas = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='comentarios_curtidos', blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
+
     
 class HistoricoPesquisa(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
