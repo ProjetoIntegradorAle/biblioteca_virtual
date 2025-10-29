@@ -72,56 +72,67 @@
         </form>
     </div>
 
+<hr style=" padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
+
     <!-- MATERIAIS SALVOS -->
     <div class="content-mat">
-        <h2 style="font-family: 'Georgia'; font-size: 35px;" class="titulo">Materiais Salvos</h2>
-        
-    <!-- Materiais Salvos: Vídeos -->
-        <div class="videos">
-            <h2>Vídeos</h2>
-            {% for video in videos_salvos %}
-            <div class="material-item">
-                <h3>{{ video.material.titulo }}</h3>
-                <p class="autor"><strong>Autor:</strong> {{ video.material.autor }}</p>
-                <p class="descricao"><strong>Descrição:</strong> {{ video.material.descricao }}</p>
-                <a href="{% url 'visualizar_material' video.material.id %}" class="btn visualizar">Visualizar Material</a>
+        <h2 class="titulo">Materiais Salvos</h2>
+    
+        <div class="materiais-tipos">
+            <!-- Vídeos -->
+            <div class="tipo-bloco">
+                <h2>Vídeos</h2>
+                <div class="materiais-criados-grid">
+                    {% for video in videos_salvos %}
+                    <div class="material-item">
+                        <h3>{{ video.material.titulo }}</h3>
+                        <p><strong>Autor:</strong> {{ video.material.autor }}</p>
+                        <p><strong>Descrição:</strong> {{ video.material.descricao }}</p>
+                        <a href="{% url 'visualizar_material' video.material.id %}" class="btn visualizar">Visualizar Material</a>
+                    </div>
+                    {% empty %}
+                    <p>Não há vídeos salvos.</p>
+                    {% endfor %}
+                </div>
             </div>
-            {% empty %}
-            <p>Não há vídeos salvos.</p>
-            {% endfor %}
-        </div>
-
-    <!-- Materiais Salvos: Slides -->
-        <div class="slides">
-            <h2>Slides</h2>
-            {% for slide in slides_salvos %}
-            <div class="material-item">
-                <h3>{{ slide.material.titulo }}</h3>
-                <p class="autor"><strong>Autor:</strong> {{ slide.material.autor }}</p>
-                <p class="descricao"><strong>Descrição:</strong> {{ slide.material.descricao }}</p>
-                <a href="{% url 'visualizar_material' slide.material.id %}" class="btn visualizar">Visualizar Material</a>
+    
+            <!-- Slides -->
+            <div class="tipo-bloco">
+                <h2>Slides</h2>
+                <div class="materiais-criados-grid">
+                    {% for slide in slides_salvos %}
+                    <div class="material-item">
+                        <h3>{{ slide.material.titulo }}</h3>
+                        <p><strong>Autor:</strong> {{ slide.material.autor }}</p>
+                        <p><strong>Descrição:</strong> {{ slide.material.descricao }}</p>
+                        <a href="{% url 'visualizar_material' slide.material.id %}" class="btn visualizar">Visualizar Material</a>
+                    </div>
+                    {% empty %}
+                    <p>Não há slides salvos.</p>
+                    {% endfor %}
+                </div>
             </div>
-            {% empty %}
-            <p>Não há slides salvos.</p>
-            {% endfor %}
-        </div>
-
-
-    <!-- Materiais Salvos: Documentos -->
-        <div class="documentos">
-            <h2>Documentos</h2>
-            {% for documento in documentos_salvos %}
-            <div class="material-item">
-                <h3>{{ documento.material.titulo }}</h3>
-                <p class="autor"><strong>Autor:</strong> {{ documento.material.autor }}</p>
-                <p class="descricao"><strong>Descrição:</strong> {{ documento.material.descricao }}</p>
-                <a href="{% url 'visualizar_material' documento.material.id %}" class="btn visualizar">Visualizar Material</a>
+    
+            <!-- Documentos -->
+            <div class="tipo-bloco">
+                <h2>Documentos</h2>
+                <div class="materiais-criados-grid">
+                    {% for documento in documentos_salvos %}
+                    <div class="material-item">
+                        <h3>{{ documento.material.titulo }}</h3>
+                        <p><strong>Autor:</strong> {{ documento.material.autor }}</p>
+                        <p><strong>Descrição:</strong> {{ documento.material.descricao }}</p>
+                        <a href="{% url 'visualizar_material' documento.material.id %}" class="btn visualizar">Visualizar Material</a>
+                    </div>
+                    {% empty %}
+                    <p>Não há documentos salvos.</p>
+                    {% endfor %}
+                </div>
             </div>
-            {% empty %}
-            <p>Não há documentos salvos.</p>
-            {% endfor %}
         </div>
     </div>
+    
+<hr style=" padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
 
     <!-- MATERIAIS CRIADOS -->
     <div class="materiais-criados-container">

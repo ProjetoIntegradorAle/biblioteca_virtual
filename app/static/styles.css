@@ -317,42 +317,58 @@ input:checked + .slider:before {
 }
 
 /* Materiais Salvos */
-/* Container principal */
+/* Container geral */
 .content-mat {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    text-align: center;
     margin-top: 30px;
 }
 
-/* Título da seção */
-.content-mat h2 {
-    grid-column: 1 / -1;
-    font-size: 32px;
-    margin-bottom: 20px;
-    color: #ffffff;
+/* Título principal */
+.content-mat .titulo {
+    font-size: 35px;
+    color: white;
     font-family: 'Georgia', serif;
-    text-align: center;
+    margin-bottom: 40px;
+    font-weight: bold;
 }
 
-/* Subtítulos das categorias */
-.videos h2,
-.slides h2,
-.documentos h2 {
-    font-size: 24px;
-    color: #ffffff;
-    margin-bottom: 15px;
-    font-family: 'Arial', sans-serif;
+/* Bloco com os três tipos lado a lado */
+.materiais-tipos {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
-/* Blocos de cada categoria */
-.videos,
-.slides,
-.documentos {
+/* Cada tipo de material */
+.tipo-bloco {
     background-color: rgba(255, 255, 255, 0.08);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(94, 78, 9, 0.25);
+    max-width: 650px; /* <--- ADICIONE UMA LARGURA MÁXIMA PARA CONTROLAR O TAMANHO DO GRID */
+    width: 100%; /* Garante que ele ocupe todo o espaço disponível até o max-width */
+}
+
+/* Título de cada tipo */
+.tipo-bloco h2 {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 15px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Grade interna de materiais: dois por linha */
+.materiais-criados-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* <--- ISTO JÁ CRIA DUAS COLUNAS IGUAIS */
+    gap: 20px;
+}
+
+.materiais-criados-grid p {
+    grid-column: 1 / -1; /* Faz com que o texto ocupe toda a largura */
+    text-align: center;
+    color: #a0a0a0;
 }
 
 /* Cartão de material */
@@ -360,7 +376,6 @@ input:checked + .slider:before {
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 10px;
     padding: 15px;
-    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -371,44 +386,32 @@ input:checked + .slider:before {
     transform: scale(1.02);
 }
 
-/* Texto do material */
 .material-item h3 {
-    font-size: 20px;
-    color: #ffffff;
+    font-size: 18px;
+    color: white;
     margin: 0;
-    font-weight: bold;
 }
 
 .material-item p {
     color: #e0e0e0;
-    margin: 0;
     font-size: 14px;
+    margin: 0;
 }
 
-/* Botão de ação */
 .material-item .btn {
     background-color: #2e7d32;
     color: white;
     border: none;
-    padding: 10px 14px;
+    padding: 10px;
     border-radius: 6px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
     font-weight: bold;
+    text-decoration: none;
+    text-align: center;
     transition: background-color 0.3s ease;
 }
 
 .material-item .btn:hover {
     background-color: #1b5e20;
-    color: white;
-}
-
-/* Link dentro do botão */
-.material-item .btn a {
-    color: white;
-    text-decoration: none;
-    display: block;
 }
 
 
@@ -422,6 +425,7 @@ input:checked + .slider:before {
     font-size: 28px;
     margin-bottom: 20px;
     text-align: center;
+    font-weight: bold;
 }
 
 .materiais-grid {
