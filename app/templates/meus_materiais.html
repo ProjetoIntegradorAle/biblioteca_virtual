@@ -76,49 +76,46 @@
     <div class="content-mat">
         <h2 style="font-family: 'Georgia'; font-size: 35px;" class="titulo">Materiais Salvos</h2>
         
-        <!-- Materiais Salvos: Vídeos -->
+    <!-- Materiais Salvos: Vídeos -->
         <div class="videos">
             <h2>Vídeos</h2>
             {% for video in videos_salvos %}
             <div class="material-item">
-                <p>{{ video.material.titulo }}</p>  
-                <button><a href="{{ video.material.arquivo.url }}" target="_blank">Abrir</a></button>
-                <form action="{% url 'salvar_material' video.material.id %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-success">Salvar</button>
-                </form>
+                <h3>{{ video.material.titulo }}</h3>
+                <p class="autor"><strong>Autor:</strong> {{ video.material.autor }}</p>
+                <p class="descricao"><strong>Descrição:</strong> {{ video.material.descricao }}</p>
+                <a href="{% url 'visualizar_material' video.material.id %}" class="btn visualizar">Visualizar Material</a>
             </div>
             {% empty %}
             <p>Não há vídeos salvos.</p>
             {% endfor %}
         </div>
 
-        <!-- Materiais Salvos: Slides -->
+    <!-- Materiais Salvos: Slides -->
         <div class="slides">
             <h2>Slides</h2>
             {% for slide in slides_salvos %}
             <div class="material-item">
-                <p>{{ slide.material.titulo }}</p>  
-                <button><a href="{{ slide.material.arquivo.url }}" target="_blank">Abrir</a></button>
-                <form action="{% url 'salvar_material' slide.material.id %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-success">Salvar</button>
-                </form>
+                <h3>{{ slide.material.titulo }}</h3>
+                <p class="autor"><strong>Autor:</strong> {{ slide.material.autor }}</p>
+                <p class="descricao"><strong>Descrição:</strong> {{ slide.material.descricao }}</p>
+                <a href="{% url 'visualizar_material' slide.material.id %}" class="btn visualizar">Visualizar Material</a>
             </div>
             {% empty %}
             <p>Não há slides salvos.</p>
             {% endfor %}
         </div>
 
-        <!-- Materiais Salvos: Documentos -->
+
+    <!-- Materiais Salvos: Documentos -->
         <div class="documentos">
             <h2>Documentos</h2>
             {% for documento in documentos_salvos %}
             <div class="material-item">
-                <h3>{{ material.titulo }}</h3>
-                <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>
-                <p class="descricao"><strong>Descrição:</strong> {{ material.descricao }}</p>
-                <button><a href="{{ documento.material.arquivo.url }}" target="_blank">Abrir</a></button>
+                <h3>{{ documento.material.titulo }}</h3>
+                <p class="autor"><strong>Autor:</strong> {{ documento.material.autor }}</p>
+                <p class="descricao"><strong>Descrição:</strong> {{ documento.material.descricao }}</p>
+                <a href="{% url 'visualizar_material' documento.material.id %}" class="btn visualizar">Visualizar Material</a>
             </div>
             {% empty %}
             <p>Não há documentos salvos.</p>
