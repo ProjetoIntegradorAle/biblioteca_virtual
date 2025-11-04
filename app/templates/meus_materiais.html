@@ -9,70 +9,8 @@
             Meus Materiais
         </a>
     </h1>
-<div class="add-material">
-        <h2>Adicionar Material</h2>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
 
-            <div class="form-group">
-            {{ form.titulo.label_tag }}
-            {{ form.titulo }}
-            </div>
-
-            <div class="form-group">
-            {{ form.autor.label_tag }}
-            {{ form.autor }}
-            </div>
-
-            <div class="form-group">
-            {{ form.descricao.label_tag }}
-            {{ form.descricao }}
-            </div>
-
-            <div class="form-group">
-            {{ form.tipo.label_tag }}
-            {{ form.tipo }}
-            </div>
-
-            <div style="margin-top: 5px;" class="form-group">
-            {{ form.arquivo.label_tag }}
-            {{ form.arquivo }}
-            </div>
-
-            <h3 style="margin-bottom: 0px; margin-top: 4px; color: white; font-size: 16px; font-weight: 400; font-family: Arial, Helvetica, sans-serif;">
-                Permissões:
-            </h3>
-
-            <!-- Toggle switch para avaliações -->
-            <div class="form-habit">
-                <label for="id_avaliacoes_habilitadas">Habilitar Avaliações:</label>
-                <label class="switch">
-                    <input type="checkbox" name="avaliacoes_habilitadas" id="id_avaliacoes_habilitadas">
-                    <span class="slider"></span>
-                </label>
-            </div>
-
-            <!-- Checkbox padrão para colaboração -->
-            <input type="hidden" name="colaborador_id" id="colaborador_id">
-            <div class="form-habit">
-                <label for="id_colaboracao_habilitada">Habilitar Colaboração:</label>
-                <label class="switch">
-                    <input type="checkbox" name="colaboracao_habilitada" id="id_colaboracao_habilitada">
-                    <span class="slider"></span>
-                </label>
-            </div>
-
-            <!-- Campo de busca de colaborador -->
-            <div class="form-group" id="campoColaborador" style="margin-top: 10px;">
-                {{ form.email_colaborador.label_tag }}
-                {{ form.email_colaborador }}
-            </div>
-
-            <button type="submit">Criar Material</button>
-        </form>
-    </div>
-
-<hr style=" padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
+<hr style=" padding-top: 0.1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
 
     <!-- MATERIAIS SALVOS -->
     <div class="content-mat">
@@ -179,6 +117,72 @@
             </span>
         </div>
     </div>
+
+<hr style=" padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
+
+    <div class="add-material">
+        <h2>Adicionar Material</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+            {{ form.titulo.label_tag }}
+            {{ form.titulo }}
+            </div>
+
+            <div class="form-group">
+            {{ form.autor.label_tag }}
+            {{ form.autor }}
+            </div>
+
+            <div class="form-group">
+            {{ form.descricao.label_tag }}
+            {{ form.descricao }}
+            </div>
+
+            <div class="form-group">
+            {{ form.tipo.label_tag }}
+            {{ form.tipo }}
+            </div>
+
+            <div style="margin-top: 5px;" class="form-group">
+            {{ form.arquivo.label_tag }}
+            {{ form.arquivo }}
+            </div>
+
+            <h3 style="margin-bottom: 0px; margin-top: 4px; color: white; font-size: 16px; font-weight: 400; font-family: Arial, Helvetica, sans-serif;">
+                Permissões:
+            </h3>
+
+            <!-- Toggle switch para avaliações -->
+            <div class="form-habit">
+                <label for="id_avaliacoes_habilitadas">Habilitar Avaliações:</label>
+                <label class="switch">
+                    <input type="checkbox" name="avaliacoes_habilitadas" id="id_avaliacoes_habilitadas">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <!-- Checkbox padrão para colaboração -->
+            <input type="hidden" name="colaborador_id" id="colaborador_id">
+            <div class="form-habit">
+                <label for="id_colaboracao_habilitada">Habilitar Colaboração:</label>
+                <label class="switch">
+                    <input type="checkbox" name="colaboracao_habilitada" id="id_colaboracao_habilitada">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <!-- Campo de busca de colaborador -->
+            <div class="form-group" id="campoColaborador" style="margin-top: 10px;">
+                {{ form.email_colaborador.label_tag }}
+                {{ form.email_colaborador }}
+            </div>
+
+            <button type="submit">Criar Material</button>
+        </form>
+    </div>
+
 </div>
 
 <!-- HABILITAR COLABORAÇÃO -->
