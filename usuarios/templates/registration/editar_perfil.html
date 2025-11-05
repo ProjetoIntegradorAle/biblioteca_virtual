@@ -1,0 +1,26 @@
+{% extends 'base_usuarios.html' %}
+{% load static %}
+{% load gravatar %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block content %}
+<h1 class="perfil-titulo">
+  <span class="icon-brand">Perfil</span>
+</h1>
+
+<div class="perfil-container">
+  <div class="perfil-box text-center">
+    <img src="{{ user.email|gravatar_url:200 }}" alt="Avatar do usuário" class="rounded-circle mb-3" width="150" height="150">
+    <h2>{{ user.get_full_name }}</h2>
+
+    {% if user.perfil.bio %}
+      <p class="perfil-bio">{{ user.perfil.bio }}</p>
+    {% else %}
+      <p class="perfil-bio text-muted">Você ainda não escreveu uma biografia.</p>
+    {% endif %}
+
+    <a href="{% url 'perfil' %}" class="btn btn-primary mt-4">Edite-o ✏️</a>
+  </div>
+</div>
+{% endblock %}
