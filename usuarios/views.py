@@ -64,5 +64,24 @@ def alterar_senha(request):
     
     return render(request, 'password_change_done.html', {'form': form})
 
+@login_required
 def editar_perfil(request):
-    return render(request, 'editar_perfil.html')
+    perfil, created = Perfil.objects.get_or_create(user=request.user)
+    return render(request, 'registration/editar_perfil.html', {'user': request.user})
+
+@login_required
+def perfil(request):
+    perfil, created = Perfil.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = FormPerfil(request.POST, request.FILES, instance=perfil)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Perfil atualizado com sucesso!')
+            return redirect('editar_perfil')
+        else:
+            messages.error(request, 'Erro ao atualizar o perfil!')
+    else:
+        form = FormPerfil(instance=perfil)
+
+    return render(request, 'registration/perfil.html', {'form': form})
