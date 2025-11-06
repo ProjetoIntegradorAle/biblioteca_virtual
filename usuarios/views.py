@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import FormCadastro, FormPerfil
-from .models import Perfil
+from .models import Perfil, User
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.forms import PasswordChangeForm
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 def cadastro(request):
     if request.method == 'POST':
@@ -67,7 +69,10 @@ def alterar_senha(request):
 @login_required
 def editar_perfil(request):
     perfil, created = Perfil.objects.get_or_create(user=request.user)
-    return render(request, 'registration/editar_perfil.html', {'user': request.user})
+    return render(request, 'registration/editar_perfil.html', {
+        'user': request.user,
+        'perfil': perfil
+    })
 
 @login_required
 def perfil(request):
@@ -85,3 +90,9 @@ def perfil(request):
         form = FormPerfil(instance=perfil)
 
     return render(request, 'registration/perfil.html', {'form': form})
+
+@receiver(post_save, sender=User)
+def criar_perfil_usuario(sender, instance, created, **kwargs):
+    if created:
+        Perfil.objects.create(user=instance)
+
