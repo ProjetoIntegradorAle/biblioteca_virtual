@@ -419,6 +419,15 @@ textarea {
     background-color: #45a049;
 }
 
+input.form-control {
+    color: #333 !important;
+    background-color: #fff !important;
+    border: 1px solid #ccc;
+}
+
+label {
+    color: #333;
+}
 
 .perfil-box label {
     color: #fffefe;

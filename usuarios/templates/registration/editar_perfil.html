@@ -10,17 +10,36 @@
 </h1>
 
 <div class="perfil-container">
+
   <div class="perfil-box text-center">
     <img src="{{ user.email|gravatar_url:200 }}" alt="Avatar do usuário" class="rounded-circle mb-3" width="150" height="150">
-    <h2>{{ user.get_full_name }}</h2>
 
-    {% if user.perfil.bio %}
-      <p class="perfil-bio">{{ user.perfil.bio }}</p>
+    {% if user.first_name or user.last_name %}
+      <h3 class="perfil-nome">{{ user.first_name }} {{ user.last_name }}</h3>
     {% else %}
-      <p class="perfil-bio text-muted">Você ainda não escreveu uma biografia.</p>
+      <h3 class="perfil-nome">Nome não informado</h3>
     {% endif %}
 
+    {% if perfil.bio %}
+      <p class="perfil-bio">{{ perfil.bio }}</p>
+    {% else %}
+      <p class="perfil-bio">Você ainda não escreveu uma biografia.</p>
+    {% endif %}
+  
+    {% if perfil.cidade %}
+      <p class="perfil-cidade">Cidade: {{ perfil.cidade }}</p>
+    {% else %}
+      <p class="perfil-cidade">Cidade não informada.</p>
+    {% endif %}
+  
+    {% if perfil.estado %}
+      <p class="perfil-estado">Estado: {{ perfil.estado }}</p>
+    {% else %}
+      <p class="perfil-estado">Estado não informado.</p>
+    {% endif %}
+  
     <a href="{% url 'perfil' %}" class="btn btn-primary mt-4">Edite-o ✏️</a>
-  </div>
+  </div>  
+
 </div>
 {% endblock %}
