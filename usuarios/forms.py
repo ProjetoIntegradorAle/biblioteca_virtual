@@ -6,8 +6,8 @@ from .models import User, Perfil
 from django.contrib.auth.forms import PasswordChangeForm
 
 class FormCadastro(UserCreationForm):
-    first_name = forms.CharField(label='Nome', max_length=30, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(label='Sobrenome', max_length=30, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(label='Nome', max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(label='Sobrenome', max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
