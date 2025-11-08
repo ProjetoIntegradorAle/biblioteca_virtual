@@ -3,42 +3,32 @@
 {% block title %}Cadastro{% endblock %}
 
 {% block content %}
-
 <div class="cadastro-container">
     <div class="cadastro-box">
         <h1>Alexandria</h1>
+
+        {% if messages %}
+          <div class="mensagem">
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
         <form method="post" action="{% url 'cadastro' %}">
             {% csrf_token %}
-
             {{ form.username }}
             {{ form.email }}
-
-            <!-- Campos ajustados -->
             {{ form.first_name }}
             {{ form.last_name }}
-
             {{ form.password1 }}
             {{ form.password2 }}
-
-            {% if form.errors %}
-              <div class="form-erros">
-                <ul>
-                  {% for field in form %}
-                    {% for error in field.errors %}
-                      <li>{{ field.label }}: {{ error }}</li>
-                    {% endfor %}
-                  {% endfor %}
-                  {% for error in form.non_field_errors %}
-                    <li>{{ error }}</li>
-                  {% endfor %}
-                </ul>
-              </div>
-            {% endif %}
 
             <button type="submit" class="btn-login">Cadastrar</button>
             <a href="{% url 'login' %}" class="btn-cadastrar">Já tem conta? Faça login</a>
         </form>
     </div>
 </div>
-
 {% endblock %}

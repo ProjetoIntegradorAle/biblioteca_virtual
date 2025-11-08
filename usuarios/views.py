@@ -21,6 +21,7 @@ def cadastro(request):
                 messages.warning(request, 'O perfil já existe.')
             return redirect('login')
         else:
+            print(form.errors)  # Mostra os erros no terminal
             messages.error(request, 'Erro ao realizar o cadastro!')
     else:
         form = FormCadastro()
