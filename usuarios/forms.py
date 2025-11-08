@@ -1,18 +1,21 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
 from .models import User, Perfil
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 class FormCadastro(UserCreationForm):
-    first_name = forms.CharField(label='Nome', max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(label='Sobrenome', max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'placeholder': 'Nome'}))
+    last_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'placeholder': 'Sobrenome'}))
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'placeholder': 'Endereço de email'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Usuário'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Senha'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirmação de senha'}))
 
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
-
 
 class FormPerfil(forms.ModelForm):
     class Meta:
