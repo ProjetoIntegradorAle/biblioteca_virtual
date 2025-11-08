@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import FormCadastro, FormPerfil
+from .forms import FormCadastro, FormPerfil, FormLogin
+from django.contrib.auth import login as auth_login
 from .models import Perfil, User
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash, logout
@@ -27,8 +28,23 @@ def cadastro(request):
         form = FormCadastro()
     return render(request, 'cadastro.html', {'form': form})
 
-def login(request): 
-    return render(request, 'login.html')
+def login(request):
+    if request.method == 'POST':
+        form = FormLogin(request, data=request.POST)
+        if form.is_valid():
+            print("Login válido")
+            user = form.get_user()
+            auth_login(request, user)
+            return redirect('perfil') 
+        else:
+            print(form.errors)
+            messages.error(request, 'Usuário ou senha inválidos.')
+
+        
+    else:
+        form = FormLogin()
+    return render(request, 'login.html', {'form': form})
+
 
 def logout_view(request):
     logout(request)

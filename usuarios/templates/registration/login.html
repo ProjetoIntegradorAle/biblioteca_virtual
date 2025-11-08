@@ -7,17 +7,22 @@
 <div class="login-container">
     <div class="login-box">
         <h1>Alexandria</h1>
-        <form method="post">
-            <div class='form-group'>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn-login">Entrar</button>
-                <!--<button type="button" class="btn-suap">Entrar com SUAP IFRN</button>-->
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+
+            <div class="form-group">
+                {{ form.username.errors }}
+                {{ form.username }}
             </div>
-            <div>
-                <a href="{% url 'password_reset' %}" class="forgot-password">Esqueceu a senha?</a>
-                <a href="{% url 'cadastro' %}" class="btn-cadastrar">Não tem conta? Cadastre-se</a>
+
+            <div class="form-group">
+                {{ form.password.errors }}
+                {{ form.password }}
             </div>
+
+            <button type="submit" class="btn-login">Entrar</button>
+            <a href="{% url 'password_reset' %}" class="btn-cadastrar">Esqueceu a senha?</a><br>
+            <a href="{% url 'cadastro' %}" class="btn-cadastrar">Não tem conta? Cadastre-se</a>
         </form>
     </div>
 </div>
