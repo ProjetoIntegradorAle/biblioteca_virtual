@@ -702,9 +702,11 @@ input[type="file"] {
 .login-box input {
     width: 80%;
     padding: 10px;
-    margin-bottom: 13px;
+    margin: 0 auto 13px auto; /* centraliza horizontalmente */
+    display: block;           /* garante que o input ocupe uma linha inteira */
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 14px;
 }
 
 .btn-login,
@@ -718,6 +720,14 @@ input[type="file"] {
     font-size: 16px;
     display: block;
 }
+
+.login-box button,
+.login-box a {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+}
+
 
 .btn-login {
     background: #4CAF50;
