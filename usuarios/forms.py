@@ -1,9 +1,21 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import User, Perfil
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import get_user_model
 User = get_user_model()
+
+class FormLogin(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(FormLogin, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({
+            'placeholder': 'Usuário',
+            'class': 'form-control'
+        })
+        self.fields['password'].widget.attrs.update({
+            'placeholder': 'Senha',
+            'class': 'form-control'
+        })
 
 class FormCadastro(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'placeholder': 'Nome'}))
