@@ -591,6 +591,13 @@ input[type="file"] {
 }
 
 /* Redefinir senha */
+.container-senha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .redefinir_senha {
     background: rgba(255, 255, 255, 0.9);
     padding: 25px;
@@ -601,11 +608,30 @@ input[type="file"] {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-.container-senha {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.redefinir_senha input[type="email"] {
+    width: 80%;
+    padding: 10px;
+    margin: 0 auto 13px auto;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.btn.btn-senha {
+    background: #4CAF50;
+    color: white;
+    display: block;
+    width: 75%;
+    padding: 8px;
+    margin: 10px auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
 }
 
 .redefinir_senha h2 {
@@ -670,19 +696,6 @@ input[type="file"] {
     font-size: 16px;
 }
 
-.btn.btn-senha {
-    background: #4CAF50;
-    color: white;
-    display: block;
-    width: 65%;
-    padding: 8px;
-    margin: 5px auto;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
 /* Login */
 .login-container {
     display: flex;
@@ -731,6 +744,10 @@ input[type="file"] {
     font-size: 14px;
 }
 
+.form-control {
+    text-align: left;
+}
+
 .btn-login,
 .btn-suap {
     color: white;
@@ -747,7 +764,7 @@ input[type="file"] {
 
 .login-box button,
 .login-box a {
-    display: block;
+    /*display: block;*/
     margin: 10px auto;
     text-align: center;
 }
