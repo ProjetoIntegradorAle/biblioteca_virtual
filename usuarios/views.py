@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import FormCadastro, FormPerfil, FormLogin
+from .forms import FormCadastro, FormPerfil, FormLogin, CustomPasswordResetForm
 from django.contrib.auth import login as auth_login
 from .models import Perfil, User
 from django.contrib import messages
@@ -112,4 +112,15 @@ def perfil(request):
 def criar_perfil_usuario(sender, instance, created, **kwargs):
     if created:
         Perfil.objects.create(user=instance)
+
+def password_reset_view(request):
+    if request.method == 'POST':
+        form = CustomPasswordResetForm(request.POST)
+        if form.is_valid():
+            form.save(...)
+            messages.success(request, 'Email enviado com instruções!')
+            return redirect('password_reset_done')
+    else:
+        form = CustomPasswordResetForm()
+    return render(request, 'password_reset_form.html', {'form': form})
 

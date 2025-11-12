@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import User, Perfil
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -55,3 +55,12 @@ class AlterarSenhaForm(PasswordChangeForm):
         label="Senha atual:",
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
+
+class CustomPasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomPasswordResetForm, self).__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs.update({
+            'placeholder': 'Email',
+            'class': 'form-control'
+        })
+
