@@ -621,7 +621,7 @@ input[type="file"] {
 
 .text-decoration-none {
     text-decoration: none;
-    color: #000000;
+    color: white;
     background: #4CAF50;
     display: block;
     width: 75%;
