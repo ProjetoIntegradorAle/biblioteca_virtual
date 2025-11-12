@@ -10,16 +10,13 @@
         <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
 
-            {{ form.username.errors }}
-            {{ form.username }}
-            {{ form.password.errors }}
-            {{ form.password }}
-            
+            <input type="text" name="username" placeholder="Usuário" class="form-control" required>
+            <input type="password" name="password" placeholder="Senha" class="form-control" required>
+
             <button type="submit" class="btn-login">Entrar</button>
-            <a href="{% url 'password_reset' %}" class="btn-cadastrar">Esqueceu a senha?</a>
+            <a href="{% url 'password_reset' %}" class="btn-cadastrar">Esqueceu a senha?</a><br>
             <a href="{% url 'cadastro' %}" class="btn-cadastrar">Não tem conta? Cadastre-se</a>
         </form>
-        
     </div>
 </div>
 
