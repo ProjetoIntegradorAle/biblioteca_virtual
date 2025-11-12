@@ -639,6 +639,16 @@ input[type="file"] {
     color: #555;
 }
 
+.emailinput .form-control{
+    width: 94% !important; 
+    padding: 10px;
+    margin: 0 auto 13px auto;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
 .passwordinput.form-control {
     width: 80%;
     padding: 9px;
@@ -647,9 +657,21 @@ input[type="file"] {
     border-radius: 5px;
 }
 
-.btn.btn-primary,
-.btn.btn-senha {
+.btn.btn-primary {
     background: #0d6efd;
+    color: white;
+    display: block;
+    width: 65%;
+    padding: 8px;
+    margin: 5px auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn.btn-senha {
+    background: #4CAF50;
     color: white;
     display: block;
     width: 65%;
@@ -711,6 +733,8 @@ input[type="file"] {
 
 .btn-login,
 .btn-suap {
+    color: white;
+    background: #4CAF50;
     width: 75%;
     padding: 8px;
     margin: 5px auto;
@@ -726,17 +750,6 @@ input[type="file"] {
     display: block;
     margin: 10px auto;
     text-align: center;
-}
-
-
-.btn-login {
-    background: #4CAF50;
-    color: white;
-}
-
-.btn-suap {
-    background: #333;
-    color: #fff;
 }
 
 label {
@@ -771,7 +784,7 @@ label {
 /* Botão cadastrar */
 .btn-cadastrar {
     width: 100%;
-    padding: 10px;
+    padding: 0px;
     color: #555;
     border: none;
     border-radius: 5px;
