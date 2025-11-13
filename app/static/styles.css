@@ -125,6 +125,36 @@ main p{
     right: 0;
 }
 
+/* Centraliza o nav horizontalmente */
+.navbar-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+/* Estiliza os ícones */
+#navMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 0;
+  margin: 0;
+}
+
+#navMenu .nav-link {
+  font-size: 26px;
+  color: white;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+#navMenu .nav-link:hover {
+  transform: scale(1.2);
+  color: #ccc;
+}
+
 #navMenu a, #navMenu button {
     text-decoration: none;
     color: white;
@@ -190,6 +220,17 @@ main p{
     color: rgb(0, 0, 0) !important; /* mantém a cor do texto */
     transform: scale(1.05) !important; /* aplica o zoom */
 }
+
+.nav-link {
+  position: relative;
+  font-size: 24px; /* aumenta o emoji */
+  padding: 10px;
+}
+
+.nav-link span {
+  display: none; /* oculta o texto */
+}
+
 
 .btn-outline-light {
     font-weight: bold;
