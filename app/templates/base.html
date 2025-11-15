@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
-  <header class="navbar d-flex justify-content-between align-items-center px-4">
-    <!-- Menu de navegação -->
-    <nav class="navbar-center w-100">
-      <ul id="navMenu" class="nav justify-content-center">
+  <header class="navbar d-flex align-items-center px-4">
+    <nav class="navbar-center w-100 d-flex justify-content-between align-items-center">
+      <!-- Ícones centralizados -->
+      <ul id="navMenu" class="nav justify-content-center mx-auto">
         <li class="nav-item">
           <a href="{% url 'index' %}" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Início">
             <i class="bi bi-house-door-fill"></i>
@@ -32,27 +32,26 @@
           </a>
         </li>
       </ul>
+
+      <!-- Dropdown do usuário à direita -->
+      <div class="dropdown">
+        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person-circle"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="{% url 'editar_perfil' %}"><i class="bi bi-person-fill"></i> Área do Usuário</a></li>
+          <li><a class="dropdown-item" href="{% url 'configuracoes' %}"><i class="bi bi-gear-fill"></i> Configurações</a></li>
+          <li>
+            <form action="{% url 'logout' %}" method="POST" style="margin: 0;">
+              {% csrf_token %}
+              <button type="submit" class="dropdown-item" style="border: none; font-weight: 650;">
+                <i class="bi bi-box-arrow-right"></i> Sair
+              </button>
+            </form>
+          </li>
+        </ul>
+      </div>
     </nav>
-
-
-    <!-- Menu do usuário -->
-    <div class="dropdown">
-      <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        👨‍🏫 Usuário
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end">
-        <li><a class="dropdown-item" href="{% url 'editar_perfil' %}">👤 ÁREA DO USUÁRIO</a></li>
-        <li><a class="dropdown-item" href="{% url 'configuracoes' %}">⚙️ CONFIGURAÇÕES</a></li>
-        <li>
-          <form action="{% url 'logout' %}" method="POST" style="margin: 0;">
-            {% csrf_token %}
-            <button type="submit" class="dropdown-item" style="border: none; font-weight: 650;">
-              📥 SAIR
-            </button>
-          </form>
-        </li>
-      </ul>
-    </div>
   </header>
 
   <div class="wrapper">

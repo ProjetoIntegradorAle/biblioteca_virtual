@@ -92,7 +92,8 @@ main p{
 /* Barra de navegação */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
     padding: 0 2rem;
     height: 95px;
@@ -134,13 +135,20 @@ main p{
 }
 
 /* Estiliza os ícones */
+.navbar-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
 #navMenu {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 40px;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
 }
 
 #navMenu .nav-link {
@@ -200,25 +208,32 @@ main p{
     background-color: #1c1c1c;
     border: none;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    min-width: 200px !important; 
+    min-width: 180px !important;
     padding-top: 6px !important;
 }
 
+/* Removido o flex para evitar desalinhamento */
 .dropdown-item {
     color: white;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 30px 35px;
+    padding: 12px 20px; /* espaçamento uniforme */
     white-space: nowrap;
     font-weight: bold;
     font-size: 14px;
+    text-align: left;
+    width: 100%;
+    display: block;
 }
 
+/* Ícones dentro do item, se houver */
+.dropdown-item i {
+    margin-right: 8px;
+}
+
+/* Hover estilizado */
 .dropdown-item:hover {
-    background-color: transparent !important; /* remove o fundo cinza */
-    color: rgb(0, 0, 0) !important; /* mantém a cor do texto */
-    transform: scale(1.05) !important; /* aplica o zoom */
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #000000 !important;
+    transform: scale(1.05) !important;
 }
 
 .nav-link {
