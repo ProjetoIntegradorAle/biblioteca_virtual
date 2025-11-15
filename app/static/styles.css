@@ -157,6 +157,12 @@ main p{
     margin: 0;
 }
 
+#navMenu {
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+
 #navMenu .nav-link {
     color: white;
     transition: transform 0.3s ease;
@@ -181,6 +187,18 @@ main p{
     font-size: 14px;
     padding: 10px 15px;
 }
+
+#navMenu a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    font-size: 24px;
+    background-color: transparent;
+    width: auto;
+    border-radius: 0;
+}
+
 
 .navbar li {
     display: flex;
