@@ -96,9 +96,11 @@ main p{
     justify-content: center;
     align-items: center;
     padding: 0 2rem;
-    height: 95px;
+    height: 80px;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.25);
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .navbar-left {
@@ -128,39 +130,48 @@ main p{
 
 /* Centraliza o nav horizontalmente */
 .navbar-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.nav-item {
+    margin: 0;
 }
 
 /* Estiliza os ícones */
 .navbar-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 
 #navMenu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  padding: 0;
-  margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 0;
+    margin: 0;
 }
 
 #navMenu .nav-link {
-  font-size: 26px;
-  color: white;
-  padding: 10px;
-  transition: transform 0.3s ease;
+    color: white;
+    transition: transform 0.3s ease;
+    padding: 3px 8px; /* mínimo vertical, confortável lateral */
+    font-size: 24px; 
 }
 
 #navMenu .nav-link:hover {
-  transform: scale(1.2);
-  color: #ccc;
+    transform: scale(1.2);
+    color: #ccc;
+    background-color: #3b3636;
+}
+
+#navMenu .nav-link i {
+    vertical-align: middle;
 }
 
 #navMenu a, #navMenu button {
@@ -245,7 +256,6 @@ main p{
 .nav-link span {
   display: none; /* oculta o texto */
 }
-
 
 .btn-outline-light {
     font-weight: bold;
