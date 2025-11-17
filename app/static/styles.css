@@ -168,6 +168,7 @@ main p{
     transition: transform 0.3s ease;
     padding: 3px 8px; /* mínimo vertical, confortável lateral */
     font-size: 24px; 
+    border-radius: 10px;
 }
 
 #navMenu .nav-link:hover {
