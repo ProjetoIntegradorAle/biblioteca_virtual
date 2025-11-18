@@ -393,7 +393,7 @@ table {
     flex-direction: column;
 }
 
-.perfil-box .perfil-bio .perfil-cidade .perfil-estado .perfil-nome{
+.perfil-box h3{
     color: white;
 }
 
