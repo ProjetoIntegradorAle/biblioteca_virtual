@@ -127,6 +127,7 @@ main p{
     right: 0;
 }
 
+/* Centraliza o nav horizontalmente */
 .navbar-center {
     display: flex;
     justify-content: center;
@@ -155,11 +156,18 @@ main p{
     margin: 0;
 }
 
+#navMenu {
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+
 #navMenu .nav-link {
     color: white;
     transition: transform 0.3s ease;
-    padding: 3px 8px; 
+    padding: 3px 8px; /* mínimo vertical, confortável lateral */
     font-size: 24px; 
+    border-radius: 10px;
 }
 
 #navMenu .nav-link:hover {
@@ -179,6 +187,18 @@ main p{
     font-size: 14px;
     padding: 10px 15px;
 }
+
+#navMenu a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    font-size: 24px;
+    background-color: transparent;
+    width: auto;
+    border-radius: 0;
+}
+
 
 .navbar li {
     display: flex;
@@ -221,9 +241,10 @@ main p{
     padding-top: 6px !important;
 }
 
+/* Removido o flex para evitar desalinhamento */
 .dropdown-item {
     color: white;
-    padding: 12px 20px; 
+    padding: 12px 20px; /* espaçamento uniforme */
     white-space: nowrap;
     font-weight: bold;
     font-size: 14px;
@@ -232,10 +253,12 @@ main p{
     display: block;
 }
 
+/* Ícones dentro do item, se houver */
 .dropdown-item i {
     margin-right: 8px;
 }
 
+/* Hover estilizado */
 .dropdown-item:hover {
     background-color: rgba(255, 255, 255, 0.1) !important;
     color: #000000 !important;
@@ -402,11 +425,10 @@ textarea {
     resize: vertical;
 }
 
-
 .textarea-bio {
     width: 100%;
     height: 150px;
-    resize: vertical; /* permite redimensionar verticalmente */
+    resize: vertical; 
 }
 
 .form-control{
