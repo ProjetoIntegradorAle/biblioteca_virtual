@@ -6,17 +6,6 @@
 <div class="cadastro-container">
     <div class="cadastro-box">
         <h1>Alexandria</h1>
-
-        {% if messages %}
-          <div class="mensagem">
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          </div>
-        {% endif %}
-
         <form method="post" action="{% url 'cadastro' %}">
             {% csrf_token %}
             {{ form.username }}
