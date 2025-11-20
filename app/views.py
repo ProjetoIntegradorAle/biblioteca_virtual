@@ -87,6 +87,24 @@ def curtir_material(request, material_id):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 
+@login_required
+def adicionar_material(request):
+    if request.method == 'POST':
+        form = MaterialForm(request.POST, request.FILES)
+        if form.is_valid():
+            novo_material = form.save(commit=False)
+            novo_material.usuario = request.user
+            novo_material.autor = request.user.username
+            novo_material.status = 'rascunho'  # Define status inicial como rascunho
+            novo_material.save()
+            messages.success(request, 'Material criado com sucesso!')
+            return redirect('meus_materiais')
+        else:
+            messages.error(request, 'Erro ao criar material. Verifique os campos.')
+    else:
+        form = MaterialForm()
+    
+    return render(request, 'adicionar_material.html', {'form': form})
 
 @login_required
 def meus_materiais(request):
