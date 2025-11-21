@@ -27,5 +27,4 @@ urlpatterns = [
     path('convites/', views.convites, name='convites'),
     path('convites/<int:convite_id>/responder/', views.responder_convite, name='responder_convite'),
     path('material/<int:material_id>/publicar', views.publicar_material, name='publicar_material'),
-    path('adicionar_material/', views.adicionar_material, name='adicionar_material'),
 ]

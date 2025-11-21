@@ -120,30 +120,112 @@
 
 <hr style=" padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
 
-    <h2 style="font-family: 'Georgia'; font-size: 35px; font-weight: bold;" class="titulo-principal">
-        Adicionar Material
-    </h2>
-    <div>
-        <a href="{% url 'adicionar_material'%}" class="">
-            Adicionar Novo Material
-        </a>
-    </div>
+<h2 style="font-family: 'Georgia'; font-size: 35px; font-weight: bold;" class="titulo-principal">
+    Adicionar Material
+</h2>
 
+<!-- Botão para abrir/fechar o formulário -->
+<button id="btnAdicionarMaterial" class="btn-adicionar-material">
+  <span class="icon">➕</span> Adicionar Material
+</button>
+
+<!-- Formulário escondido inicialmente -->
+<div id="formAdicionarMaterial" style="display:none; margin-top:40px;">
+  <div class="add-material">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <!-- Título -->
+      <div class="form-row">
+        <label for="{{ form.titulo.id_for_label }}" class="label-inline">Título:</label>
+        <div class="input-inline">
+          {{ form.titulo }}
+        </div>
+      </div>
+
+      <!-- Descrição -->
+      <div class="form-row">
+        <label for="{{ form.descricao.id_for_label }}" class="label-inline">Descrição:</label>
+        <div class="input-inline">
+          {{ form.descricao }}
+        </div>
+      </div>
+
+      <!-- Tipo e Arquivo lado a lado -->
+      <div class="form-row">
+        <div class="half-width">
+          <label for="{{ form.tipo.id_for_label }}" class="label-inline">Tipo:</label>
+          <div class="input-inline">
+            {{ form.tipo }}
+          </div>
+        </div>
+        <div class="half-width">
+          <label for="{{ form.arquivo.id_for_label }}" class="label-inline">Arquivo:</label>
+          <div class="input-inline">
+            {{ form.arquivo }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Permissões -->
+      <h3 style="margin-bottom: 0px; margin-top: 20px; color: white; font-size: 16px; font-weight: 400; font-family: Arial, Helvetica, sans-serif;">
+        Permissões:
+      </h3>
+      <div class="form-row">
+        <div class="form-habit half-width">
+          <label for="id_avaliacoes_habilitadas">Habilitar Avaliações:</label>
+          <label class="switch">
+            <input type="checkbox" name="avaliacoes_habilitadas" id="id_avaliacoes_habilitadas">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="form-habit half-width">
+          <label for="id_colaboracao_habilitada">Habilitar Colaboração:</label>
+          <label class="switch">
+            <input type="checkbox" name="colaboracao_habilitada" id="id_colaboracao_habilitada">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Campo colaborador -->
+      <div class="form-row" id="campoColaborador" style="margin-top: 10px;">
+        <label for="{{ form.email_colaborador.id_for_label }}" class="label-inline">Email do colaborador:</label>
+        <div class="input-inline">
+          {{ form.email_colaborador }}
+        </div>
+      </div>
+
+      <!-- Botão -->
+      <div class="form-actions">
+        <button type="submit">Criar Material</button>
+      </div>
+    </form>
+  </div>
 </div>
 
-<!-- HABILITAR COLABORAÇÃO -->
+        
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('btnAdicionarMaterial');
+    const form = document.getElementById('formAdicionarMaterial');
     const colaboracaoCheckbox = document.getElementById('id_colaboracao_habilitada');
     const campoColaborador = document.getElementById('campoColaborador');
 
+    // Mostrar/ocultar formulário
+    btn.addEventListener('click', function () {
+        form.style.display = (form.style.display === 'none') ? 'block' : 'none';
+    });
+
+    // Mostrar campo colaborador
     function toggleCampo() {
         campoColaborador.style.display = colaboracaoCheckbox.checked ? 'block' : 'none';
     }
-
     colaboracaoCheckbox.addEventListener('change', toggleCampo);
-    toggleCampo(); // Executa na carga inicial
+    toggleCampo();
 });
 </script>
+
 
 {% endblock %}

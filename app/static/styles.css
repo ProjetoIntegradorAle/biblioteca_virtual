@@ -291,73 +291,119 @@ main p{
 /* Adicionar Material */
 .add-material {
     background-color: rgba(255, 255, 255, 0.1);
-    padding: 30px;
+    padding: 50px 80px;
     border-radius: 10px;
     box-shadow: 0 8px 8px rgba(94, 78, 9, 0.2);
     width: 100%;
-    max-width: 500px;
+    max-width: 900px;
     margin: auto;
 }
 
-.add-material h2 {
-    margin-top: 0;
-    font-size: 24px;
-    color: white;
+.add-material h3 {
+    margin-top: 40px !important;
+    margin-bottom: 20px !important;
 }
 
-.add-material form {
+/* Alinhamento mais à direita dos campos de título e descrição */
+.form-row {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
     gap: 10px;
+    flex-wrap: wrap;
+    padding-left: 40px; /* desloca os campos para a direita */
 }
 
-.add-material label {
+/* Labels ao lado */
+.label-inline {
+    width: 150px;
+    font-weight: 500;
     color: white;
+    text-align: right;
+    margin-right: 10px;
+}
+
+/* Inputs */
+.input-inline {
+    flex: 1;
+}
+
+.input-inline input,
+.input-inline select,
+.input-inline textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    background-color: #f8f8f8;
+}
+
+/* Textarea de descrição igual ao input de título, mas expansível */
+.input-inline textarea {
+    min-height: 40px;
+    resize: vertical;
+    line-height: 1.4;
+    overflow-y: auto;
+}
+
+
+.half-width {
+    flex: 1;
+    min-width: 250px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* Inputs e labels */
+.add-material label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+    font-weight: 500;
 }
 
 .add-material input,
 .add-material select,
-.add-material textarea,
-.add-material button {
+.add-material textarea {
     padding: 10px;
     border-radius: 5px;
     border: none;
     width: 100%;
+    font-size: 14px;
 }
 
-input[type="file"] {
-    color: white;
+/* Descrição expansível */
+.add-material textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Botão alinhado à direita */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
 }
 
 .add-material button {
     background-color: green;
     color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
+    border: none;
+    font-weight: bold;
 }
 
-/* Remover asteriscos */
-.form-group label::after {
-    content: ""; /* Remove o conteúdo do pseudo-elemento */
-}
-
-.form-group label{
-    margin-top: 7px;
-    margin-bottom: 3px;
-}
-
-/* Toggle switch */
+/* Toggle switches */
 .form-habit {
     display: flex;
     align-items: center;
+    gap: 10px;
     margin-bottom: 15px;
-    gap: 10px; /* Espaço entre o texto e o botão */
-}
-
-.form-habit label {
-    margin-top: 10px;
-    margin-left: 10px;
-    font-weight: 500;
-    white-space: nowrap;
 }
 
 .switch {
@@ -393,12 +439,55 @@ input[type="file"] {
     border-radius: 50%;
 }
 
-input:checked + .slider {
-    background-color: #4CAF50;
+.label-inline {
+    width: 150px;
+    font-weight: 500;
+    color: white;
+    text-align: right;
+    margin-right: 10px;
 }
 
-input:checked + .slider:before {
-    transform: translateX(24px);
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Descrição expansível */
+.input-inline textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.btn-adicionar-material {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    margin: 30px auto;
+    width: auto;
+}
+
+.btn-adicionar-material .icon {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Centraliza o botão */
+#btnAdicionarMaterial {
+    display: block;
+    text-align: center;
 }
 
 /* Materiais Salvos */

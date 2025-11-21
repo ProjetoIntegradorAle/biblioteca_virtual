@@ -88,50 +88,30 @@ def curtir_material(request, material_id):
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 
 @login_required
-def adicionar_material(request):
-    if request.method == 'POST':
-        form = MaterialForm(request.POST, request.FILES)
-        if form.is_valid():
-            novo_material = form.save(commit=False)
-            novo_material.usuario = request.user
-            novo_material.autor = request.user.username
-            novo_material.status = 'rascunho'  # Define status inicial como rascunho
-            novo_material.save()
-            messages.success(request, 'Material criado com sucesso!')
-            return redirect('meus_materiais')
-        else:
-            messages.error(request, 'Erro ao criar material. Verifique os campos.')
-    else:
-        form = MaterialForm()
-    
-    return render(request, 'adicionar_material.html', {'form': form})
-
-@login_required
 def meus_materiais(request):
+    # Materiais salvos
     salvos = MaterialSalvo.objects.filter(usuario=request.user)
     documentos_salvos = salvos.filter(material__tipo=Material.DOCUMENTO)
     slides_salvos = salvos.filter(material__tipo=Material.SLIDE)
     videos_salvos = salvos.filter(material__tipo=Material.VIDEO)
-    
+
     if request.method == 'POST':
         form = MaterialForm(request.POST, request.FILES)
         if form.is_valid():
             novo_material = form.save(commit=False)
             novo_material.usuario = request.user
             novo_material.autor = request.user.username
-
-            # Define status inicial como rascunho
             novo_material.status = 'rascunho'
-            novo_material.save()  # Para salvar primeiro e então gerar o ID
+            novo_material.save()
 
-            # Verifica se colaboração está habilitada
+            # Verifica colaboração
             colaboracao_habilitada = request.POST.get('colaboracao_habilitada')
             email_colaborador = request.POST.get('email_colaborador')
+
             if email_colaborador == request.user.email:
                 messages.error(request, "Você não pode se convidar para colaborar consigo mesma.")
                 return redirect('meus_materiais')
 
-            
             if colaboracao_habilitada and email_colaborador:
                 try:
                     colaborador = User.objects.get(email=email_colaborador)
@@ -141,24 +121,20 @@ def meus_materiais(request):
                     else:
                         novo_material.colaboracao_habilitada = True
                         novo_material.status = 'aguardando'
-                        novo_material.save()  # Para atualizar status
+                        novo_material.save()
 
-                        # Cria convite                       
                         ConviteColaboracao.objects.create(
-                        material=novo_material,
-                        remetente=request.user,
-                        destinatario=colaborador,
-                        status='pendente'
+                            material=novo_material,
+                            remetente=request.user,
+                            destinatario=colaborador,
+                            status='pendente'
                         )
-
-                        # Material com ID --> Adiciona colaborador
                         novo_material.colaboradores_pendentes.add(colaborador)
                 except User.DoesNotExist:
                     messages.warning(request, 'Colaborador não encontrado.')
             else:
                 novo_material.status = 'publicado'
                 novo_material.save()
-
 
             messages.success(request, 'Material criado com sucesso!')
             return redirect('meus_materiais')
@@ -167,12 +143,12 @@ def meus_materiais(request):
     else:
         form = MaterialForm()
 
-    # Filtra apenas materiais publicados
+    # Apenas materiais publicados
     materiais_criados = Material.objects.filter(
         Q(usuario=request.user) | Q(colaboradores_confirmados=request.user),
         status='publicado'
     ).distinct()
-    
+
     paginator = Paginator(materiais_criados, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -184,7 +160,6 @@ def meus_materiais(request):
         'slides_salvos': slides_salvos,
         'videos_salvos': videos_salvos,
     }
-    
     return render(request, 'meus_materiais.html', context)
 
 
