@@ -32,20 +32,16 @@
     {% if convite.status == 'pendente' %}
     <p>Status: <span class="status-pendente">Pendente</span></p>
         <form method="POST" action="{% url 'responder_convite' convite.id %}">
-        {% csrf_token %}
-        <button name="resposta" value="aceito" class="btn-c btn-aceitar">Aceitar</button>
-        <button name="resposta" value="negado" class="btn-c btn-negar">Negar</button>
+          {% csrf_token %}
+          <button name="resposta" value="aceito" class="btn-c btn-aceitar">Aceitar</button>
+          <button name="resposta" value="negado" class="btn-c btn-negar">Negar</button>
         </form>
-    {% elif convite.status == 'aceito' %}
-        {% if convite.material.status == 'publicado' %}
-            <p class="status-aceito">Convite aceito e material publicado.</p>
-        {% else %}
-            <p class="status-aceito">Convite aceito. Você pode publicar o material:</p>
-            <form method="POST" action="{% url 'publicar_material' convite.material.id %}">
-            {% csrf_token %}
-            <button type="submit" class="btn-c btn-visualizar">Publicar Material</button>
-            </form>
-        {% endif %}
+        {% elif convite.status == 'aceito' %}
+          {% if convite.material.status == 'publicado' %}
+              <p class="status-aceito">Convite aceito e material publicado.</p>
+          {% else %}
+              <p class="status-aceito">Convite aceito. Aguardando publicação pelo remetente.</p>
+          {% endif %}
         {% elif convite.status == 'negado' %}
             <p class="status-pendente">Você recusou este convite.</p>
         {% endif %}
@@ -74,12 +70,17 @@
 
     {% if convite.status == 'negado' %}
       <p>O colaborador {{ convite.destinatario.username }} recusou o convite.</p>
+
     {% elif convite.status == 'aceito' %}
-        {% if convite.material.status == 'publicado' %}
-            <p class="status-aceito">Convite aceito e material publicado.</p>
-        {% else %}
-            <p>Convite aceito. Aguardando publicação pelo colaborador.</p>
-        {% endif %}
+    {% if convite.material.status == 'publicado' %}
+        <p class="status-aceito">Convite aceito e material publicado.</p>
+    {% else %}
+        <p>Convite aceito. Você pode publicar o material:</p>
+        <form method="POST" action="{% url 'publicar_material' convite.material.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn-c btn-visualizar">Publicar Material</button>
+        </form>
+    {% endif %}
     {% else %}
       <p>Convite ainda pendente.</p>
     {% endif %}

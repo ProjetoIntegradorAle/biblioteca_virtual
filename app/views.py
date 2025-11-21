@@ -130,13 +130,16 @@ def meus_materiais(request):
                             status='pendente'
                         )
                         novo_material.colaboradores_pendentes.add(colaborador)
+
+                        # Mensagem correta para colaboração
+                        messages.success(request, 'Convite enviado. Aguarde a aceitação do colaborador para publicar.')
                 except User.DoesNotExist:
                     messages.warning(request, 'Colaborador não encontrado.')
             else:
                 novo_material.status = 'publicado'
                 novo_material.save()
-
-            messages.success(request, 'Material criado com sucesso!')
+                # Mensagem correta para criação direta
+                messages.success(request, 'Material criado com sucesso!')
             return redirect('meus_materiais')
         else:
             messages.error(request, 'Erro ao criar material. Verifique os campos.')
@@ -283,21 +286,23 @@ def convites(request):
         'recebidos': recebidos,
         'enviados': enviados
     })
-    
+
 @login_required
 def publicar_material(request, material_id):
     material = get_object_or_404(Material, id=material_id)
 
-    # Verifica se o usuário é colaborador confirmado
-    convite = ConviteColaboracao.objects.filter(material=material, destinatario=request.user, status='aceito').first()
-    if convite:
-        # Confirma colaboração
-        material.colaboradores_confirmados.add(request.user)
-        # Atualiza o campo autor com os dois nomes
-        autor_principal = material.usuario.username
-        colaborador = request.user.username
+    # Verifica se o usuário logado é o remetente do convite
+    convite = ConviteColaboracao.objects.filter(
+        material=material,
+        remetente=request.user,
+        status='aceito'
+    ).first()
 
-        # Evita duplicação se o colaborador for o mesmo que o autor
+    if convite:
+        # Atualiza autor com remetente + colaborador
+        autor_principal = material.usuario.username
+        colaborador = convite.destinatario.username
+
         if autor_principal != colaborador:
             material.autor = f"{autor_principal} e {colaborador}"
         else:
@@ -310,6 +315,5 @@ def publicar_material(request, material_id):
         messages.success(request, "Material publicado com sucesso!")
         return redirect('meus_materiais')
     else:
-        messages.error(request, "Você não tem permissão para publicar este material.")
+        messages.error(request, "Somente o remetente pode publicar após o colaborador aceitar.")
         return redirect('convites')
-
