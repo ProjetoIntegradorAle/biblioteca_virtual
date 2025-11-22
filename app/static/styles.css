@@ -51,7 +51,7 @@ body::after {
 
 main {
     flex: 1;
-    padding: 100px 40px;
+    padding: 70px 30px;
     display: flex;
     flex-direction: column;
     gap: 13px;
@@ -519,11 +519,12 @@ main p{
 
 /* Estrutura Meus Materiais */
 .section-container {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    padding: 30px;
-    margin-bottom: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .section-title {
@@ -536,10 +537,13 @@ main p{
     font-weight: bold;
 }
 
-.section-divider {
-    height: 2px;
-    background: linear-gradient(to right, rgba(255,255,255,0.2), rgba(255,255,255,0));
-    margin: 20px 0;
+.section-subtitle {
+  font-size: 24px;
+  font-family: 'Arial', sans-serif;
+  color: #dddddd;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 8px;
 }
 
 .materiais-tipos {
@@ -564,7 +568,6 @@ main p{
     margin-bottom: 15px;
     font-family: 'Arial', sans-serif;
 }
-
 
 .materiais-criados-grid {
     display: grid;
@@ -755,29 +758,77 @@ main p{
     margin-bottom: 15px;
 }
 
-.mat-grid{
+.page-wrapper {
+    padding-top: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Título principal */
+.page-title {
+    font-size: 36px;
+    font-family: 'Georgia', serif;
+    color: #ffffff;
+    margin-bottom: 40px;
+}
+
+/* Grid de materiais */
+.mat-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-.mat-grid li{
-    color: white;
-    list-style-type: none;
-}
-
+/* Bloco individual */
 .mat-compart {
-    text-align: left;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    transition: transform 0.2s ease;
+}
+
+.mat-compart:hover {
+    transform: scale(1.02);
+}
+
+/* Botões */
+.btn-c {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-visualizar {
+    background-color: #4CAF50;
     color: white;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
+}
+
+.btn-aceitar {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn-negar {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Status */
+.status-pendente {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+.status-aceito {
+    color: #4CAF50;
+    font-weight: bold;
 }
 
 .content-config {
@@ -1213,32 +1264,6 @@ table{
     font-size: 2rem;
 }
 
-.materiais-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem;
-}
-
-.material-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.material-card:hover {
-    transform: translateY(-5px);
-}
-
-.card-content h3 {
-    color: #fff;
-    margin: 0 0 0.5rem 0;
-    font-size: 1.2rem;
-}
-
 .autor, .descricao {
     color: #e0e0e0;
     font-size: 0.9rem;
@@ -1260,25 +1285,6 @@ table{
     font-size: 15px;
 }
 
-.card-actions {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-}
-
-.btn {
-    padding: 0.5rem 1.3rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-}
-
 .material-list{
     justify-content: center; /* Centraliza os elementos horizontalmente */
     display: flex;
@@ -1287,19 +1293,97 @@ table{
     justify-content: center;
 }
 
-.btn.abrir {
-    background: #28a745;
-    color: white;
+/* Grid de materiais */
+.materiais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
 }
 
-.btn.editar {
-    background: #ffc107;
-    color: black;
+/* Cartão individual */
+.material-card {
+    background-color: rgba(255, 255, 255, 0.05); /* tom cinza suave */
+    border-radius: 10px;
+    padding: 20px;
+    color: #ffffff;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease;
 }
 
-.btn.deletar {
-    background: #dc3545;
-    color: white;
+.material-card:hover {
+    transform: scale(1.01);
+}
+
+.card-content h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    margin: 4px 0;
+}
+
+.card-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Botões */
+.btn {
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-weight: bold;      
+    text-decoration: none;
+    cursor: pointer;
+    color: white !important;  
+    border: none;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.abrir {
+  background-color: #4CAF50;
+}
+
+.editar {
+  background-color: #FFC107;
+}
+
+.deletar {
+  background-color: #F44336;
+}
+
+.aceitar {
+    background-color: #2196F3;
+}
+
+.negar {
+    background-color: #f44336;
+}
+
+/* Status */
+.status-pendente {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+.status-aceito {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.status-negado {
+    color: #f44336;
+    font-weight: bold;
 }
 
 form {
