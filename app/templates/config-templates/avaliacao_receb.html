@@ -9,35 +9,36 @@
         Avaliações Recebidas
     </a>
 </h1>
-<hr style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
 
-<div class="avalia-receb">
-{% for material in materiais %}
-  {% if material.comentarios.exists or material.curtidas.exists %}
-    <div class="avalia-receb-item">
-      <h2><strong>Título: {{ material.titulo }}</strong></h2>
-      {% if material.comentarios.exists %}
-        <h4>Comentários:</h4>
-        {% for comentario in material.comentarios.all %}
-            <div class="alert alert-secondary">
-              <h5>{{ comentario.autor }}: {{ comentario.texto }}</h5>
-            </div>
-        {% endfor %}
-      {% endif %}
+<div class="section-container">
+  <div class="avalia-receb">
+  {% for material in materiais %}
+    {% if material.comentarios.exists or material.curtidas.exists %}
+      <div class="avalia-receb-item">
+        <h2><strong>Título: {{ material.titulo }}</strong></h2>
+        {% if material.comentarios.exists %}
+          <h4>Comentários:</h4>
+          {% for comentario in material.comentarios.all %}
+              <div class="alert alert-secondary">
+                <h5>{{ comentario.autor }}: {{ comentario.texto }}</h5>
+              </div>
+          {% endfor %}
+        {% endif %}
 
-      {% if material.curtidas.exists %}
-        <h4>Curtidas:</h4>
-        <ul>
-            {% for usuario in material.curtidas.all %}
-            <div><h5>❤️ {{ usuario.username }}</h5></div>
-            {% endfor %}
-        </ul>
-      {% endif %}
-    </div>
-  {% endif %}
-{% empty %}
-  <p>Você ainda não recebeu avaliações.</p>
-{% endfor %}
+        {% if material.curtidas.exists %}
+          <h4>Curtidas:</h4>
+          <ul>
+              {% for usuario in material.curtidas.all %}
+              <div><h5>❤️ {{ usuario.username }}</h5></div>
+              {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% empty %}
+    <p>Você ainda não recebeu avaliações.</p>
+  {% endfor %}
+  </div>
 </div>
 
 {% endblock %}

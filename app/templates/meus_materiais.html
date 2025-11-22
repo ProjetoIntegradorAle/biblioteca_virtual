@@ -3,209 +3,201 @@
 {% block title %}Meus Materiais{% endblock %}
 
 {% block content %}
-<div style="padding: 0px 0px;" class="container-mat">
-    <h1 style="margin-bottom: 20px;">
-        <a class="icon-brand">
-            Meus Materiais
-        </a>
-    </h1>
+<div class="container-mat">
 
-<hr style=" padding-top: 0.1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
+  <h1>
+      <a class="icon-brand">
+          Meus Materiais
+      </a>
+  </h1>
 
-    <!-- MATERIAIS SALVOS -->
-    <div class="content-mat">
-        <h2 class="titulo">Materiais Salvos</h2>
-    
-        <div class="materiais-tipos">
-            <!-- Vídeos -->
-            <div class="tipo-bloco">
-                <h2>Vídeos</h2>
-                <div class="materiais-criados-grid">
-                    {% for video in videos_salvos %}
-                    <div class="material-item">
-                        <h3>{{ video.material.titulo }}</h3>
-                        <p><strong>Autor:</strong> {{ video.material.autor }}</p>
-                        <p><strong>Descrição:</strong> {{ video.material.descricao }}</p>
-                        <a href="{% url 'visualizar_material' video.material.id %}" class="btn visualizar">Visualizar Material</a>
-                    </div>
-                    {% empty %}
-                    <p>Não há vídeos salvos.</p>
-                    {% endfor %}
+<!-- MATERIAIS SALVOS -->
+<div class="section-container">
+    <h2 class="section-title">Materiais Salvos</h2>
+    <div class="materiais-tipos">
+        <!-- Vídeos -->
+        <div class="tipo-bloco">
+            <h2>Vídeos</h2>
+            <div class="materiais-criados-grid">
+                {% for video in videos_salvos %}
+                <div class="material-item">
+                    <h3>{{ video.material.titulo }}</h3>
+                    <p><strong>Autor:</strong> {{ video.material.autor }}</p>
+                    <p><strong>Descrição:</strong> {{ video.material.descricao }}</p>
+                    <a href="{% url 'visualizar_material' video.material.id %}" class="btn visualizar">Visualizar Material</a>
                 </div>
+                {% empty %}
+                <p>Não há vídeos salvos.</p>
+                {% endfor %}
             </div>
-    
-            <!-- Slides -->
-            <div class="tipo-bloco">
-                <h2>Slides</h2>
-                <div class="materiais-criados-grid">
-                    {% for slide in slides_salvos %}
-                    <div class="material-item">
-                        <h3>{{ slide.material.titulo }}</h3>
-                        <p><strong>Autor:</strong> {{ slide.material.autor }}</p>
-                        <p><strong>Descrição:</strong> {{ slide.material.descricao }}</p>
-                        <a href="{% url 'visualizar_material' slide.material.id %}" class="btn visualizar">Visualizar Material</a>
-                    </div>
-                    {% empty %}
-                    <p>Não há slides salvos.</p>
-                    {% endfor %}
+        </div>
+
+        <!-- Slides -->
+        <div class="tipo-bloco">
+            <h2>Slides</h2>
+            <div class="materiais-criados-grid">
+                {% for slide in slides_salvos %}
+                <div class="material-item">
+                    <h3>{{ slide.material.titulo }}</h3>
+                    <p><strong>Autor:</strong> {{ slide.material.autor }}</p>
+                    <p><strong>Descrição:</strong> {{ slide.material.descricao }}</p>
+                    <a href="{% url 'visualizar_material' slide.material.id %}" class="btn visualizar">Visualizar Material</a>
                 </div>
+                {% empty %}
+                <p>Não há slides salvos.</p>
+                {% endfor %}
             </div>
-    
-            <!-- Documentos -->
-            <div class="tipo-bloco">
-                <h2>Documentos</h2>
-                <div class="materiais-criados-grid">
-                    {% for documento in documentos_salvos %}
-                    <div class="material-item">
-                        <h3>{{ documento.material.titulo }}</h3>
-                        <p><strong>Autor:</strong> {{ documento.material.autor }}</p>
-                        <p><strong>Descrição:</strong> {{ documento.material.descricao }}</p>
-                        <a href="{% url 'visualizar_material' documento.material.id %}" class="btn visualizar">Visualizar Material</a>
-                    </div>
-                    {% empty %}
-                    <p>Não há documentos salvos.</p>
-                    {% endfor %}
+        </div>
+
+        <!-- Documentos -->
+        <div class="tipo-bloco">
+            <h2>Documentos</h2>
+            <div class="materiais-criados-grid">
+                {% for documento in documentos_salvos %}
+                <div class="material-item">
+                    <h3>{{ documento.material.titulo }}</h3>
+                    <p><strong>Autor:</strong> {{ documento.material.autor }}</p>
+                    <p><strong>Descrição:</strong> {{ documento.material.descricao }}</p>
+                    <a href="{% url 'visualizar_material' documento.material.id %}" class="btn visualizar">Visualizar Material</a>
                 </div>
+                {% empty %}
+                <p>Não há documentos salvos.</p>
+                {% endfor %}
             </div>
         </div>
     </div>
-    
-<hr style=" padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
-
-    <!-- MATERIAIS CRIADOS -->
-    <div class="materiais-criados-container">
-        <h2 style="font-family: 'Georgia'; font-size: 35px;" class="titulo-principal">Materiais Criados</h2>
-        <div class="materiais-grid">
-            {% for material in page_obj %}
-            <div class="material-card">
-                <div class="card-content">
-                    <h3>{{ material.titulo }}</h3>
-                    <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>
-                    <p class="descricao"><strong>Descrição:</strong> {{ material.descricao }}</p>
-                    <div class="meta-info">
-                        <span class="tipo">{{ material.get_tipo_display }}</span>
-                    </div>
-                </div>
-                
-                <div class="card-actions">
-                    <a href="{% url 'visualizar_material' material.id %}" target="_blank" class="btn abrir">Abrir</a>
-                    <a href="{% url 'editar_material' material.id %}" class="btn editar">Editar</a>
-                    <form action="{% url 'deletar_material' material.id %}" method="post" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn deletar">Deletar</button>
-                    </form>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-
-        <div class="pagination">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
-                    <a href="?page=1">&laquo; Primeira</a>
-                    <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
-                {% endif %}
-
-                <span class="current">
-                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
-                </span>
-
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
-    </div>
-
-<hr style=" padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.6);">
-
-<h2 style="font-family: 'Georgia'; font-size: 35px; font-weight: bold;" class="titulo-principal">
-    Adicionar Material
-</h2>
-
-<!-- Botão para abrir/fechar o formulário -->
-<button id="btnAdicionarMaterial" class="btn-adicionar-material">
-  <span class="icon">➕</span> Adicionar Material
-</button>
-
-<!-- Formulário escondido inicialmente -->
-<div id="formAdicionarMaterial" style="display:none; margin-top:40px;">
-  <div class="add-material">
-    <form method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-
-      <!-- Título -->
-      <div class="form-row">
-        <label for="{{ form.titulo.id_for_label }}" class="label-inline">Título:</label>
-        <div class="input-inline">
-          {{ form.titulo }}
-        </div>
-      </div>
-
-      <!-- Descrição -->
-      <div class="form-row">
-        <label for="{{ form.descricao.id_for_label }}" class="label-inline">Descrição:</label>
-        <div class="input-inline">
-          {{ form.descricao }}
-        </div>
-      </div>
-
-      <!-- Tipo e Arquivo lado a lado -->
-      <div class="form-row">
-        <div class="half-width">
-          <label for="{{ form.tipo.id_for_label }}" class="label-inline">Tipo:</label>
-          <div class="input-inline">
-            {{ form.tipo }}
-          </div>
-        </div>
-        <div class="half-width">
-          <label for="{{ form.arquivo.id_for_label }}" class="label-inline">Arquivo:</label>
-          <div class="input-inline">
-            {{ form.arquivo }}
-          </div>
-        </div>
-      </div>
-
-      <!-- Permissões -->
-      <h3 style="margin-bottom: 0px; margin-top: 20px; color: white; font-size: 16px; font-weight: 400; font-family: Arial, Helvetica, sans-serif;">
-        Permissões:
-      </h3>
-      <div class="form-row">
-        <div class="form-habit half-width">
-          <label for="id_avaliacoes_habilitadas">Habilitar Avaliações:</label>
-          <label class="switch">
-            <input type="checkbox" name="avaliacoes_habilitadas" id="id_avaliacoes_habilitadas">
-            <span class="slider"></span>
-          </label>
-        </div>
-
-        <div class="form-habit half-width">
-          <label for="id_colaboracao_habilitada">Habilitar Colaboração:</label>
-          <label class="switch">
-            <input type="checkbox" name="colaboracao_habilitada" id="id_colaboracao_habilitada">
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
-
-      <!-- Campo colaborador -->
-      <div class="form-row" id="campoColaborador" style="margin-top: 10px;">
-        <label for="{{ form.email_colaborador.id_for_label }}" class="label-inline">Email do colaborador:</label>
-        <div class="input-inline">
-          {{ form.email_colaborador }}
-        </div>
-      </div>
-
-      <!-- Botão -->
-      <div class="form-actions">
-        <button type="submit">Criar Material</button>
-      </div>
-    </form>
-  </div>
 </div>
 
-        
+<!-- MATERIAIS PUBLICADOS -->
+<div class="section-container">
+    <h2 class="section-title">Materiais Publicados</h2>
+    <div class="materiais-grid">
+        {% for material in page_obj %}
+        <div class="material-card">
+            <div class="card-content">
+                <h3>{{ material.titulo }}</h3>
+                <p class="autor"><strong>Autor:</strong> {{ material.autor }}</p>
+                <p class="descricao"><strong>Descrição:</strong> {{ material.descricao }}</p>
+                <div class="meta-info">
+                    <span class="tipo">{{ material.get_tipo_display }}</span>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="{% url 'visualizar_material' material.id %}" target="_blank" class="btn abrir">Abrir</a>
+                <a href="{% url 'editar_material' material.id %}" class="btn editar">Editar</a>
+                <form action="{% url 'deletar_material' material.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn deletar">Deletar</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Primeira</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+<div class="section-container">
+  <h2 class="section-title">
+    Adicionar Material
+  </h2>
+  <button id="btnAdicionarMaterial" class="btn-adicionar-material">
+    <span class="icon">➕</span> Adicione Novo Material
+  </button>
+  <!-- Formulário escondido inicialmente -->
+  <div id="formAdicionarMaterial" style="display:none; margin-top:40px;">
+    <div class="add-material">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Título -->
+        <div class="form-row">
+          <label for="{{ form.titulo.id_for_label }}" class="label-inline">Título:</label>
+          <div class="input-inline">
+            {{ form.titulo }}
+          </div>
+        </div>
+
+        <!-- Descrição -->
+        <div class="form-row">
+          <label for="{{ form.descricao.id_for_label }}" class="label-inline">Descrição:</label>
+          <div class="input-inline">
+            {{ form.descricao }}
+          </div>
+        </div>
+
+        <!-- Tipo e Arquivo lado a lado -->
+        <div class="form-row">
+          <div class="half-width">
+            <label for="{{ form.tipo.id_for_label }}" class="label-inline">Tipo:</label>
+            <div class="input-inline">
+              {{ form.tipo }}
+            </div>
+          </div>
+          <div class="half-width">
+            <label for="{{ form.arquivo.id_for_label }}" class="label-inline">Arquivo:</label>
+            <div class="input-inline">
+              {{ form.arquivo }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Permissões -->
+        <h3 style="margin-bottom: 0px; margin-top: 20px; color: white; font-size: 16px; font-weight: 400; font-family: Arial, Helvetica, sans-serif;">
+          Permissões:
+        </h3>
+        <div class="form-row">
+          <div class="form-habit half-width">
+            <label for="id_avaliacoes_habilitadas">Habilitar Avaliações:</label>
+            <label class="switch">
+              <input type="checkbox" name="avaliacoes_habilitadas" id="id_avaliacoes_habilitadas">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="form-habit half-width">
+            <label for="id_colaboracao_habilitada">Habilitar Colaboração:</label>
+            <label class="switch">
+              <input type="checkbox" name="colaboracao_habilitada" id="id_colaboracao_habilitada">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Campo colaborador -->
+        <div class="form-row" id="campoColaborador" style="margin-top: 10px;">
+          <label for="{{ form.email_colaborador.id_for_label }}" class="label-inline">Email do colaborador:</label>
+          <div class="input-inline">
+            {{ form.email_colaborador }}
+          </div>
+        </div>
+
+        <!-- Botão -->
+        <div class="form-actions">
+          <button type="submit">Criar Material</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+   
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const btn = document.getElementById('btnAdicionarMaterial');
@@ -227,5 +219,5 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-
+</div>
 {% endblock %}
